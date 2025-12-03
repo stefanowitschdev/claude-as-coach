@@ -19,16 +19,7 @@
 
 ---
 
-## Step 1: Create a New Project (1 minute)
-
-1. Go to [claude.ai/projects](https://claude.ai/projects)
-2. Click **"Create Project"**
-3. Name it something like **"My Coach"** or **"Daily Reflection"**
-4. Click **"Create"**
-
----
-
-## Step 2: Import the Base Skills (2 minutes)
+## Step 1: Import the Base Skills (2 minutes)
 
 **Download these 5 skill files:**
 
@@ -38,7 +29,7 @@
 - [weekly-retrospective-base.zip](skills/weekly-retrospective-base.zip)
 - [weekly-planning-base.zip](skills/weekly-planning-base.zip)
 
-**Import them to your project:**
+**Upload them to claude.ai:**
 
 1. Open your new Claude Project
 2. Go to [Settings > Capabilities](https://claude.ai/settings/capabilities) (or click user panel bottom left > Settings > Capabilities)
@@ -50,7 +41,7 @@
 
 ---
 
-## Step 3: Enable Artifacts (30 seconds)
+## Step 2: Enable Artifacts (30 seconds)
 
 1. While still in Settings > Capabilities
 2. Make sure **"Artifacts"** is enabled (toggle on)
@@ -58,6 +49,16 @@
 **Why:** The setup process creates a `Project-Goals.md` file that you'll save to your project.
 
 ---
+
+## Step 3: Create a New Project (1 minute)
+
+1. Go to [claude.ai/projects](https://claude.ai/projects)
+2. Click **"Create Project"**
+3. Name it something like **"My Coach"** or **"Daily Reflection"**
+4. Click **"Create"**
+
+---
+
 
 ## Step 4: Set Up Your Project (5 minutes)
 
