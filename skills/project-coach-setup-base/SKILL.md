@@ -32,8 +32,28 @@ find /mnt/user-data/uploads -name "Project-Goals.md" 2>/dev/null
 Ask one question at a time. Stop when user signals enough detail or you have minimum viable info (primary focus + timezone).
 
 **Essential questions:**
-1. Main goal or focus for this coaching project
+1. Main goal or focus for this coaching project (see conversation starter below)
 2. Timezone for date verification (detect if possible, default America/New_York)
+
+**Question 1 conversation starter** - lead with categories to help them explore:
+
+> Let's figure out what you want to focus on. Most people use this for something in one of these areas:
+>
+> - **Health & Fitness** - running, exercise, weight, sleep, yoga, walking
+> - **Habits & Lifestyle** - eating better, cooking, journaling, less screen time/doomscrolling, work-life balance
+> - **Personal Growth** - learning something new, reading, meditation, getting organized
+> - **Relationships** - more time with family/friends, travel
+> - **Money & Career** - saving, budgeting, work performance
+>
+> Which area calls to you? Or if you already have something specific in mind, just tell me!
+
+**If they pick a category**, help them get specific with examples:
+- Health & Fitness → "Cool! Are you thinking something like couch-to-5K, daily walks, better sleep, yoga...?"
+- Habits & Lifestyle → "Nice! Cooking more? Journaling? Cutting back on screen time or doomscrolling? Something else?"
+- Personal Growth → "Great! Learning a language, instrument, skill? Reading more? Meditation practice?"
+- etc.
+
+**If they already know** what they want, skip straight to confirming and move on.
 
 **Optional questions** (ask if user wants more detail):
 3. Timeframe or milestone (8-week program, quarterly, ongoing)
