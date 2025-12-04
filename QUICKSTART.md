@@ -21,13 +21,13 @@
 
 ## Step 1: Import the Base Skills (2 minutes)
 
-**Download these 5 skill files:**
+**Download these 5 skill files** (click to download directly):
 
-- [project-coach-setup-base.zip](skills/project-coach-setup-base.zip)
-- [daily-morning-routine-base.zip](skills/daily-morning-routine-base.zip)
-- [daily-summary-base.zip](skills/daily-summary-base.zip)
-- [weekly-retrospective-base.zip](skills/weekly-retrospective-base.zip)
-- [weekly-planning-base.zip](skills/weekly-planning-base.zip)
+- [project-coach-setup-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/project-coach-setup-base.zip)
+- [daily-morning-routine-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip)
+- [daily-summary-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip)
+- [weekly-retrospective-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/weekly-retrospective-base.zip)
+- [weekly-planning-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/weekly-planning-base.zip)
 
 **Upload them to claude.ai:**
 
