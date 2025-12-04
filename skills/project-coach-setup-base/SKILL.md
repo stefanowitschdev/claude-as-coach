@@ -110,7 +110,15 @@ Create artifact using this template (adapt to their responses):
 _Edit this document anytime or run "set up my project" again for fresh version._
 ```
 
-Instruct user to save artifact to project. Confirm artifacts enabled in Settings > Capabilities.
+After generating, guide user to save the artifact to their project:
+
+**Web/Desktop:**
+> Click the artifact title → click the dropdown (▼) near "Copy" → select **"Save to Project"**
+
+**Mobile:**
+> Tap the artifact → tap "Download" → go to project sidebar → upload the file
+
+If artifacts aren't appearing, remind user to enable in Settings > Capabilities.
 
 ---
 
@@ -119,11 +127,16 @@ Instruct user to save artifact to project. Confirm artifacts enabled in Settings
 Provide minimal instructions:
 
 ```
-Project-Goals.md is ready. Save it to your project, then:
+Project-Goals.md is ready!
 
-1. Start logging activities today (include timestamps)
-2. End of day: "daily summary"
-3. Tomorrow morning: "good morning" or "gm"
+**To save it:**
+- Web/Desktop: Click artifact → dropdown (▼) near Copy → "Save to Project"
+- Mobile: Download it, then upload to project sidebar
+
+**Then start using the system:**
+1. Log activities in this chat today (include timestamps like "2pm - went for a walk")
+2. End of day: say "daily summary"
+3. Tomorrow morning: say "good morning" or "gm"
 ```
 
 Offer to answer questions if user needs more guidance.
