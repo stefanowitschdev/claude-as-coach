@@ -150,6 +150,55 @@
 
 ---
 
+#### F36: Save-to-Project UX Instructions
+**Status:** Proposed
+**Effort:** Quick win (15-20 min)
+**Priority:** High (Dec 12th - user onboarding friction)
+
+**Problem:** Users confused by artifact save flow after project setup generates Project-Goals.md
+
+**Platform-specific instructions needed:**
+- **Web/Desktop:** Click artifact → dropdown menu → "Save to Project"
+- **Mobile:** Download artifact → upload to project sidebar
+
+**Action:** Update project-coach-setup-base skill Step 3 with clear platform-specific save instructions
+
+**Related:** Decision paralysis examples already added (commit 23371f7)
+
+---
+
+#### F37: Skill ZIP Format Discrepancy
+**Status:** Document only (defer investigation)
+**Effort:** Quick win (10 min to document)
+**Priority:** High (affects all skill uploads)
+
+**Problem:** Claude.ai skill uploader behavior doesn't match official documentation
+- Docs: https://support.claude.com/en/articles/12512198-how-to-create-custom-skills
+- Actual uploader accepts different format than documented
+
+**Action:** Document as known issue, test what actually works before filing PR to anthropics/skills
+
+**Also needed:** Clean up fork (remove irrelevant pycache commit from ZachBeta/anthropics-skills)
+
+---
+
+#### F38: Alternative Onboarding Paths
+**Status:** Test for Dec 12
+**Effort:** 30-45 min testing
+**Priority:** High (may simplify demo significantly)
+
+**Problem:** Current onboarding (Settings > Capabilities > upload zips) is clunky
+
+**Alternative paths to test:**
+- **Path A:** Paste QUICKSTART.md raw URL into fresh project chat, let agent bootstrap
+- **Path B:** Upload skill zips via chat + use skill-creator skill to customize
+
+**Hypothesis:** Both may be simpler than Settings > Capabilities flow
+
+**Action:** Test both paths with fresh project, document which works best for new users
+
+---
+
 #### F26: Monthly Retrospective Rollup
 **Status:** Active - Design validation phase
 **Effort:** Path B (2-3 hours for manual rollup + skill design)
@@ -228,6 +277,42 @@
 - ✅ weekly-retrospective-base (added triggers)
 
 **Next:** Review daily-morning-routine-base and daily-summary-base
+
+---
+
+#### F39: Demo Datetime Issues
+**Status:** Proposed - Investigation needed
+**Effort:** 20-30 min investigation
+**Priority:** Medium (came up in demo)
+
+**Problem:** Date verification issues occurred during 1-on-1 demo sessions
+
+**Action:** Investigate what went wrong, improve date handling guidance in skills
+
+**Questions to answer:**
+- Did timezone detection fail?
+- Was there a mismatch between expected and actual dates?
+- Do skills need clearer date confirmation flows?
+
+---
+
+### Known Platform Limitations
+
+#### F40: Claude.ai Platform Limitations
+**Status:** Documentation only (not bugs to fix)
+**Priority:** Informational
+
+**Known limitations of Claude.ai Projects + Skills:**
+
+1. **Skills are global** - Cannot scope skills to specific projects; all uploaded skills appear across all projects
+2. **Conversation renaming** - Agent cannot update conversation title after first message
+3. **Skills not shared** - Skills uploaded to claude.ai (web/desktop/mobile) are not visible in Claude Code
+4. **No programmatic skill management** - Must manually upload/toggle skills in Settings > Capabilities
+
+**Workarounds:**
+- Use naming conventions to identify skill purpose (e.g., `production-*`, `development-*`)
+- Disable unused skills in Settings to reduce confusion
+- Accept that Claude Code and claude.ai have separate skill ecosystems
 
 ---
 
@@ -442,6 +527,62 @@ python scripts/skill_workflow.py promote daily-summary-personal
 - Validates microagent portability to non-Claude models
 - Tests system with language-specific coaching (domain advantage for Chinese models)
 - Informs model-agnostic skill design patterns
+
+---
+
+### F41: Microagent Deployment
+**Status:** Future exploration
+**Effort:** TBD (significant)
+**Priority:** Low (post-Dec 12)
+
+**Goal:** Nanochat-inspired minimal agent harness for executing skill workflows with open weight models
+
+**Concept:**
+- Lightweight orchestration of tool calls
+- Works with arbitrary commodity open weight models
+- Same "context bonsai" approach as Claude.ai version
+- Portability to non-Claude runtimes
+
+**Potential deployment:** https://echo.merit.systems
+
+**Related:** F30 (Maya Mandarin Learner) for model comparison testing
+
+---
+
+### F42: Claude Code Plugin Exploration
+**Status:** Future exploration
+**Effort:** TBD
+**Priority:** Low (post-Dec 12)
+
+**Goal:** Investigate Claude Code plugins as alternative runtime for coaching system
+
+**Context:**
+- Friend feedback: "shouldn't this be a Claude Code plugin?"
+- Counter-argument: Cross-device logging (phone + computer) favors claude.ai Projects
+- Logging activities like "woke up", "went for jog", "eating dinner" easier from mobile
+
+**Links:**
+- https://code.claude.com/docs/en/plugin-marketplaces
+- https://github.com/anthropics/claude/tree/main/plugins
+
+**Decision:** Explore post-launch, cross-device use case may not fit plugin model
+
+---
+
+### F43: Couch-to-5K Packaged Experience
+**Status:** Future idea
+**Effort:** TBD
+**Priority:** Low (post-Dec 12)
+
+**Goal:** Single skill upload for complete couch-to-5K coaching experience
+
+**Concept:**
+- Package entire C25K coaching as one uploadable skill
+- Includes training plan, metrics templates, recovery protocols
+- "Full stack" coaching in one .zip file
+- Lower barrier to entry than current multi-skill setup
+
+**Prerequisites:** Validate current multi-skill approach works well first
 
 ---
 
