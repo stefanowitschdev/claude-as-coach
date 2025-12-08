@@ -136,16 +136,16 @@ python claude-as-coach/scripts/skill_workflow.py pack claude-as-coach-personal/s
 # Import both to Claude.ai for stacked behavior
 ```
 
-**Legacy Skills:**
+**Unified Skills (Any Time Scale):**
 
-Monolithic skills still use the unpack/pack workflow:
+Planning and retrospective skills work at any time scale (daily/weekly/monthly/quarterly/yearly):
 
 ```bash
-# Edit tracked source directly
-code claude-as-coach/skills/weekly-planning/SKILL.md
+# Edit unified planning skill
+code claude-as-coach/skills/planning-base/SKILL.md
 
-# Pack & commit
-python claude-as-coach/scripts/skill_workflow.py pack claude-as-coach/skills/weekly-planning/
+# Pack
+python claude-as-coach/scripts/skill_workflow.py pack claude-as-coach/skills/planning-base/
 ```
 
 ## Documentation
@@ -158,19 +158,20 @@ python claude-as-coach/scripts/skill_workflow.py pack claude-as-coach/skills/wee
 
 ### Skills
 
-**Separated Skills (Base + Personal):**
-- **daily-summary** - End-of-day summaries
+**Daily Skills (Base + Personal):**
+- **daily-summary** - End-of-day capture
   - `skills/daily-summary-base.zip` - Framework for structured daily summaries
   - `personal/daily-summary-personal.zip` - Personal metrics & domain-specific context
 - **daily-morning-routine** - Morning kickoff routine
   - `skills/daily-morning-routine-base.zip` - Framework for morning context loading
   - `personal/daily-morning-routine-personal.zip` - Personal protocols & thresholds
 
-**Standalone Skills:**
-- `weekly-planning.zip` - Week-ahead planning with experiments
-- `weekly-retrospective.zip` - Weekly reflection
-- `backfill-summary.zip` - Generate summaries for past days
-- `context-continuation.zip` - Session context management
+**Unified Skills (Any Time Scale):**
+- `planning-base.zip` - Forward planning with constraints (daily/weekly/monthly/quarterly/yearly)
+- `retrospective-base.zip` - Reflection and pattern extraction (daily/weekly/monthly/quarterly/yearly)
+
+**Setup:**
+- `project-coach-setup-base.zip` - Initial project setup and goal definition
 
 ## Skill Architecture: Base + Personal Pattern
 

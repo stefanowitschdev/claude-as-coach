@@ -192,9 +192,7 @@ claude-as-coach-combined/             # Parent workspace
         ├── /daily-summary-personal/  # Source directory (tracked)
         │   └── SKILL.md              # Your metrics & context
         ├── daily-summary-personal.zip   # Packed skill
-        ├── /daily-morning-routine-personal/
-        ├── /weekly-retrospective-personal/
-        └── /weekly-planning-personal/
+        └── /daily-morning-routine-personal/
 ```
 
 ### Why Sibling Directories?

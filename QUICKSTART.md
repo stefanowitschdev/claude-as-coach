@@ -26,8 +26,8 @@
 - [project-coach-setup-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/project-coach-setup-base.zip)
 - [daily-morning-routine-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip)
 - [daily-summary-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip)
-- [weekly-retrospective-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/weekly-retrospective-base.zip)
-- [weekly-planning-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/weekly-planning-base.zip)
+- [retrospective-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base.zip)
+- [planning-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base.zip)
 
 **Upload them to claude.ai:**
 

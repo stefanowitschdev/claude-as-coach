@@ -79,15 +79,16 @@ git -C claude-as-coach-personal status
 
 ### Current Skill Status
 
-**Separated (Base + Personal):**
-- `daily-summary` - End-of-day structured summaries
+**Daily Skills (Base + Personal):**
+- `daily-summary` - End-of-day structured summaries (pure capture)
 - `daily-morning-routine` - Morning context loading
 
-**Standalone (No Separation):**
-- `weekly-planning` - Week-ahead planning
-- `weekly-retrospective` - Weekly reflection
-- `backfill-summary` - Generate past summaries
-- `context-continuation` - Session context management
+**Unified Skills (Any Time Scale):**
+- `planning` - Forward planning with constraints (daily/weekly/monthly/quarterly/yearly)
+- `retrospective` - Reflection and pattern extraction (daily/weekly/monthly/quarterly/yearly)
+
+**Setup:**
+- `project-coach-setup` - Initial project setup and goal definition
 
 ## Skill Workflow Commands
 
@@ -145,18 +146,18 @@ python scripts/skill_workflow.py pack examples/alice-the-athlete/skills/daily-su
 # Location: examples/gina-the-grad-student/
 ```
 
-### Standalone Skills
+### Unified Skills (Any Time Scale)
 
 ```bash
-# Edit source directly (tracked in git)
-vim skills/weekly-planning/SKILL.md
+# Edit unified planning skill (works for daily/weekly/monthly/quarterly/yearly)
+vim skills/planning-base/SKILL.md
 
 # Pack (provide directory path)
-python scripts/skill_workflow.py pack skills/weekly-planning/
+python scripts/skill_workflow.py pack skills/planning-base/
 
 # Commit using standard git commands
-git add skills/weekly-planning/ skills/weekly-planning.zip
-git commit -m "Description"
+git add skills/planning-base/ skills/planning-base.zip
+git commit -m "Update planning-base skill"
 ```
 
 ## Directory Structure
@@ -165,8 +166,11 @@ git commit -m "Description"
 claude-as-coach-combined/           # Parent workspace (Claude Code runs here)
 ├── claude-as-coach/                # Public repo
 │   ├── /skills/                    # Base skills
-│   │   ├── /daily-summary-base/    # Base skill source (tracked)
-│   │   ├── /daily-morning-routine-base/ # Base skill source (tracked)
+│   │   ├── /daily-summary-base/    # Daily capture (tracked)
+│   │   ├── /daily-morning-routine-base/ # Morning context (tracked)
+│   │   ├── /planning-base/         # Unified planning - any time scale (tracked)
+│   │   ├── /retrospective-base/    # Unified retro - any time scale (tracked)
+│   │   ├── /project-coach-setup-base/ # Project setup (tracked)
 │   │   └── /*.zip                  # Packed skill ZIP files
 │   ├── /examples/                  # Demo personas (all synthetic/fictional)
 │   │   ├── README.md               # Persona overview

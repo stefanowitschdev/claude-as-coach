@@ -167,18 +167,34 @@
 
 ---
 
-#### F37: Skill ZIP Format Discrepancy
-**Status:** Document only (defer investigation)
-**Effort:** Quick win (10 min to document)
-**Priority:** High (affects all skill uploads)
+#### F37: Skill ZIP Format Discrepancy - PR to anthropics/skills
+**Status:** Ready for PR (confirmed 2025-12-06)
+**Effort:** Quick win (15-20 min)
+**Priority:** Medium (affects all skill uploads, but workaround known)
 
-**Problem:** Claude.ai skill uploader behavior doesn't match official documentation
-- Docs: https://support.claude.com/en/articles/12512198-how-to-create-custom-skills
-- Actual uploader accepts different format than documented
+**Problem:** Vendor tooling produces `.skill` files that Claude.ai uploader rejects
 
-**Action:** Document as known issue, test what actually works before filing PR to anthropics/skills
+**Confirmed behavior (2025-12-06):**
+- ✅ `.zip` extension uploads work
+- ❌ `.skill` extension uploads fail
+- Vendor `package_skill.py` outputs `.skill` (broken)
+- Vendor `SKILL.md` documents `.skill` extension (incorrect)
 
-**Also needed:** Clean up fork (remove irrelevant pycache commit from ZachBeta/anthropics-skills)
+**Files to fix in anthropics/skills:**
+
+| File | Line | Current | Fix |
+|------|------|---------|-----|
+| `skills/skill-creator/scripts/package_skill.py` | 64 | `f"{skill_name}.skill"` | `f"{skill_name}.zip"` |
+| `skills/skill-creator/SKILL.md` | 343 | "a zip file with a .skill extension" | "a .zip file" |
+
+**PR checklist:**
+1. Clean up fork first (remove stray pycache commit from ZachBeta/anthropics-skills)
+2. Create branch for fix
+3. Apply both edits
+4. Test: run package_skill.py, verify .zip output, upload to Claude.ai
+5. Submit PR with reproduction steps
+
+**Workaround (current):** Use local `pack_skill.py` which outputs `.zip`, or manually rename `.skill` → `.zip`
 
 ---
 
@@ -222,6 +238,43 @@
 **Why now:** Natural timing (early December), strengthens presentation narrative, validates design with real data
 
 **Next:** Apply proposed structure to November data, answer open questions empirically
+
+---
+
+### 🟡 Medium Priority: Safety & User Experience
+
+#### F45: Safety Disclaimers & Liability Boundaries
+**Status:** Proposed - Feedback from 1-on-1 demo (2025-12-04)
+**Effort:** Quick win (30-45 min)
+**Priority:** High (before wide publication)
+
+**Problem:** Users curate their own context (daily summaries, retros, protocols) which shapes Claude's responses. Even with Claude's built-in safety guardrails, curated context could steer toward problematic advice:
+- Health decisions ("maybe I should stop my medication")
+- Mental health crises (self-harm, suicidal ideation)
+- Financial/legal decisions without professional guidance
+- Relationship interventions beyond AI assistant scope
+
+**Goal:** Add explicit safety disclaimers and scope boundaries throughout the system
+
+**Deliverables:**
+
+| Location | Addition |
+|----------|----------|
+| README.md | Liability disclaimer section |
+| PROJECT-SETUP.md | Safety boundaries upfront (before Quick Start) |
+| QUICKSTART.md | Brief safety note |
+| Base skills | "Not a replacement for professional advice" reminders |
+| Project-Goals.md template | Scope statement about AI assistant limitations |
+
+**Proposed language (adapt per location):**
+> This system is a structured reflection tool, not a replacement for professional medical, mental health, financial, or legal advice. If you're facing decisions in these domains, please consult qualified professionals. Claude is an AI assistant with limitations - it cannot assess your full situation and should not be relied upon for critical life decisions.
+
+**Optional enhancements (future):**
+- Pattern detection in morning routine for concerning context
+- Explicit redirect language when health/crisis topics detected
+- "When to seek help" resource links in skills
+
+**Why now:** Demo feedback highlighted this gap. Important to address before sharing widely.
 
 ---
 
@@ -317,6 +370,42 @@
 ---
 
 ## Backlog
+
+### F44: Repository Rename Consideration
+**Status:** Deferred - Decision needed before wide publication
+**Effort:** Path B (1-2 hours for find/replace + GitHub rename)
+**Priority:** Medium (before public launch, after Dec 12th demo)
+
+**Goal:** Rename repository to better reflect its purpose and avoid relationship-implying terminology
+
+**Current name:** `claude-as-coach` / `claude-as-coach-personal` / `claude-as-coach-combined`
+
+**Concerns with current name:**
+1. "Coach" implies ongoing relationship/mentorship dynamic
+2. "Claude" ties name to specific provider (limits microagent portability narrative)
+3. Boundary-setting guidance suggests avoiding coach/mentor/advisor framing
+
+**Options discussed:**
+
+| Name | Notes |
+|------|-------|
+| `claude-projects-goals-demo` | Explicit tech demo framing, honest about Claude-specific scope |
+| `reflection-loop` | Provider-agnostic, captures iterative nature |
+| `structured-reflection` | Describes methodology |
+| `goals-assistant` | Clear AI assistant role, neutral |
+| `fractal-journal` | Distinctive, captures compression pattern |
+
+**Recommendation:** If microagent supersedes this demo, use provider-agnostic name for that. Keep this as explicit Claude Projects demo with `claude-projects-goals-demo`.
+
+**Scope if renamed:**
+- GitHub repo rename (manual)
+- ~50+ references across CLAUDE.md, README, docs
+- Personal repo rename
+- Parent workspace rename
+
+**Decision trigger:** Before sharing repo widely / before microagent launch
+
+---
 
 ### F34: Parent Workspace as Public Repository
 **Status:** Proposed - Architecture decision deferred

@@ -69,10 +69,8 @@ python claude-as-coach/scripts/skill_workflow.py pack claude-as-coach-personal/s
 Use the traditional unpack/edit/pack workflow (see below).
 
 **Current standalone skills:**
-- `weekly-planning`
-- `weekly-retrospective`
-- `backfill-summary`
-- `context-continuation`
+- `planning` (unified - works at daily/weekly/monthly/quarterly/yearly scale)
+- `retrospective` (unified - works at daily/weekly/monthly/quarterly/yearly scale)
 
 ### The Direct Edit-Pack-Commit Flow (Standalone Skills)
 
@@ -433,23 +431,29 @@ pip install -r scripts/requirements.txt
 
 ## Current Skills
 
-### Separated Skills (Base + Personal)
+### Daily Skills (Base + Personal)
 
 | Skill | Base (Framework) | Personal (Extensions) |
 |-------|-----------------|----------------------|
-| **daily-summary** | `claude-as-coach/skills/daily-summary-base.zip` | `claude-as-coach-personal/skills/daily-summary-personal.zip` |
-| **daily-morning-routine** | `claude-as-coach/skills/daily-morning-routine-base.zip` | `claude-as-coach-personal/skills/daily-morning-routine-personal.zip` |
+| **daily-summary** | `daily-summary-base.zip` | `daily-summary-personal.zip` |
+| **daily-morning-routine** | `daily-morning-routine-base.zip` | `daily-morning-routine-personal.zip` |
 
 **Import both base + personal to Claude.ai for full functionality.**
 
-### Standalone Skills
+### Unified Skills (Any Time Scale)
+
+| Skill | Purpose | Scales |
+|-------|---------|--------|
+| `planning-base.zip` | Forward planning with constraints | Daily, Weekly, Monthly, Quarterly, Yearly |
+| `retrospective-base.zip` | Reflection and pattern extraction | Daily, Weekly, Monthly, Quarterly, Yearly |
+
+These unified skills adapt their structure based on the time scale you specify. Same framework, different inputs and horizons.
+
+### Setup Skill
 
 | Skill | Purpose |
 |-------|---------|
-| `weekly-planning.zip` | Week-ahead planning with experiments |
-| `weekly-retrospective.zip` | Weekly reflection and analysis |
-| `backfill-summary.zip` | Generate summaries for past days |
-| `context-continuation.zip` | Session context management |
+| `project-coach-setup-base.zip` | Initial project setup and goal definition |
 
 ## Troubleshooting
 
@@ -478,6 +482,41 @@ git submodule update --init --recursive
 ### "ZIP validation warnings"
 These are informational messages from the vendor validation scripts. They are usually harmless and indicate style/formatting issues rather than errors. Validation runs automatically when vendor tools are available.
 
+## Edge Cases & Workarounds
+
+### Backfilling Summaries from Prior Conversations
+
+**Scenario:** You want to reconstruct daily summaries from older Claude.ai conversations that happened before you set up this system.
+
+**Recommended approach:** Focus forward rather than reconstructing the past.
+- The value of summaries is in the ongoing practice, not historical completeness
+- Old conversations lack the structured format that makes summaries useful for retros
+- Time spent backfilling is better spent building the habit going forward
+
+**If you really need to backfill:**
+- Open the old conversation in Claude.ai
+- Manually extract key events, decisions, and insights
+- Create a summary document with an appropriate date
+- Mark it as `[backfilled]` in the context tag to distinguish from real-time summaries
+
+### Context Maxed Out Mid-Conversation
+
+**Scenario:** You hit Claude.ai's context limit in the middle of an important conversation.
+
+**Workaround (manual but effective):**
+1. Open the conversation in **web view** (not mobile)
+2. **Collapse all thinking blocks** - these consume significant space
+3. **Expand all multi-step processes and prompts** - ensure you capture the substance
+4. **Select all** visible text (Cmd+A / Ctrl+A)
+5. **Paste into a new chat**
+6. Ask Claude to **summarize the key context** and continue
+
+**Prevention tips:**
+- Monitor context usage during long sessions
+- Do periodic "checkpoint summaries" in long conversations
+- Break work into focused sessions rather than marathon chats
+- Disable extended thinking if context is tight (Claude Pro users)
+
 ## Python Workflow Reference
 
 ### skill_workflow.py Commands
@@ -499,11 +538,12 @@ python scripts/skill_workflow.py edit <skill-file> [-e EDITOR]
 ### Example Workflow
 
 ```bash
-# Complete workflow for editing weekly-planning skill
-code skills/weekly-planning/SKILL.md
+# Complete workflow for editing planning-base skill
+code skills/planning-base/SKILL.md
 # ... make edits ...
-python scripts/skill_workflow.py pack weekly-planning
-python scripts/skill_workflow.py commit weekly-planning -m "Add constraint identification section"
+python scripts/skill_workflow.py pack skills/planning-base/
+git add skills/planning-base/ skills/planning-base.zip
+git commit -m "Add constraint identification section to planning-base"
 ```
 
 ## Future: MCP Integration
