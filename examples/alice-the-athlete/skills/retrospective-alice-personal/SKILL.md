@@ -1,13 +1,13 @@
 ---
-name: weekly-retrospective-alice-personal
+name: retrospective-alice-personal
 description: Alice's couch-to-5K retrospective with training reflections and progress tracking.
 metadata:
-  extends: weekly-retrospective-base
+  extends: retrospective-base
 ---
 
 # Weekly Retrospective - Personal Extensions (Running Training Example)
 
-**This skill extends `weekly-retrospective-base` with running training-specific context.**
+**This skill extends `retrospective-base` with running training-specific context.**
 
 **Note:** This is an EXAMPLE showing how to adapt the retrospective framework for couch-to-5K training. Replace with your own domain terminology.
 

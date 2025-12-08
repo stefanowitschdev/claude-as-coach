@@ -79,25 +79,25 @@ All skill sources are tracked in git. No unpacking needed!
 #### Step 1: Edit Source Directly
 ```bash
 # Open source directory in your editor
-code skills/weekly-planning/SKILL.md
+code skills/planning-base/SKILL.md
 
 # Make your changes...
 ```
 
 #### Step 2: Pack
 ```bash
-python scripts/skill_workflow.py pack weekly-planning
+python scripts/skill_workflow.py pack skills/planning-base/
 ```
-Creates updated: `skills/weekly-planning.zip`
+Creates updated: `skills/planning-base.zip`
 
 #### Step 3: Review & Commit
 ```bash
 # Option A: Using the commit command
-python scripts/skill_workflow.py commit weekly-planning -m "Add constraint identification"
+python scripts/skill_workflow.py commit planning-base -m "Add constraint identification"
 
 # Option B: Manual git workflow
-git add skills/weekly-planning/ skills/weekly-planning.zip
-git commit -m "skill: Add constraint identification to weekly-planning"
+git add skills/planning-base/ skills/planning-base.zip
+git commit -m "skill: Add constraint identification to planning-base"
 ```
 
 ### Bringing Skills from Claude.ai
@@ -144,19 +144,19 @@ python scripts/skill_workflow.py unpack my-skill.zip --output-dir skills/my-skil
 ### Force Overwrite
 If skill is already unpacked:
 ```bash
-python scripts/skill_workflow.py unpack skills/weekly-planning.zip --force
+python scripts/skill_workflow.py unpack skills/planning-base.zip --force
 ```
 
 ### Auto-Commit
 Skip confirmation prompt:
 ```bash
-python scripts/skill_workflow.py commit weekly-planning -m "Quick fix" -y
+python scripts/skill_workflow.py commit planning-base -m "Quick fix" -y
 ```
 
 ### Custom Editor
 Use different editor:
 ```bash
-python scripts/skill_workflow.py edit skills/weekly-planning.zip -e vim
+python scripts/skill_workflow.py edit skills/planning-base.zip -e vim
 ```
 
 ## Managing Personal Files (Sibling Repo)

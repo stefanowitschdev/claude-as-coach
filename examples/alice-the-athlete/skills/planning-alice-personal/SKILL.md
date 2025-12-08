@@ -1,13 +1,13 @@
 ---
-name: weekly-planning-alice-personal
+name: planning-alice-personal
 description: Alice's couch-to-5K weekly planning with training constraints and running goals.
 metadata:
-  extends: weekly-planning-base
+  extends: planning-base
 ---
 
 # Weekly Planning - Personal Extensions (Running Training Example)
 
-**This skill extends `weekly-planning-base` with running training-specific context.**
+**This skill extends `planning-base` with running training-specific context.**
 
 **Note:** This is an EXAMPLE showing how to adapt the planning framework for couch-to-5K training. Replace with your own domain terminology.
 

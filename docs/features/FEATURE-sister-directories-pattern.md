@@ -98,13 +98,13 @@ cd claude-as-coach-combined
 
 # Try operations with longer paths:
 python claude-as-coach/scripts/skill_workflow.py pack claude-as-coach/skills/daily-summary-base/
-vim claude-as-coach/skills/weekly-planning/SKILL.md
+vim claude-as-coach/skills/planning-base/SKILL.md
 cd claude-as-coach && git status && cd ..
 
 # Compare to operations from child:
 cd claude-as-coach
 python scripts/skill_workflow.py pack skills/daily-summary-base/
-vim skills/weekly-planning/SKILL.md
+vim skills/planning-base/SKILL.md
 git status
 ```
 

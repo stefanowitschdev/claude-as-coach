@@ -44,8 +44,8 @@ rg -i "connecticut|EST|timezone" --type md
 **Base skills (should be clean):**
 - [ ] `skills/daily-summary-base/SKILL.md`
 - [ ] `skills/daily-morning-routine-base/SKILL.md`
-- [ ] `skills/weekly-planning-base/SKILL.md`
-- [ ] `skills/weekly-retrospective-base/SKILL.md`
+- [ ] `skills/planning-base/SKILL.md`
+- [ ] `skills/retrospective-base/SKILL.md`
 - [ ] `skills/project-coach-setup-base/SKILL.md`
 
 **Documentation (should be clean):**

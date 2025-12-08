@@ -1,8 +1,38 @@
 # Rob Demo Script (20 minutes)
 
-**Demo Date:** Saturday, December 7, 2025
+**Demo Date:** Any day works (regenerate dates before demo)
 **Scenario:** Rob finishing Week 9, preparing for Week 10
 **Shows:** Full skill workflow - morning routine → daily log → summary → weekly retro → weekly planning
+
+---
+
+## BEFORE DEMO: Regenerate Dates (1 minute)
+
+Rob's documents use templated dates that can be regenerated for any demo day:
+
+```bash
+# Default: use today as demo day
+python scripts/regenerate_demo_dates.py
+
+# Specific demo day (recommended for prep)
+python scripts/regenerate_demo_dates.py --demo-day 2025-12-12
+
+# Dry-run (see what would be generated without writing files)
+python scripts/regenerate_demo_dates.py --dry-run
+
+# Show all calculated placeholders
+python scripts/regenerate_demo_dates.py --show-placeholders
+```
+
+**Output:** Generated files go to `examples/rob-the-runner/documents-generated/`
+
+**How it works:**
+- Templates live in `examples/rob-the-runner/templates/`
+- Demo day anchors Rob's timeline: W9 = demo week, W8 = last week, etc.
+- Week numbers stay fixed (W7, W8, W9 have narrative meaning)
+- Only dates change based on demo day
+
+**After running script:** Upload files from `documents-generated/` to Claude Project.
 
 ---
 
@@ -16,111 +46,36 @@
 ```
 skills/daily-summary-base.zip
 skills/daily-morning-routine-base.zip
-skills/weekly-retrospective-base.zip
-skills/weekly-planning-base.zip
+skills/retrospective-base.zip
+skills/planning-base.zip
 ```
 
-### 3. Upload Rob's Documents (10 files from `examples/rob-the-runner/documents/`)
-**Upload all files:**
-- Monthly-Rollup-2025-10-October.md
-- Weekly-Retro-2025-11-04-to-10-W5.md
-- Weekly-Retro-2025-11-11-to-17-W6.md
-- Weekly-Retro-2025-11-18-to-24-W7.md
-- Summary-2025-11-25-Monday-W8-D1.md
-- Summary-2025-11-27-Wednesday-W8-D2.md
-- Summary-2025-11-29-Friday-W8-D3.md
-- Summary-2025-12-01-Monday-W9-D1.md
-- Summary-2025-12-03-Wednesday-W9-D2.md
-- Weekly-Plan-2025-12-01-to-07-W9.md
+### 3. Upload Rob's Documents (10 files from `examples/rob-the-runner/documents-generated/`)
 
-### 4. Create ONE prep summary (paste into chat, save to project)
+**Run regeneration first** (see "BEFORE DEMO" section above), then upload all generated files:
+- Monthly-Rollup-YYYY-MonthName.md
+- Weekly-Retro-*-W5.md, W6.md, W7.md (3 files)
+- Summary-*-W8-D1.md, W8-D2.md, W8-D3.md (3 files)
+- Summary-*-W9-D1.md, W9-D2.md (2 files)
+- Weekly-Plan-*-W9.md (1 file)
 
-<details>
-<summary>📄 Summary-2025-12-06-Friday-W9-D5.md (PREP FILE - paste this)</summary>
+**Note:** Actual dates in filenames depend on demo day. If demo day = Dec 12, W9 = Dec 8-14.
 
-```markdown
-# Summary-2025-12-06-Friday-W9-D5
+### 4. Upload the W9-D5 prep summary
 
-**Date:** Friday, December 6, 2025
-**Context:** Week 9, Day 5 - End of first post-program week
+The regeneration script also creates `Summary-*-W9-D5.md` (the "yesterday" file for morning routine).
 
-## TL;DR
+Upload from `documents-generated/`:
+- `Summary-YYYY-MM-DD-Friday-W9-D5.md` (date depends on demo day)
 
-Wrapped up Week 9 with an easy 3-mile run. Felt like a "bridge week" - not training for anything specific, but maintaining momentum. Did yoga with wife after work (3rd session this week). Getting slightly less terrible at it. Weekend plans: Saturday morning run, then maybe a longer yoga flow? Program's done, but the habits are sticking.
-
-## Key Numbers
-
-**Running:**
-- Distance: 3.0 miles
-- Duration: ~33 minutes
-- Pace: ~11:00 min/mi (comfortable)
-- Heart rate avg: ~150 bpm
-- Consistent all week
-
-**Yoga:**
-- Session: 25 minutes (beginner-intermediate)
-- Difficulty: 7/10 (slight improvement)
-- Wife's patience: ∞/10 (she's a saint)
-
-**General:**
-- Weight: 190 lbs (down 1 lb this week!)
-- Sleep: 7 hours
-- Energy: 8/10
-
-## Timeline
-
-**6:30 AM** - Morning run
-- Same comfortable 3-mile route
-- Body feels good - no aches
-- Mind wandering: "What do I train for next?"
-- Not urgent, just curious
-
-**9:00 AM - 5:30 PM** - Work
-- Friday = less intense, admin tasks
-- Quarterly reports finalized (done!)
-
-**6:00 PM** - Yoga with wife
-- 25-minute flow
-- First time attempting crow pose (failed hilariously)
-- Wife demonstrated, I fell over
-- We both laughed - that's the point?
-
-**8:00 PM** - Dinner conversation
-- Talked about "what's next" for fitness
-- No pressure to decide now
-- Maybe a 10K in spring?
-- Maybe yoga teacher training for her?
-- For now: just keep moving
-
-## Insights
-
-**Pattern recognition:** Week 9 felt like a "breath" after the intensity of Week 8. The couch-to-5K program structure is gone, but the habits remain. Running 3 days/week feels normal now. Yoga 2-3x/week is becoming normal too.
-
-**The yoga surprise:** I thought yoga would be "easy" compared to running. It's not. Different hard. Balance is humbling. But there's something about struggling through a pose with my wife that feels... connective? Not just fitness, but time together.
-
-**Energy observation:** No big energy swings this week. Steady 7-8/10 most days. Sleep consistent. Weight trending down (finally broke 191). This is what "sustainable" feels like?
-
-## Decisions & Next
-
-**For tomorrow (Saturday):**
-- Morning run: 3-4 miles, easy pace
-- Afternoon: Try a longer yoga flow (45 min) with wife
-
-**For Week 10:**
-- Continue run 3x/week pattern (Mon/Wed/Fri or Sat)
-- Yoga 3x/week pattern (Tues/Thurs/weekend)
-- No new experiments - let this week's pattern settle
-- Maybe start thinking about a 10K goal for spring?
-
-**No big decisions needed.** Just keep going.
-```
-</details>
-
-**Save to project** after pasting.
+**This file represents "yesterday" relative to demo day (Saturday).**
 
 ---
 
 ## DEMO FLOW (18 minutes)
+
+**Note:** Dates in this section are examples for demo day = Saturday Dec 7, 2025.
+Actual dates will match your regenerated files. The flow and structure remain the same.
 
 ### Phase 1: Morning Routine (3 min)
 

@@ -42,9 +42,9 @@ All notable user-facing changes to the Claude-as-Coach system.
 
 ### Improved
 
-**Weekly skills now trigger reliably:**
-- weekly-planning-base: responds to "weekly planning", "plan the week", "start of week"
-- weekly-retrospective-base: responds to "weekly retro", "weekly retrospective", "end of week"
+**Unified planning/retrospective skills now trigger reliably:**
+- planning-base: responds to "weekly planning", "plan the week", "start of week" (works at any time scale)
+- retrospective-base: responds to "weekly retro", "weekly retrospective", "end of week" (works at any time scale)
 - Trigger phrases added to skill descriptions (vendor best practice)
 
 **Architecture validated:**
@@ -205,8 +205,8 @@ Found a problem or have a suggestion? Open an issue on GitHub (repository coming
 
 **Workflow improvements:**
 - Removed legacy `skills-working/` code paths
-- Separated weekly-planning and weekly-retrospective into base + personal
-- `dff272f` - Split weekly retro/planning into base + personal skills
+- Separated planning and retrospective into base + personal
+- `dff272f` - Split retro/planning into base + personal skills
 
 **Outcome:** Git diffs now show actual skill content changes, not binary ZIP deltas
 

@@ -66,8 +66,8 @@ Create demonstration persona for **language learning** (Mandarin Chinese) to eva
 
 - [ ] `daily-summary-maya-personal.skill` - Language learning metrics (HSK level, character count, conversation time)
 - [ ] `daily-morning-routine-maya-personal.skill` - Review flashcards, yesterday's vocabulary
-- [ ] `weekly-retrospective-maya-personal.skill` - Topic mastery by HSK level
-- [ ] `weekly-planning-maya-personal.skill` - Study focus areas for next week
+- [ ] `retrospective-maya-personal.skill` - Topic mastery by HSK level
+- [ ] `planning-maya-personal.skill` - Study focus areas for next week
 
 ### Project Setup
 

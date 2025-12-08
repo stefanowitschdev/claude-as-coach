@@ -11,8 +11,8 @@
 ### Existing Skills
 - `daily-summary` - End-of-day summary creation
 - `daily-morning-routine` - Morning context loading from previous summary
-- `weekly-retrospective` - Weekly pattern recognition from dailies
-- `weekly-planning` - Weekly planning from retros
+- `retrospective` - Pattern recognition from previous time period (any scale)
+- `planning` - Planning from retros (any scale)
 - `backfill-summary` - Backfilling missed days
 - `context-continuation` - Mid-day context handoff
 
@@ -236,13 +236,12 @@ These questions will be answered through the November 2025 manual rollup:
 
 ### Phase 3: Archival Documentation
 - Document archival workflow in WORKFLOW-GUIDE.md
-- Add reminders to weekly-retro skill about archiving dailies
-- Add reminders to monthly-retro skill about archiving weeklies
+- Add reminders to retrospective skill about archiving dailies/weeklies
 - Update document lifecycle table
 
 ### Phase 4: Plan Integration (Optional)
 - Decide on plan-vs-actual approach (A, B, or C) based on November test
-- Update weekly-planning and weekly-retro skills accordingly
+- Update planning and retrospective skills accordingly
 - May discover this isn't needed through practice
 
 ---

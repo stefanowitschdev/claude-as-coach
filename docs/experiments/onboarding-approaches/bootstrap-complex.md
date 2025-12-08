@@ -518,14 +518,14 @@ The summary IS the daily record.
 ---
 
 
-## SKILL: weekly-planning-base
+## SKILL: planning-base
 
 ---
-name: weekly-planning-base
-description: Base framework for weekly planning - plan week ahead based on what worked, what didn't, and what's possible now. Use when user says "weekly planning", "plan the week", "start of week", or at beginning of week. Generates forward-looking experiment design with 2-3 priorities max, staged experiments, and Level 0-3 success framework. Identifies constraints FIRST before suggesting priorities. Optimized for working with actual capacity, not aspirational goals. Adaptable to any domain.
+name: planning-base
+description: Base framework for planning - plan ahead based on what worked, what didn't, and what's possible now. Use when user says "weekly planning", "plan the week", "start of week", or at beginning of week. Works at any time scale (daily/weekly/monthly/quarterly/yearly). Generates forward-looking experiment design with 2-3 priorities max, staged experiments, and Level 0-3 success framework. Identifies constraints FIRST before suggesting priorities. Optimized for working with actual capacity, not aspirational goals. Adaptable to any domain.
 ---
 
-# Weekly Planning (Base Framework)
+# Planning (Base Framework)
 
 **Format:** Forward-looking experiment design.
 
@@ -870,14 +870,14 @@ Weekly-Plan-2025-11-17-to-23.md
 ---
 
 
-## SKILL: weekly-retrospective-base
+## SKILL: retrospective-base
 
 ---
-name: weekly-retrospective-base
-description: Base framework for weekly retrospectives - reflect on what worked, what didn't, and how to improve. Use when user says "weekly retro", "weekly retrospective", "end of week", or similar at week's end. Generates empty structure first, fills conversationally through observations and reactions. Adaptable to any domain (learning, projects, habits, health, business).
+name: retrospective-base
+description: Base framework for retrospectives - reflect on what worked, what didn't, and how to improve. Use when user says "weekly retro", "weekly retrospective", "end of week", or similar at week's end. Works at any time scale (daily/weekly/monthly/quarterly/yearly). Generates empty structure first, fills conversationally through observations and reactions. Adaptable to any domain (learning, projects, habits, health, business).
 ---
 
-# Weekly Retrospective (Base Framework)
+# Retrospective (Base Framework)
 
 **Format:** Traditional product/engineering retro adapted for individual growth work, inspired by Rose/Bud/Thorn with time-scale sections and gratitude closing.
 
@@ -1110,7 +1110,7 @@ What are you grateful for from this week?
   - Domain-specific learnings (goes in Gratitude or What Worked)
   - Specific improvements to try (goes in What Didn't Work → Experiments)
   - Project progress (goes in Monthly Progress)
-- **Key point:** Insights here should lead to updates in weekly-retrospective skill
+- **Key point:** Insights here should lead to updates in retrospective skill
 - If process broken, propose concrete skill changes
 - Close the feedback loop: retro-retro → skill evolution
 

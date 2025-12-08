@@ -46,8 +46,8 @@ Create demonstration persona showing software engineering interview prep sprint 
 
 - [ ] `daily-summary-sally-personal.skill` - Interview prep metrics and study tracking
 - [ ] `daily-morning-routine-sally-personal.skill` - Review yesterday's learnings
-- [ ] `weekly-retrospective-sally-personal.skill` - Topic mastery assessment
-- [ ] `weekly-planning-sally-personal.skill` - Study plan for next week's focus
+- [ ] `retrospective-sally-personal.skill` - Topic mastery assessment
+- [ ] `planning-sally-personal.skill` - Study plan for next week's focus
 
 ### Project Setup
 

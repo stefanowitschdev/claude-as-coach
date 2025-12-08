@@ -326,8 +326,8 @@
 
 **Already completed:**
 - ✅ project-coach-setup-base (condensed 360→120 lines)
-- ✅ weekly-planning-base (added triggers)
-- ✅ weekly-retrospective-base (added triggers)
+- ✅ planning-base (added triggers, unified to any time scale)
+- ✅ retrospective-base (added triggers, unified to any time scale)
 
 **Next:** Review daily-morning-routine-base and daily-summary-base
 

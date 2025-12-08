@@ -556,8 +556,8 @@ Claude: [Generates summary with structure from base, includes personal metrics i
 **Output location:** In this repo
 - `examples/skills-base/daily-morning-routine-base.md`
 - `examples/skills-base/daily-summary-generator-base.md`
-- `examples/skills-base/weekly-retrospective-base.md`
-- `examples/skills-base/weekly-planning-base.md`
+- `examples/skills-base/retrospective-base.md`
+- `examples/skills-base/planning-base.md`
 
 **Status:** Not yet started
 
@@ -590,8 +590,8 @@ Claude: [Generates summary with structure from base, includes personal metrics i
 - `personal.example/skills/` (alice personal extensions)
   - `alice-daily-summary-personal/SKILL.md`
   - `alice-daily-morning-routine-personal/SKILL.md`
-  - `alice-weekly-retro-personal/SKILL.md`
-  - `alice-weekly-planning-personal/SKILL.md`
+  - `alice-retrospective-personal/SKILL.md`
+  - `alice-planning-personal/SKILL.md`
 
 **Workflow:**
 1. Create alice SKILL.md source files with couch-to-5K metrics
@@ -631,8 +631,8 @@ Claude: [Generates summary with structure from base, includes personal metrics i
 /skills/
   daily-morning-routine.md
   daily-summary-generator.md
-  weekly-retrospective.md
-  weekly-planning.md
+  retrospective.md
+  planning.md
 
 /project-files/
   [Your summaries accumulate here]

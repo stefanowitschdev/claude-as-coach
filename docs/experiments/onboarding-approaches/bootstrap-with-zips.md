@@ -7,8 +7,9 @@ When a user pastes this document, help them set up the coaching system:
 1. **Try to fetch the skill .zip files** from these URLs:
    - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip
    - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/weekly-planning-base.zip
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/weekly-retrospective-base.zip
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base.zip
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base.zip
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/project-coach-setup-base.zip
 
 2. **If fetch works:** Create artifacts for each .zip file so user can save and upload as skills
 
@@ -20,12 +21,13 @@ When a user pastes this document, help them set up the coaching system:
 
 ## For User: Manual Download (if needed)
 
-If Claude can't fetch the files, download these 4 skills manually:
+If Claude can't fetch the files, download these 5 skills manually:
 
 - [daily-morning-routine-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip)
 - [daily-summary-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip)
-- [weekly-planning-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/weekly-planning-base.zip)
-- [weekly-retrospective-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/weekly-retrospective-base.zip)
+- [planning-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base.zip)
+- [retrospective-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base.zip)
+- [project-coach-setup-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/project-coach-setup-base.zip)
 
 Then upload via Settings > Capabilities > Skills.
 
@@ -38,14 +40,14 @@ Then upload via Settings > Capabilities > Skills.
 | project-coach-setup | "set up my project" | Initial goal configuration (inlined below) |
 | daily-morning-routine | "good morning", "gm" | Morning context loading |
 | daily-summary | "daily summary" | End-of-day reflection |
-| weekly-planning | "weekly planning" | Plan the week ahead |
-| weekly-retrospective | "weekly retro" | Reflect on the week |
+| planning | "weekly planning", "plan the week" | Plan ahead (any time scale) |
+| retrospective | "weekly retro", "reflect" | Reflect on what worked/didn't |
 
 ---
 
 # Project Coach Setup (Inlined Skill)
 
-**Use this now** to set up the user's coaching project. The other 4 skills can be installed after.
+**Use this now** to set up the user's coaching project. The other skills can be installed after.
 
 ## Workflow
 
@@ -151,7 +153,7 @@ Project-Goals.md is ready!
 2. End of day: say "daily summary"
 3. Tomorrow morning: say "good morning" or "gm"
 
-**Don't forget:** Install the other 4 skills (links at top of this document) for full functionality!
+**Don't forget:** Install the other skills (links at top of this document) for full functionality!
 ```
 
 ---

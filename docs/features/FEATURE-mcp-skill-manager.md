@@ -59,7 +59,7 @@ Save a `.skill` file from Claude.ai to the repository with automatic commit.
 **Parameters:**
 ```typescript
 {
-  skill_name: string;        // Base name (e.g., "weekly-planning")
+  skill_name: string;        // Base name (e.g., "planning")
   archive_data: string;      // Base64-encoded .skill ZIP file
   commit_message?: string;   // Optional custom message
   auto_commit?: boolean;     // Default: true
@@ -79,10 +79,10 @@ Save a `.skill` file from Claude.ai to the repository with automatic commit.
 ```json
 {
   "success": true,
-  "skill_file": "skills/weekly-planning.skill",
+  "skill_file": "skills/planning.skill",
   "commit_hash": "abc123def",
   "commit_message": "skill: Add constraint identification section",
-  "files_changed": ["skills/weekly-planning.skill"],
+  "files_changed": ["skills/planning.skill"],
   "validation": {
     "valid": true,
     "warnings": []
@@ -107,8 +107,8 @@ Show all current skills in the repository with git status.
 {
   "skills": [
     {
-      "name": "weekly-planning",
-      "path": "skills/weekly-planning.skill",
+      "name": "planning",
+      "path": "skills/planning.skill",
       "size_bytes": 2644,
       "last_modified": "2025-11-25T11:08:00Z",
       "git_status": "clean",
@@ -146,7 +146,7 @@ Retrieve and unpack a skill for Claude.ai to read/edit.
 **Returns:**
 ```json
 {
-  "skill_name": "weekly-planning",
+  "skill_name": "planning",
   "content": "# Weekly Planning Skill\n\n## Instructions\n...",
   "metadata": {
     "files": ["SKILL.md"],
@@ -197,14 +197,14 @@ Show changes between working directory and committed version.
 
 ### Example 1: Save edited skill from Claude.ai
 
-**User:** Downloads edited `weekly-planning.skill` from Claude.ai, uploads to conversation
+**User:** Downloads edited `planning.skill` from Claude.ai, uploads to conversation
 
 **Claude.ai calls MCP:**
 ```json
 {
   "tool": "save_skill_archive",
   "arguments": {
-    "skill_name": "weekly-planning",
+    "skill_name": "planning",
     "archive_data": "UEsDBBQAAgAIAAAAIQD...",
     "commit_message": "Add constraint identification section"
   }
@@ -212,15 +212,15 @@ Show changes between working directory and committed version.
 ```
 
 **MCP server:**
-1. Decodes base64 → saves to `skills/weekly-planning.skill`
+1. Decodes base64 → saves to `skills/planning.skill`
 2. Validates ZIP structure ✓
 3. Checks git status (clean) ✓
-4. Runs: `git add skills/weekly-planning.skill`
+4. Runs: `git add skills/planning.skill`
 5. Commits: `skill: Add constraint identification section`
 6. Returns commit hash
 
 **Claude.ai response:**
-"✅ Saved and committed weekly-planning.skill (commit: abc123def)"
+"✅ Saved and committed planning.skill (commit: abc123def)"
 
 ### Example 2: Preview changes before saving
 
@@ -229,7 +229,7 @@ Show changes between working directory and committed version.
 {
   "tool": "save_skill_archive",
   "arguments": {
-    "skill_name": "weekly-planning",
+    "skill_name": "planning",
     "archive_data": "UEsDBBQAAgAIAAAAIQD...",
     "dry_run": true
   }
@@ -241,7 +241,7 @@ Show changes between working directory and committed version.
 {
   "success": true,
   "dry_run": true,
-  "would_save_to": "skills/weekly-planning.skill",
+  "would_save_to": "skills/planning.skill",
   "validation": {"valid": true},
   "diff_preview": "--- a/SKILL.md\n+++ b/SKILL.md\n..."
 }
@@ -488,7 +488,7 @@ Package all skills for upload to Claude Projects:
 {
   "tool": "deploy_skills",
   "arguments": {
-    "skills": ["weekly-planning", "daily-summary"],
+    "skills": ["planning", "daily-summary"],
     "output_dir": "/tmp/deploy"
   }
 }

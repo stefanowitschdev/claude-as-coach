@@ -36,14 +36,14 @@ All example commands in this section use this working directory.
 **Production skills** (your stable daily-use skills):
 - `production-daily-summary-personal.skill`
 - `production-daily-morning-routine-personal.skill`
-- `production-weekly-retrospective-personal.skill`
-- `production-weekly-planning-personal.skill`
+- `production-retrospective-personal.skill`
+- `production-planning-personal.skill`
 
 **Development skills** (for testing changes):
 - `development-daily-summary-personal.skill`
 - `development-daily-morning-routine-personal.skill`
-- `development-weekly-retrospective-personal.skill`
-- `development-weekly-planning-personal.skill`
+- `development-retrospective-personal.skill`
+- `development-planning-personal.skill`
 
 ### Workflow for Testing Changes
 

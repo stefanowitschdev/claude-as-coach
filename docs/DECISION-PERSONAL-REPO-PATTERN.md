@@ -196,8 +196,8 @@ claude
 # Submodule approach:
 git clone --recurse-submodules https://github.com/ZachBeta/claude-as-coach
 cd claude-as-coach
-# Edit skills/weekly-planning/SKILL.md
-git add skills/weekly-planning/
+# Edit skills/planning-base/SKILL.md
+git add skills/planning-base/
 git commit -m "Add feature"
 git push origin feature-branch
 # ✅ Simple - they never touch personal/
@@ -207,8 +207,8 @@ mkdir claude-as-coach-combined
 cd claude-as-coach-combined
 git clone https://github.com/ZachBeta/claude-as-coach
 cd claude-as-coach
-# Edit skills/weekly-planning/SKILL.md
-git add skills/weekly-planning/
+# Edit skills/planning-base/SKILL.md
+git add skills/planning-base/
 git commit -m "Add feature"
 git push origin feature-branch
 # ✅ Also simple, but extra parent directory setup
@@ -358,13 +358,13 @@ cd claude-as-coach-combined
 
 # Try typical operations:
 python claude-as-coach/scripts/skill_workflow.py pack claude-as-coach/skills/daily-summary-base/
-vim claude-as-coach/skills/weekly-planning/SKILL.md
+vim claude-as-coach/skills/planning-base/SKILL.md
 git -C claude-as-coach status
 
 # vs from child:
 cd claude-as-coach
 python scripts/skill_workflow.py pack skills/daily-summary-base/
-vim skills/weekly-planning/SKILL.md
+vim skills/planning-base/SKILL.md
 git status
 ```
 

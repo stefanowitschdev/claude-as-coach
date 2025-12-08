@@ -160,12 +160,12 @@ description: Framework for creating end-of-day summary documents. Use when user 
 
 ---
 
-## Skill 4: weekly-planning-base
+## Skill 4: planning-base
 
 ```yaml
 ---
-name: weekly-planning-base
-description: Base framework for weekly planning - plan week ahead based on what worked, what didn't, and what's possible now. Use when user says "weekly planning", "plan the week", "start of week". Generates forward-looking experiment design with 2-3 priorities max and Level 0-3 success framework. Identifies constraints FIRST before suggesting priorities.
+name: planning-base
+description: Base framework for planning - plan ahead based on what worked, what didn't, and what's possible now. Use when user says "weekly planning", "plan the week", "start of week". Works at any time scale (daily/weekly/monthly/quarterly/yearly). Generates forward-looking experiment design with 2-3 priorities max and Level 0-3 success framework. Identifies constraints FIRST before suggesting priorities.
 ---
 ```
 
@@ -198,12 +198,12 @@ description: Base framework for weekly planning - plan week ahead based on what 
 
 ---
 
-## Skill 5: weekly-retrospective-base
+## Skill 5: retrospective-base
 
 ```yaml
 ---
-name: weekly-retrospective-base
-description: Base framework for weekly retrospectives - reflect on what worked, what didn't, and how to improve. Use when user says "weekly retro", "weekly retrospective", "end of week". Generates empty structure first, fills conversationally through observations and reactions.
+name: retrospective-base
+description: Base framework for retrospectives - reflect on what worked, what didn't, and how to improve. Use when user says "weekly retro", "weekly retrospective", "end of week". Works at any time scale (daily/weekly/monthly/quarterly/yearly). Generates empty structure first, fills conversationally through observations and reactions.
 ---
 ```
 

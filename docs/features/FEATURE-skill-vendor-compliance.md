@@ -54,8 +54,8 @@ From `vendor/skills/skill-creator/SKILL.md`:
 - `skills/project-coach-setup-base/SKILL.md`
 - `skills/daily-morning-routine-base/SKILL.md`
 - `skills/daily-summary-base/SKILL.md`
-- `skills/weekly-planning-base/SKILL.md`
-- `skills/weekly-retrospective-base/SKILL.md`
+- `skills/planning-base/SKILL.md`
+- `skills/retrospective-base/SKILL.md`
 
 **For each skill, check:**
 1. ✅ Description includes trigger phrases and "when to use"
@@ -70,8 +70,8 @@ From `vendor/skills/skill-creator/SKILL.md`:
 **Files to review:**
 - `personal/skills/daily-morning-routine-personal/SKILL.md`
 - `personal/skills/daily-summary-personal/SKILL.md`
-- `personal/skills/weekly-planning-personal/SKILL.md`
-- `personal/skills/weekly-retrospective-personal/SKILL.md`
+- `personal/skills/planning-personal/SKILL.md`
+- `personal/skills/retrospective-personal/SKILL.md`
 
 **Same checklist as Phase 1**
 
@@ -80,8 +80,8 @@ From `vendor/skills/skill-creator/SKILL.md`:
 **Files to review:**
 - `personal.example/skills/daily-morning-routine-alice-personal/SKILL.md`
 - `personal.example/skills/daily-summary-alice-personal/SKILL.md`
-- `personal.example/skills/weekly-planning-alice-personal/SKILL.md`
-- `personal.example/skills/weekly-retrospective-alice-personal/SKILL.md`
+- `personal.example/skills/planning-alice-personal/SKILL.md`
+- `personal.example/skills/retrospective-alice-personal/SKILL.md`
 
 **Defer until Alice demo content creation (F17 Task 3)**
 
@@ -160,8 +160,8 @@ For each skill in scope:
 
 **Already completed:**
 - ✅ project-coach-setup-base: Condensed from 360 to 120 lines, added triggers (2025-12-01)
-- ✅ weekly-planning-base: Added trigger phrases to description (2025-12-01)
-- ✅ weekly-retrospective-base: Added trigger phrases to description (2025-12-01)
+- ✅ planning-base: Added trigger phrases to description (2025-12-01)
+- ✅ retrospective-base: Added trigger phrases to description (2025-12-01)
 
 **Next:** Review remaining base skills (daily-morning-routine-base, daily-summary-base)
 
