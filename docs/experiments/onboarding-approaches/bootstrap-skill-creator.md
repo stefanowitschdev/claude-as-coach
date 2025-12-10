@@ -1,27 +1,30 @@
-# Claude-as-Coach: Quick Setup with Pre-Built Skills
+# Claude-as-Coach: Quick Setup with Skill Creator
 
 ## For Claude
 
+**Prerequisites:** User must have the `skill-creator` skill installed.
+
 When a user pastes this document, help them set up the coaching system:
 
-1. **Try to fetch the skill .zip files** from these URLs:
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base.zip
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base.zip
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/project-coach-setup-base.zip
+1. **Fetch each SKILL.md** from these URLs:
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base/SKILL.md
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base/SKILL.md
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base/SKILL.md
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base/SKILL.md
 
-2. **If fetch works:** Create artifacts for each .zip file so user can save and upload as skills
+2. **For each SKILL.md fetched:**
+   - Use the `skill-creator` skill to package it into a .zip artifact
+   - Present the artifact so user can download it
 
-3. **If fetch doesn't work:** Guide user to download manually (links below)
+3. **Guide user to upload** all 4 skills via Settings > Capabilities > Skills
 
-4. **Run the Project Setup flow** (inlined below) to help user configure their goals
+4. **Run the Project Setup flow** (inlined below) - no need to fetch this one
 
 ---
 
-## For User: Manual Download (if needed)
+## For User: Manual Download (fallback)
 
-If Claude can't fetch the files, download these 5 skills manually:
+If the skill-creator approach doesn't work, download these 5 skills manually:
 
 - [daily-morning-routine-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip)
 - [daily-summary-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip)
@@ -134,7 +137,7 @@ _Edit this document anytime to update your goals._
 After generating, guide user to save the artifact:
 
 **Web/Desktop:**
-> Click the artifact title → click the dropdown (▼) near "Copy" → select **"Save to Project"**
+> Click the "Project Goals" tile (below response or in sidebar) → click the dropdown (▼) near "Copy" → select **"Add to Project"** → confirms "File added to project"
 
 **Mobile:**
 > Tap the artifact → tap "Download" → go to project sidebar → upload the file
@@ -167,6 +170,10 @@ Project-Goals.md is ready!
 **Skill didn't trigger?**
 - Make sure you're in a chat within a Project (not regular Claude chat)
 - Check skill is enabled in Settings > Capabilities > Skills
+
+**Skill-creator not working?**
+- Make sure you have the skill-creator skill installed first
+- Fall back to manual download links above
 
 ---
 

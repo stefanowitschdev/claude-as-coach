@@ -8,7 +8,7 @@ Experiment in using Claude as a personal coach for behavior change, using Claude
 
 **🔥 Wanna try out a new project?** See [QUICKSTART.md](QUICKSTART.md) to quickly get a project and skills set up.
 
-**⚡ Experimental: Paste-and-go setup** See [bootstrap-with-zips.md](docs/experiments/onboarding-approaches/bootstrap-with-zips.md) - paste into Claude.ai to auto-fetch skills.
+**⚡ Experimental: Paste-and-go setup** See [bootstrap-skill-creator.md](docs/experiments/onboarding-approaches/bootstrap-skill-creator.md) - paste into Claude.ai to auto-fetch and package skills.
 
 **📖 New to this system?** See [PROJECT-SETUP.md](PROJECT-SETUP.md) for a comprehensive guide on using Claude-as-Coach for your own goals.
 

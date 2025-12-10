@@ -19,7 +19,7 @@ This is clunky. Can we simplify?
 |----------|------|-------|--------|----------|
 | **Simple** | `bootstrap-simple.md` | ~250 | skill-creator packages | Condensed |
 | **Complex** | `bootstrap-complex.md` | ~1270 | skill-creator packages | Full |
-| **With ZIPs** | `bootstrap-with-zips.md` | ~60 | Pre-built .zip files | Exact |
+| **Skill Creator** | `bootstrap-skill-creator.md` | ~60 | skill-creator packages | Exact |
 
 ### 1. Bootstrap Simple (`bootstrap-simple.md`)
 
@@ -41,14 +41,14 @@ This is clunky. Can we simplify?
 **Pros:** Full skill content preserved
 **Cons:** Large paste, still relies on skill-creator
 
-### 3. Bootstrap With ZIPs (`bootstrap-with-zips.md`)
+### 3. Bootstrap Skill Creator (`bootstrap-skill-creator.md`)
 
-- Simple instructions with download links
-- User downloads pre-built .zip files
-- Uploads via Settings > Capabilities
+- Fetches SKILL.md content from GitHub raw URLs
+- skill-creator packages each into downloadable artifact
+- User uploads via Settings > Capabilities
 
-**Pros:** Exact skill fidelity, tested files
-**Cons:** Still requires Settings navigation, multiple downloads
+**Pros:** Exact skill fidelity, always up-to-date from repo
+**Cons:** Requires skill-creator installed first, Settings navigation
 
 ## How to Test
 
@@ -89,26 +89,54 @@ This is clunky. Can we simplify?
 
 ## Results
 
-_To be filled in after testing_
+### Skill Creator Approach (v1 - fetch .zip files)
+- Date tested: 2025-12-10
+- Tester: Zach
+- Result: **PARTIAL SUCCESS**
+- Notes:
+  - GitHub raw URL fetches succeeded (all 5 .zip files)
+  - Could NOT convert fetched binary data into downloadable artifacts
+  - Falls back to manual download links (same friction as QUICKSTART.md)
+  - Duplication issue: project-coach-setup was both inlined AND fetched
+
+### Skill Creator Approach (v2 - fetch SKILL.md + package)
+- Date tested: 2025-12-10
+- Tester: Zach
+- Result: **SUCCESS**
+- Notes:
+  - Updated to fetch SKILL.md content (not .zip)
+  - skill-creator successfully packages each into .skill artifact
+  - User downloads artifacts and uploads via Settings > Capabilities
+  - Removed duplication (project-coach-setup inlined only, not fetched)
+  - **Prerequisite:** User must have skill-creator installed first
 
 ### Simple Approach
-- Date tested:
+- Date tested: Not yet tested
 - Tester:
 - Result:
 - Notes:
 
 ### Complex Approach
-- Date tested:
-- Tester:
-- Result:
-- Notes:
-
-### With ZIPs Approach
-- Date tested:
+- Date tested: Not yet tested
 - Tester:
 - Result:
 - Notes:
 
 ## Recommendation
 
-_To be determined after testing_
+**Use bootstrap-skill-creator.md (v2 - fetch SKILL.md + package)**
+
+**Pros:**
+- Fetches fresh SKILL.md content from GitHub (always up to date)
+- skill-creator packages into downloadable artifacts
+- Reduces friction vs manual download links (artifacts in conversation)
+- Project setup can begin immediately (inlined skill)
+
+**Cons:**
+- Requires skill-creator to be installed first (chicken-egg problem for new users)
+- Still requires Settings > Capabilities upload step
+
+**For Dec 12 demo:**
+- Ensure skill-creator is installed before demo
+- Paste bootstrap-skill-creator.md content
+- Download 4 skill artifacts, upload, continue with setup
