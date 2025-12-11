@@ -63,6 +63,14 @@ Just conversations that accumulate context.
 
 ---
 
+# {.center}
+
+## The Platform
+
+Claude.ai Projects + Skills
+
+---
+
 # Projects: The Mental Model
 
 ::: notes
@@ -80,7 +88,7 @@ Every conversation sees **all** project documents.
 
 | Primitive | What it is | How I use it |
 |-----------|------------|--------------|
-| **Conversation** | Ephemeral chat | Daily check-ins |
+| **Conversation** | Permanent chat, context not retained | Daily check-ins |
 | **Artifact** | Generated content | Summaries, retros |
 | **File** | Project document | Persistent context |
 | **Memory** | Cross-project recall | (optional - skipped) |
@@ -110,11 +118,11 @@ The workflow uses **conversations → artifacts → files**.
 
 ---
 
-# Conversations → Artifacts → Documents {.smaller}
+# Conversations → Artifacts → Documents
 
 ```
 ┌─────────────────────────────────────────────────┐
-│ Conversation (ephemeral)                        │
+│ Conversation (saved, but not revisited)         │
 │ "How was your run today?"                       │
 │ "Great! Did 2.5 miles, no walk breaks..."       │
 │                    │                            │
@@ -147,6 +155,14 @@ Historical = curated summaries
 ```
 
 Manual curation. What worked → keep. What didn't → learn.
+
+---
+
+# {.center}
+
+## Skills
+
+On-demand instructions for Claude
 
 ---
 
@@ -247,7 +263,7 @@ PR pending to fix their docs/tooling.
 
 ---
 
-# Projects vs Claude Code {.smaller}
+# Projects vs Claude Code
 
 | Claude.ai Projects | Claude Code |
 |--------------------|-------------|
@@ -258,6 +274,14 @@ PR pending to fix their docs/tooling.
 | Skills in Settings | Skills in repo |
 
 **Different tools, different jobs.**
+
+---
+
+# {.center}
+
+## Demo
+
+Rob the Runner in action
 
 ---
 
@@ -400,6 +424,14 @@ This framework emerged over time. Works for me - YMMV.
 
 ---
 
+# {.center}
+
+## Architecture
+
+How the pieces fit together
+
+---
+
 # Repo Structure
 
 ::: notes
@@ -438,6 +470,14 @@ claude-as-coach-combined/          # Parent workspace
 ```
 
 Import both. Claude loads both at runtime.
+
+---
+
+# {.center}
+
+## Evolution
+
+How the system developed
 
 ---
 
@@ -492,6 +532,14 @@ No grand plan. Just iterated on friction.
 
 ---
 
+# {.center}
+
+## Lessons
+
+What actually matters
+
+---
+
 # What I Learned
 
 1. **Skills are prompts** - just better organized
@@ -509,6 +557,14 @@ No grand plan. Just iterated on friction.
 - Context limits exist (Pro vs Max)
 
 Works despite these. Not because of them.
+
+---
+
+# {.center}
+
+## What's Next
+
+Open source and beyond
 
 ---
 
@@ -546,6 +602,97 @@ skills/
 ```
 
 See `docs/experiments/` for alternative onboarding approaches.
+
+---
+
+# LLMs Are Bad at Dates
+
+Every skill that deals with dates starts with this:
+
+```bash
+TZ='America/New_York' date '+%A, %B %d, %Y'
+```
+
+LLMs make up dates. Tool calls give ground truth.
+
+No assumptions. Verify first.
+
+---
+
+# Skills Are Global (Pain Point)
+
+Platform limitation: Skills not project-scoped
+
+**The problem:**
+- My account is both prod AND dev
+- Manual toggle to test changes
+- No "dev skill" vs "prod skill" per project
+
+**Workaround:**
+- Naming: `production-*` vs `development-*`
+- Manual toggling in Settings > Capabilities
+
+---
+
+# Onboarding Experiments
+
+```
+docs/experiments/onboarding-approaches/
+├── bootstrap-simple.md      # Minimal setup
+├── bootstrap-complex.md     # Full walkthrough
+├── bootstrap-skill-creator.md  # Auto-fetch skills
+└── README.md
+```
+
+Testing which path works best for new users.
+
+Git tracks the experiments. Claude Code helps iterate.
+
+---
+
+# Safety Boundaries
+
+This is a **reflection tool**, not a replacement for:
+
+- Medical advice
+- Mental health support
+- Financial guidance
+- Legal counsel
+
+Claude has limitations. Critical decisions need professionals.
+
+(Disclaimers added to README, skills, and setup docs)
+
+---
+
+# The Dev Process
+
+"Zero build" doesn't mean zero iteration.
+
+**Primitives explored:**
+- Conversation (ephemeral)
+- Artifact (generated)
+- Project document (persistent)
+- Memory (skipped - adds complexity)
+- Instructions (skipped - harder to git track)
+
+**Insight:** Project docs > base instructions for git tracking
+
+---
+
+# The Bitter Lesson
+
+Why over-engineer when context windows keep growing?
+
+| Approach | Friction |
+|----------|----------|
+| RAG pipeline | High (infra, embeddings, retrieval) |
+| Custom agent | Medium (code, testing, deployment) |
+| Summary-of-summaries | Low (just documents) |
+
+Context stays in documents. Claude reads them all.
+
+Like memory that decays naturally over time.
 
 ---
 

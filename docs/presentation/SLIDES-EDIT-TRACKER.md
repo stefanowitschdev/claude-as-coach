@@ -356,9 +356,27 @@ Can pick one or keep both during dry run.
 # Still Open
 
 ## Pre-Presentation TODO
-- [ ] Save screenshot to `screenshots/project-docs.png`
+- [x] Save screenshot to `screenshots/project-docs.png`
 - [ ] Dry run to test timing
 - [ ] Decide: keep both story slides or pick one?
+
+## Screenshots Needed (for standalone deck)
+- [x] `project-docs.png` - Project sidebar with documents
+- [ ] `rob-morning.png` - Morning routine "gm" output
+- [ ] `rob-daily-summary.png` - Completed daily summary artifact
+- [ ] `rob-weekly-retro.png` - Weekly retrospective output
+- [ ] `rob-weekly-plan.png` - Weekly plan with L0-L3 levels
+
+## Section Title Slides - ✅ DONE
+
+Added section dividers between major presentation sections:
+- "The Platform" → before Projects: Mental Model
+- "Skills" → before What's a Skill?
+- "Demo" → before Demo Time: Rob
+- "Architecture" → before Repo Structure
+- "Evolution" → before Evolution v1-v2
+- "Lessons" → before What I Learned
+- "What's Next" → before Where This Is Going
 
 ## Optional Refinements (if time permits)
 - [ ] "The Pitch" - refine tone for AI engineers

@@ -146,6 +146,11 @@ yesterday.</p>
 <p>No agents to build. No RAG to configure.</p>
 <p>Just conversations that accumulate context.</p>
 </section>
+<section id="section" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="the-platform">The Platform</h2>
+<p>Claude.ai Projects + Skills</p>
+</section>
 <section id="projects-the-mental-model" class="slide level1">
 <h1>Projects: The Mental Model</h1>
 <aside class="notes">
@@ -161,6 +166,11 @@ Project sidebar with documents</p>
 <section id="project-primitives" class="slide level1">
 <h1>Project Primitives</h1>
 <table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 32%" />
+<col style="width: 37%" />
+</colgroup>
 <thead>
 <tr>
 <th>Primitive</th>
@@ -171,7 +181,7 @@ Project sidebar with documents</p>
 <tbody>
 <tr>
 <td><strong>Conversation</strong></td>
-<td>Ephemeral chat</td>
+<td>Permanent chat, context not retained</td>
 <td>Daily check-ins</td>
 </tr>
 <tr>
@@ -215,11 +225,10 @@ files</strong>.</p>
    │           │
    └───────────┘</code></pre>
 </section>
-<section id="conversations-artifacts-documents"
-class="slide level1 smaller">
-<h1 class="smaller">Conversations → Artifacts → Documents</h1>
+<section id="conversations-artifacts-documents" class="slide level1">
+<h1>Conversations → Artifacts → Documents</h1>
 <pre><code>┌─────────────────────────────────────────────────┐
-│ Conversation (ephemeral)                        │
+│ Conversation (saved, but not revisited)         │
 │ &quot;How was your run today?&quot;                       │
 │ &quot;Great! Did 2.5 miles, no walk breaks...&quot;       │
 │                    │                            │
@@ -246,6 +255,11 @@ Week 4: 7 daily summaries  ─┘
 Recent = granular detail
 Historical = curated summaries</code></pre>
 <p>Manual curation. What worked → keep. What didn’t → learn.</p>
+</section>
+<section id="section-1" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="skills">Skills</h2>
+<p>On-demand instructions for Claude</p>
 </section>
 <section id="whats-a-skill-basic" class="slide level1">
 <h1>What’s a Skill? (Basic)</h1>
@@ -319,8 +333,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">daily-summary-base.zip</span>    <span class="co"># Uploads fine</span></span></code></pre></div>
 <p>PR pending to fix their docs/tooling.</p>
 </section>
-<section id="projects-vs-claude-code" class="slide level1 smaller">
-<h1 class="smaller">Projects vs Claude Code</h1>
+<section id="projects-vs-claude-code" class="slide level1">
+<h1>Projects vs Claude Code</h1>
 <table>
 <thead>
 <tr>
@@ -352,6 +366,11 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
 </tbody>
 </table>
 <p><strong>Different tools, different jobs.</strong></p>
+</section>
+<section id="section-2" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="demo">Demo</h2>
+<p>Rob the Runner in action</p>
 </section>
 <section id="demo-time-rob-the-runner" class="slide level1">
 <h1>Demo Time: Rob the Runner</h1>
@@ -464,6 +483,11 @@ L3 (Exceptional): Hit 5K distance milestone
                   &quot;Breakthrough week&quot;</code></pre>
 <p>This framework emerged over time. Works for me - YMMV.</p>
 </section>
+<section id="section-3" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="architecture">Architecture</h2>
+<p>How the pieces fit together</p>
+</section>
 <section id="repo-structure" class="slide level1">
 <h1>Repo Structure</h1>
 <aside class="notes">
@@ -494,6 +518,11 @@ L3 (Exceptional): Hit 5K distance milestone
 │ - Your thresholds                  │
 └────────────────────────────────────┘</code></pre>
 <p>Import both. Claude loads both at runtime.</p>
+</section>
+<section id="section-4" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="evolution">Evolution</h2>
+<p>How the system developed</p>
 </section>
 <section id="evolution-v1-v2-the-search" class="slide level1">
 <h1>Evolution v1-v2: The Search</h1>
@@ -530,6 +559,11 @@ conversation</p>
 + <code>claude-as-coach-personal</code></p>
 <p>No grand plan. Just iterated on friction.</p>
 </section>
+<section id="section-5" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="lessons">Lessons</h2>
+<p>What actually matters</p>
+</section>
 <section id="what-i-learned" class="slide level1">
 <h1>What I Learned</h1>
 <ol type="1">
@@ -550,6 +584,11 @@ works</li>
 <li>Context limits exist (Pro vs Max)</li>
 </ul>
 <p>Works despite these. Not because of them.</p>
+</section>
+<section id="section-6" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="whats-next">What’s Next</h2>
+<p>Open source and beyond</p>
 </section>
 <section id="where-this-is-going" class="slide level1">
 <h1>Where This Is Going</h1>
@@ -580,6 +619,84 @@ works</li>
 └── retrospective-base.zip</code></pre>
 <p>See <code>docs/experiments/</code> for alternative onboarding
 approaches.</p>
+</section>
+<section id="llms-are-bad-at-dates" class="slide level1">
+<h1>LLMs Are Bad at Dates</h1>
+<p>Every skill that deals with dates starts with this:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">TZ</span><span class="op">=</span><span class="st">&#39;America/New_York&#39;</span> <span class="fu">date</span> <span class="st">&#39;+%A, %B %d, %Y&#39;</span></span></code></pre></div>
+<p>LLMs make up dates. Tool calls give ground truth.</p>
+<p>No assumptions. Verify first.</p>
+</section>
+<section id="skills-are-global-pain-point" class="slide level1">
+<h1>Skills Are Global (Pain Point)</h1>
+<p>Platform limitation: Skills not project-scoped</p>
+<p><strong>The problem:</strong> - My account is both prod AND dev -
+Manual toggle to test changes - No “dev skill” vs “prod skill” per
+project</p>
+<p><strong>Workaround:</strong> - Naming: <code>production-*</code> vs
+<code>development-*</code> - Manual toggling in Settings &gt;
+Capabilities</p>
+</section>
+<section id="onboarding-experiments" class="slide level1">
+<h1>Onboarding Experiments</h1>
+<pre><code>docs/experiments/onboarding-approaches/
+├── bootstrap-simple.md      # Minimal setup
+├── bootstrap-complex.md     # Full walkthrough
+├── bootstrap-skill-creator.md  # Auto-fetch skills
+└── README.md</code></pre>
+<p>Testing which path works best for new users.</p>
+<p>Git tracks the experiments. Claude Code helps iterate.</p>
+</section>
+<section id="safety-boundaries" class="slide level1">
+<h1>Safety Boundaries</h1>
+<p>This is a <strong>reflection tool</strong>, not a replacement
+for:</p>
+<ul>
+<li>Medical advice</li>
+<li>Mental health support</li>
+<li>Financial guidance</li>
+<li>Legal counsel</li>
+</ul>
+<p>Claude has limitations. Critical decisions need professionals.</p>
+<p>(Disclaimers added to README, skills, and setup docs)</p>
+</section>
+<section id="the-dev-process" class="slide level1">
+<h1>The Dev Process</h1>
+<p>“Zero build” doesn’t mean zero iteration.</p>
+<p><strong>Primitives explored:</strong> - Conversation (ephemeral) -
+Artifact (generated) - Project document (persistent) - Memory (skipped -
+adds complexity) - Instructions (skipped - harder to git track)</p>
+<p><strong>Insight:</strong> Project docs &gt; base instructions for git
+tracking</p>
+</section>
+<section id="the-bitter-lesson" class="slide level1">
+<h1>The Bitter Lesson</h1>
+<p>Why over-engineer when context windows keep growing?</p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Friction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG pipeline</td>
+<td>High (infra, embeddings, retrieval)</td>
+</tr>
+<tr>
+<td>Custom agent</td>
+<td>Medium (code, testing, deployment)</td>
+</tr>
+<tr>
+<td>Summary-of-summaries</td>
+<td>Low (just documents)</td>
+</tr>
+</tbody>
+</table>
+<p>Context stays in documents. Claude reads them all.</p>
+<p>Like memory that decays naturally over time.</p>
 </section>
 <section id="the-pitch" class="slide level1">
 <h1>The Pitch</h1>
