@@ -603,11 +603,11 @@ Open source and beyond
 
 # Try It Yourself
 
-**Easiest:** Paste `bootstrap-skill-creator.md` into Claude
+**Easiest:** Paste `QUICKSTART.md` into Claude
 
 (Auto-fetches skills + runs project setup)
 
-**Or manually:** Download .zip files from repo
+**Or manually:** See `QUICKSTART-MANUAL.md` for download links
 
 ```
 skills/
@@ -653,15 +653,14 @@ Platform limitation: Skills not project-scoped
 
 # Onboarding Experiments
 
+Tested 3 approaches, one winner:
+
 ```
-docs/experiments/onboarding-approaches/
-├── bootstrap-simple.md      # Minimal setup
-├── bootstrap-complex.md     # Full walkthrough
-├── bootstrap-skill-creator.md  # Auto-fetch skills
-└── README.md
+QUICKSTART.md           # Promoted (auto-fetch)
+QUICKSTART-MANUAL.md    # Fallback (download links)
 ```
 
-Testing which path works best for new users.
+Skill-creator approach won: fetch SKILL.md + package.
 
 Git tracks the experiments. Claude Code helps iterate.
 

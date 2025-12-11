@@ -1,138 +1,180 @@
-# Quick Start: 10 Minutes to Your First Goal Coaching
+# Quick Start: Paste-and-Go Setup
 
-## What You Need
+**Prerequisites:** Claude Pro or Claude Max subscription with the `skill-creator` skill installed.
 
-- **Claude Pro or Claude Max** subscription
-- Access to Claude Projects at [claude.ai/projects](https://claude.ai/projects)
-
-**Model Recommendations:**
-- **Recommended:** Sonnet 4.5 or Opus 4.5
-- **Not recommended:** Haiku 4.5 (insufficient for skill execution based on testing)
-
-**Context Management Tips:**
-- **Claude Pro users:** Disable extended thinking to conserve context
-- **Claude Max users:** Extended thinking works well, but monitor usage
-- **Web search:** Don't enable unless absolutely needed - it consumes significant context
-- **Monitor usage:** Check [Settings > Usage](https://claude.ai/settings/usage) regularly to track context consumption
-  - Especially important if you're a heavy Claude Code user
-  - Review day-over-day to ensure you don't run out of context for your project
+**Fallback:** If you don't have skill-creator or run into issues, see [QUICKSTART-MANUAL.md](QUICKSTART-MANUAL.md) for manual download instructions.
 
 ---
 
-## Step 1: Import the Base Skills (2 minutes)
+## How It Works
 
-**Download these 5 skill files** (click to download directly):
-
-- [project-coach-setup-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/project-coach-setup-base.zip)
-- [daily-morning-routine-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip)
-- [daily-summary-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip)
-- [retrospective-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base.zip)
-- [planning-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base.zip)
-
-**Upload them to claude.ai:**
-
-1. Open your new Claude Project
-2. Go to [Settings > Capabilities](https://claude.ai/settings/capabilities) (or click user panel bottom left > Settings > Capabilities)
-3. Scroll down to **"Skills [Preview]"** section
-4. Click **"Upload skill"** and upload each file one at a time
-5. Confirm all 5 skills show as enabled (toggle switches should be on by default)
-
-**Note:** Skills is a preview feature - if you don't see this section, make sure you have Claude Pro or Claude Max subscription.
+1. Copy this entire file
+2. Paste into a fresh Claude.ai project chat
+3. Claude will fetch and package the skills for you
+4. Download the skill artifacts, upload via Settings > Capabilities > Skills
+5. Start using the system!
 
 ---
 
-## Step 2: Enable Artifacts (30 seconds)
+## For Claude
 
-1. While still in Settings > Capabilities
-2. Make sure **"Artifacts"** is enabled (toggle on)
+When a user pastes this document, help them set up the coaching system:
 
-**Why:** The setup process creates a `Project-Goals.md` file that you'll save to your project.
+1. **Fetch each SKILL.md** from these URLs:
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base/SKILL.md
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base/SKILL.md
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base/SKILL.md
+   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base/SKILL.md
+
+2. **For each SKILL.md fetched:**
+   - Use the `skill-creator` skill to package it into a .zip artifact
+   - Present the artifact so user can download it
+
+3. **Guide user to upload** all 4 skills via Settings > Capabilities > Skills
+
+4. **Run the Project Setup flow** (inlined below) - no need to fetch this one
 
 ---
 
-## Step 3: Create a New Project (1 minute)
+## What You Get
 
-1. Go to [claude.ai/projects](https://claude.ai/projects)
-2. Click **"Create Project"**
-3. Name it something like **"My Coach"** or **"Daily Reflection"**
-4. Click **"Create"**
+| Skill | Trigger | Purpose |
+|-------|---------|---------|
+| project-coach-setup | "set up my project" | Initial goal configuration (inlined below) |
+| daily-morning-routine | "good morning", "gm" | Morning context loading |
+| daily-summary | "daily summary" | End-of-day reflection |
+| planning | "weekly planning", "plan the week" | Plan ahead (any time scale) |
+| retrospective | "weekly retro", "reflect" | Reflect on what worked/didn't |
 
 ---
 
+# Project Coach Setup (Inlined Skill)
 
-## Step 4: Set Up Your Project (5 minutes)
+**Use this now** to set up the user's coaching project. The other skills can be installed after.
 
-Start a new chat in your project and type:
+## Workflow
+
+1. Ask setup questions (one at a time, stop when user signals enough detail)
+2. Generate Project-Goals.md artifact
+3. Provide handoff instructions
+
+## Setup Questions
+
+Ask one question at a time. Stop when you have minimum viable info (primary focus + timezone).
+
+**Essential questions:**
+1. Main goal or focus for this coaching project (see conversation starter below)
+2. Timezone for date verification (detect if possible, default America/New_York)
+
+**Question 1 conversation starter** - lead with categories to help them explore:
+
+> Let's figure out what you want to focus on. Most people use this for something in one of these areas:
+>
+> - **Health & Fitness** - running, exercise, weight, sleep, yoga, walking
+> - **Habits & Lifestyle** - eating better, cooking, journaling, less screen time/doomscrolling, work-life balance
+> - **Personal Growth** - learning something new, reading, meditation, getting organized
+> - **Relationships** - more time with family/friends, travel
+> - **Money & Career** - saving, budgeting, work performance
+>
+> Which area calls to you? Or if you already have something specific in mind, just tell me!
+
+**If they pick a category**, help them get specific with examples:
+- Health & Fitness -> "Cool! Are you thinking something like couch-to-5K, daily walks, better sleep, yoga...?"
+- Habits & Lifestyle -> "Nice! Cooking more? Journaling? Cutting back on screen time or doomscrolling? Something else?"
+- Personal Growth -> "Great! Learning a language, instrument, skill? Reading more? Meditation practice?"
+
+**Optional questions** (ask if user wants more detail):
+- Timeframe or milestone (8-week program, quarterly, ongoing)
+- Key metrics to track (distance/pace, study hours, revenue, word count)
+
+## Generate Project-Goals.md Artifact
+
+Create artifact using this template (adapt to their responses):
+
+```markdown
+# Project Goals
+
+## Primary Focus
+[User's goal in their words]
+
+## Target Outcome
+[Specific outcome or "To be defined"]
+
+## Timeframe
+[Specified timeframe or "Ongoing"]
+
+## Key Metrics
+[Metrics mentioned or "Will define through use"]
+
+## Timezone
+[Confirmed timezone]
+
+---
+
+## Daily/Weekly Workflow
+
+**Morning:** "good morning" or "gm" -> loads yesterday's summary, generates brief
+
+**End of Day:** "daily summary" -> structured reflection (timeline, key numbers, insights)
+- Saves as: `Summary-YYYY-MM-DD-DayName-tag.md`
+
+**End of Week:** "weekly retro" -> reflect on what worked/didn't, identify experiments
+
+**Start of Week:** "weekly planning" -> set 2-3 priorities, define success levels
+
+**Tips:**
+- Include timestamps when logging (richer timelines)
+- Archive old summaries after weekly retro (lean context)
+- Start simple: morning + daily summary first week
+
+---
+
+_Edit this document anytime to update your goals._
+```
+
+## Save Instructions
+
+After generating, guide user to save the artifact:
+
+**Web/Desktop:**
+> Click the "Project Goals" tile (below response or in sidebar) -> click the dropdown near "Copy" -> select **"Add to Project"** -> confirms "File added to project"
+
+**Mobile:**
+> Tap the artifact -> tap "Download" -> go to project sidebar -> upload the file
+
+## Handoff
 
 ```
-set up my project
+Project-Goals.md is ready!
+
+**To save it:**
+- Web/Desktop: Click artifact -> dropdown near Copy -> "Save to Project"
+- Mobile: Download it, then upload to project sidebar
+
+**Then start using the system:**
+1. Log activities in this chat today (include timestamps like "2pm - went for a walk")
+2. End of day: say "daily summary"
+3. Tomorrow morning: say "good morning" or "gm"
+
+**Don't forget:** Install the other skills (links at top of this document) for full functionality!
 ```
-
-**What happens:**
-1. Claude asks about your goals (one question at a time)
-2. Creates a `Project-Goals.md` file explaining what you're tracking
-3. Save this file to your project
-
-**After setup completes:**
-- Start logging activities throughout your day (include timestamps for richer timelines)
-- End of day: Type `daily summary` to create your first structured reflection
-- Next morning: Type `run the daily morning routine skill` to start your day with context
-
----
-
-## Step 5: Your First Morning Routine (Next Day)
-
-After you've created at least one daily summary, start your next day with:
-
-```
-run the daily morning routine skill
-```
-
-**What happens:**
-1. Verifies current date and time
-2. Finds yesterday's summary
-3. Generates a morning brief with context from yesterday
-
-**Note:** After a few uses, you can use shortcuts like "gm" or "good morning" - but in fresh projects, use the explicit command first.
-
----
-
-## What's Next?
-
-- **See [PROJECT-SETUP.md](PROJECT-SETUP.md)** for a complete explanation of the system
-- **See [EXAMPLES.md](docs/EXAMPLES.md)** to see how Maya set up her couch-to-5K tracking project
-- **See [WORKFLOW-GUIDE.md](docs/WORKFLOW-GUIDE.md)** if you want to customize skills for your specific goals
 
 ---
 
 ## Troubleshooting
 
-**"I don't see the Skills [Preview] section"**
-- Make sure you have Claude Pro or Claude Max (not just free tier)
-- Skills feature may not be available in all regions yet
+**Don't see Skills section?**
+- Requires Claude Pro or Claude Max subscription
+- Skills is a preview feature, may not be available in all regions
 
-**"Claude didn't respond to 'set up my project'"**
-- Check that the project-coach-setup-base skill is enabled in Settings > Capabilities > Skills
-- Make sure you're in a chat within the project (not a regular Claude chat)
-- Try refreshing the page
+**Skill didn't trigger?**
+- Make sure you're in a chat within a Project (not regular Claude chat)
+- Check skill is enabled in Settings > Capabilities > Skills
 
-**"The morning routine skill didn't trigger"**
-- In fresh projects, use the explicit command: `run the daily morning routine skill`
-- After a few days of use, shortcuts like "gm" will work
-- Check that the daily-morning-routine-base skill is enabled
-
-**"Where do I download the skill files?"**
-- They're in the `/skills/` directory of this repository
-- Look for files ending in `-base.zip`
+**Skill-creator not working?**
+- Make sure you have the skill-creator skill installed first
+- Fall back to [QUICKSTART-MANUAL.md](QUICKSTART-MANUAL.md) for manual download
 
 ---
 
-## Welcome!
-
-You're now running with the base coaching framework. The system will help you:
-- Start each day with context from yesterday
-- Generate structured end-of-day summaries
-- Reflect weekly on what's working
-- Plan each week with clear priorities
-
-The skills work with generic placeholders right now. As you use the system, you'll discover what you want to customize for your specific goals.
+**Note:** Files shown as `.zip` in GitHub may appear as `.skill` in Claude.ai's UI - they're the same format.

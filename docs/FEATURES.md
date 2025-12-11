@@ -206,29 +206,6 @@ Workflow: Morning → Summary → Save → New chat
 
 ### 🟡 Medium Priority: Pre-Presentation Polish
 
-#### F24: Dev→Prod Deployment Workflow
-**Status:** Active - Documentation needed
-**Effort:** Quick win (30-45 min)
-**Priority:** High (addresses current friction)
-**Detail:** [docs/features/FEATURE-deployment-workflow.md](features/FEATURE-deployment-workflow.md)
-
-**Goal:** Document process for syncing refined skills from repo to Claude.ai production
-
-**Problem:**
-- Skills evolving in repo but production is stale
-- "Working but suboptimal" friction in daily workflow
-- No documented deployment process
-
-**Solution:**
-- Manual workflow + checklist (automation deferred to F23)
-- Pre-deployment validation steps
-- Post-deployment verification
-- Tracking strategy (git tags or deployment log)
-
-**Next:** Add "Deploying Skills to Claude.ai" section to WORKFLOW-GUIDE.md
-
----
-
 #### F27: Skill Vendor Compliance Review
 **Status:** Active - Quality improvement
 **Effort:** Path B (30-45 min per phase)
@@ -402,41 +379,6 @@ Workflow: Morning → Summary → Save → New chat
 **Decision trigger:** User feedback after Dec 12th presentation. If 3+ people struggle with workspace setup, prioritize restructuring.
 
 **Next:** Defer until after F33 + F31, evaluate with real user onboarding feedback
-
----
-
-### F32: Skill Workflow Git Operations
-**Status:** Deferred (removed from skill_workflow.py 2025-12-01)
-**Effort:** Path B (30-45 min to re-implement if needed)
-**Priority:** Low (out of scope for demo)
-**Detail:** [docs/features/FEATURE-skill-workflow-git-ops.md](features/FEATURE-skill-workflow-git-ops.md)
-
-**Goal:** Git automation features for skill workflow (commit, diff, edit commands)
-
-**Context:**
-- Removed git-related functionality from `skill_workflow.py` during pre-presentation simplification
-- Script now focuses solely on pack/unpack operations
-- Users can use standard `git add` and `git commit` commands instead
-
-**Removed features:**
-- `commit` command - automated git commit workflow with standardized messages
-- `edit` command - unpack + open in editor
-- `_show_diff_summary()` - visual diff display for skill ZIP files
-
-**Manual workflow (replacement):**
-```bash
-# Pack skill
-python scripts/skill_workflow.py pack skills/daily-summary-base/
-
-# Commit using standard git
-git add skills/daily-summary-base.skill
-git commit -m "Update daily-summary-base skill"
-```
-
-**Why deferred:**
-- Core workflow is pack/unpack, not git automation
-- Reduces script complexity for demo purposes
-- Functionality preserved in git history if needed later
 
 ---
 
@@ -619,27 +561,6 @@ python scripts/skill_workflow.py promote daily-summary-personal
 - Lower barrier to entry than current multi-skill setup
 
 **Prerequisites:** Validate current multi-skill approach works well first
-
----
-
-### F25: Day Seam Flexibility
-**Effort:** Quick win (15-20 min)
-**Priority:** Low (working fine currently)
-**Detail:** [docs/features/FEATURE-day-seam-flexibility.md](features/FEATURE-day-seam-flexibility.md)
-
-**Goal:** Clarify day boundary handling in daily-summary-base skill instructions
-
-**Context:**
-- Natural conversation boundaries are morning-to-morning, not midnight
-- "Summary OF [date]" concept already handles this implicitly
-- More of a documentation clarity improvement than actual problem
-
-**Solution:**
-- Add explicit "Date Handling & Day Boundaries" section to daily-summary-base skill
-- Provide edge case examples (spanning midnight, morning completions)
-- Emphasize "logical day" over "calendar day"
-
-**Next:** Defer to post-Dec 12th unless extra time available
 
 ---
 
