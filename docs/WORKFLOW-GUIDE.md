@@ -295,15 +295,7 @@ claude-as-coach-personal/documents/
       weeklies/                        # Archived weeklies
 ```
 
-**Note:** Specific archival directory structure is still being validated. See `docs/design/MONTHLY-ROLLUP-DESIGN.md` for evolving best practices.
-
-### Design Rationale
-
-See `docs/design/MONTHLY-ROLLUP-DESIGN.md` for complete design rationale, including:
-- Fractal compression principle
-- Monthly rollup output structure
-- Open questions being validated
-- Plan vs actual integration options
+**Note:** Archival directory structure follows the fractal compression pattern—each rollup compresses the level below, keeping project context lean while preserving full history locally.
 
 ## Vendor Skills Submodule
 
@@ -560,7 +552,5 @@ See [features/FEATURE-mcp-skill-manager.md](features/FEATURE-mcp-skill-manager.m
 - [README.md](../README.md) - Repository overview
 - [FEATURES.md](FEATURES.md) - Feature backlog
 - [NEXT-SESSION.md](NEXT-SESSION.md) - Current status and next steps
-- [design/MONTHLY-ROLLUP-DESIGN.md](design/MONTHLY-ROLLUP-DESIGN.md) - Monthly rollup design (fractal compression, output structure)
 - [features/FEATURE-presentation-prep.md](features/FEATURE-presentation-prep.md) - F17 presentation prep (Task 1 has testing procedures)
-- [features/FEATURE-monthly-rollup.md](features/FEATURE-monthly-rollup.md) - F26 monthly rollup (validation phase)
 - [features/FEATURE-mcp-skill-manager.md](features/FEATURE-mcp-skill-manager.md) - MCP server design

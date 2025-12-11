@@ -14,6 +14,14 @@ All notable user-facing changes to the Claude-as-Coach system.
 
 ## 2025-12-11
 
+### Added
+
+**Onboarding via skill-creator** - Validated approach for new user setup
+- Paste QUICKSTART.md into fresh project with skill-creator installed
+- Agent fetches SKILL.md from GitHub and packages each skill
+- User downloads artifacts and uploads via Settings > Capabilities
+- Fallback: QUICKSTART-MANUAL.md provides direct download links
+
 ### Completed Features (Cleanup)
 
 **F31: Git History Squash & Personal Data Audit** - ✅ Complete (2025-12-03)

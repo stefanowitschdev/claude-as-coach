@@ -93,32 +93,6 @@
 
 ---
 
-#### F26: Monthly Retrospective Rollup
-**Status:** Active - Design validation phase
-**Effort:** Path B (2-3 hours for manual rollup + skill design)
-**Priority:** Medium-High (valuable exploration + presentation enhancement)
-**Detail:** [docs/features/FEATURE-monthly-rollup.md](features/FEATURE-monthly-rollup.md)
-**Design:** [docs/design/MONTHLY-ROLLUP-DESIGN.md](design/MONTHLY-ROLLUP-DESIGN.md)
-
-**Goal:** Extend fractal pattern to monthly scale (daily→weekly→monthly)
-
-**Context:**
-- First time reaching monthly timescale in the system
-- November 2025 complete with 4 weekly retros
-- Detailed process design already scoped (output structure, lifecycle, archival workflow)
-
-**Deliverables:**
-- Manual November monthly retro (personal + sanitized example)
-- Validation report: answers to 5 open questions from design doc
-- Skill design decision (separate skill? parameterized? manual-only?)
-- Document lifecycle table added to WORKFLOW-GUIDE.md
-
-**Why now:** Natural timing (early December), strengthens presentation narrative, validates design with real data
-
-**Next:** Apply proposed structure to November data, answer open questions empirically
-
----
-
 ### 🟡 Medium Priority: Safety & User Experience
 
 #### F47: Onboarding UX Audit
@@ -819,6 +793,7 @@ Automated generation of presentation slides/materials for Dec 12th presentation
 
 ### December 2025
 
+- ✅ **F26: Monthly Retrospective Rollup** (Dec 11) - Solved by unified `retrospective-base` skill supporting any time scale (daily/weekly/monthly/quarterly/yearly). No separate monthly skill needed.
 - ✅ **F31: Git History Squash** (Dec 3) - Squashed 78 commits → 1 clean commit, removed personal data, repo safe to share
 - ✅ **F33: Sister Directories Pattern** (Dec 3) - Validated CLAUDE.md auto-loads from parent workspace, pattern confirmed working
 - ✅ **F28: Rob the Runner Demo** (Dec 2) - Created 10 sample documents demonstrating fractal compression (daily→weekly→monthly), Rob uses base skills only
