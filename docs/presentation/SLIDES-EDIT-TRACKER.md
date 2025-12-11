@@ -272,14 +272,216 @@ Zach Morek | Dec 12, 2025
 
 Priority order for edits:
 
-1. [ ] Merge title + problem slides
-2. [ ] Split "Evolution" into multiple slides (big one)
-3. [ ] Fix "What's a Skill?" formatting + content
-4. [ ] Add conversation vs artifact vs document differentiation
-5. [ ] Fix "Base + Personal" terminology ("combines" not "merges")
-6. [ ] Replace "Questions?" with summary slide
-7. [ ] Add bootstrap focus to "Try It Yourself"
-8. [ ] Tune remaining slides
+1. [x] Merge title + problem slides
+2. [x] Split "Evolution" into multiple slides (big one)
+3. [x] Fix "What's a Skill?" formatting + content
+4. [x] Add conversation vs artifact vs document differentiation
+5. [x] Fix "Base + Personal" terminology ("combines" not "merges")
+6. [x] Replace "Questions?" with summary slide
+7. [x] Add bootstrap focus to "Try It Yourself"
+8. [x] Tune remaining slides (Pass 2)
+9. [x] Fix formatting issues throughout (global CSS)
+
+---
+
+# Pass 2 Feedback (Dec 11 review) - COMPLETED
+
+## Structural Issues - ✅ ALL DONE
+
+### Slides 1-2: Title + Problem ✅
+**Resolution:** Merged into single title slide with tagline "Context management without heavy infrastructure"
+
+### Slides 2-3: Personal Story ✅
+**Resolution:** Added BOTH options as separate slides:
+- "My Journey" (Google Docs → conversation → project → skills)
+- "The Goal" (atomic habits story)
+Can pick one or keep both during dry run.
+
+### Slide 4: "What if you could..." ✅
+**Resolution:** Refined to "flexible system" angle with "No agents to build. No RAG to configure."
+
+### Slide 5: "Claude.ai Projects" ✅
+**Resolution:** CUT - content covered elsewhere. Speaker notes moved to Mental Model.
+
+### Slide 6: "Projects: Mental Model" ✅
+**Resolution:** Replaced ASCII with screenshot reference.
+**TODO:** Save screenshot to `screenshots/project-docs.png`
+
+### NEW: "Project Primitives" ✅
+**Added:** New slide explaining primitives (Conversation, Artifact, File, Memory, Instructions)
+
+## Narrative Flow Issues - ✅ ALL DONE
+
+### Reorder: Primitives → Loop → Skills ✅
+**Resolution:** Moved loop slides (System, Conversations→Artifacts, Fractal) to follow Primitives, before Skills explanation.
+
+### ".zip/.skill Confusion" ✅
+**Resolution:** Added Anthropic doc links as speaker notes for reference during talk.
+
+### "Projects vs Claude Code" ✅
+**Resolution:** Fixed with global CSS (smaller default font).
+
+### "Conversations → Artifacts → Documents" ✅
+**Resolution:** Fixed with global CSS.
+
+### "Fractal Compression" ✅
+**Resolution:** Changed "Nothing lost" → "Manual curation. What worked → keep. What didn't → learn."
+
+## Demo Section - ✅ ALL DONE
+
+### Rob scenarios intro ✅
+**Resolution:** Improved storytelling: "Who/Where/Today" format, sets scene for Sunday morning planning.
+
+### "L0-L3 Success Framework" ✅
+**Resolution:** Added "This framework emerged over time. Works for me - YMMV."
+
+## Later Slides - ✅ ALL DONE
+
+### "Repo Structure" ✅
+**Resolution:** Updated to show claude-as-coach-combined with public/private split.
+
+### "Try It Yourself" ✅
+**Resolution:** Updated with project-coach-setup skill, reference to experiments/.
+
+## Global Formatting - ✅ DONE
+
+**Resolution:** Added global CSS in YAML front matter:
+- Base font: 28px
+- Code blocks: 0.7em
+- Tables: 0.8em
+- No more overflow issues
+
+---
+
+# Still Open
+
+## Pre-Presentation TODO
+- [ ] Save screenshot to `screenshots/project-docs.png`
+- [ ] Dry run to test timing
+- [ ] Decide: keep both story slides or pick one?
+
+## Optional Refinements (if time permits)
+- [ ] "The Pitch" - refine tone for AI engineers
+- [ ] "What I Learned" - add "bitter lesson" angle
+- [ ] Appendix slides - review/rework
+
+## New Slides to Consider Adding
+See "New Slides to Add" section below - these are optional based on timing.
+
+---
+
+# New Slides to Add
+
+## TITLE: "The Dev Process" (clarify "zero build")
+
+**Concept:** Not exactly "zero build" - iterated on how to use existing primitives
+
+**Primitives explored:**
+- Conversation
+- Artifact
+- Project document
+- Memories (opted to stop actively managing)
+- Base project instructions (less useful than documents - harder to track in git)
+
+**Key insight:** Project docs are easier to track in claude-as-coach-personal git repo than base instructions
+
+---
+
+## TITLE: "Claude Code for Markdown, Not Python"
+
+**Concept:** Used Claude Code to generate a LOT of markdown, minimal Python
+
+**Python written:**
+- Unpack skills for easier git tracking
+- Handle `.skill` / `.zip` compatibility
+- Generate synthetic data templates with correct dates (date-specific summaries/retros)
+
+**Key insight:** The "code" I wrote was mostly prompts and markdown instructions
+
+---
+
+## TITLE: "LLMs Are Bad at Dates"
+
+**Concept:** Critical lesson - LLMs make up dates that don't exist
+
+**Solution:** Must use tool calls to give ground truth
+
+```bash
+TZ='America/New_York' date '+%A, %B %d, %Y'
+```
+
+Every skill that deals with dates starts with this. No assumptions.
+
+---
+
+## TITLE: "Project Management in Markdown"
+
+**Concept:** Feature queue tracked in markdown - Claude Code friendly minimalist PM
+
+**Show:** FEATURES.md structure or similar
+
+**Why it works:**
+- Claude Code can read/update it
+- Git tracks changes
+- No external tooling needed
+- Scales down to n=1
+
+---
+
+## TITLE: "Microagent Teaser"
+
+**Status:** Closed source for now, open source soon
+
+**Concepts to tease:**
+- Same patterns, any model
+- Subagents for code quality
+- Tool-calling models (Llama, Qwen, etc.)
+- Not locked to Claude
+
+**Note:** If we make enough progress on slides today, can clean up repo and share early draft openly
+
+---
+
+## TITLE: "Subagents for Code Quality"
+
+**Concept:** More relevant for microagent discussion
+
+**Pattern:** Specialized subagents for specific tasks
+
+**Defer to:** Microagent deep-dive (future session)
+
+---
+
+## TITLE: "Skills Are Global (Pain Point)"
+
+**Concept:** Platform limitation - skills not project-scoped
+
+**The problem:**
+- My account is both prod AND dev for skills
+- Have to manually toggle/remove skills to test changes
+- No way to have "dev skill" vs "prod skill" per project
+
+**Workaround:**
+- Naming convention: `production-*` vs `development-*`
+- Manual toggling in Settings > Capabilities
+
+**Hope:** Anthropic adds project-scoped skills in future
+(Or hire me to build it lol)
+
+---
+
+## TITLE: "Experiments & Feature Tracking"
+
+**Concept:** Show how experimentation and feature tracking works
+
+**Show:**
+- `docs/experiments/` - onboarding approaches, etc.
+- `docs/FEATURES.md` - feature queue structure
+
+**Why it matters:**
+- Low-friction experimentation
+- Git-tracked decision history
+- Claude Code can help maintain it
 
 ---
 
@@ -288,3 +490,19 @@ Priority order for edits:
 - Re-render after significant changes: `pandoc docs/presentation/SLIDES-dec-12.md -t revealjs -s -o docs/presentation/slides.html -V theme=white -V transition=slide`
 - Speaker notes use `::: notes` blocks
 - Test at 4pm today
+
+## Strategy
+
+**Build comprehensive first** → test run → triage lower priority slides to appendix
+
+Don't pre-optimize. Get all the content in, then cut based on actual timing.
+
+## Meta: Presentation as Documentation
+
+This presentation doubles as a **project review**:
+- Summarize features discussed across sessions
+- Show roadmap (what's done, what's next)
+- Document decisions along the way
+- Clean up toward **1.0.0 release**
+
+The slides become living documentation of the project's evolution and direction.

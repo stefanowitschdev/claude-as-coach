@@ -99,6 +99,14 @@
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@^5/dist/theme/white.css" id="theme">
+  <style>
+    .reveal { font-size: 28px; }
+    .reveal h1 { font-size: 1.8em; }
+    .reveal h2 { font-size: 1.4em; }
+    .reveal pre { font-size: 0.7em; }
+    .reveal table { font-size: 0.8em; }
+    .smaller { font-size: 0.8em; }
+  </style>
 </head>
 <body>
   <div class="reveal">
@@ -112,51 +120,132 @@
 
 <section id="claude-as-coach" class="slide level1">
 <h1>Claude-as-Coach</h1>
-<p><strong>Zero-build context management</strong></p>
+<p><strong>Context management without heavy infrastructure</strong></p>
 <p>Zach Morek | Dec 12, 2025</p>
 </section>
-<section id="the-problem" class="slide level1">
-<h1>The Problem</h1>
-<ul>
-<li>Context dies between Claude conversations</li>
-<li>Building agents is overkill for personal tracking</li>
-<li>You want <strong>continuity</strong>, not infrastructure</li>
-</ul>
+<section id="my-journey" class="slide level1">
+<h1>My Journey</h1>
+<p>Started with a Google Doc. Daily logs - work, exercise, sleep.</p>
+<p>Then conversations with Claude. Copy/paste summaries every day.</p>
+<p>Then Projects. Documents persist! But wasting tokens…</p>
+<p>Then Skills. Instructions loaded only when needed.</p>
+<p>Each step: less friction, more insight.</p>
+</section>
+<section id="the-goal" class="slide level1">
+<h1>The Goal</h1>
+<p>I wanted to build better habits.</p>
+<p>Exercise more. Sleep better. Ship more code.</p>
+<p>Tried apps. Tried spreadsheets. Tried journaling.</p>
+<p>What I really wanted: someone to talk to about my day who remembered
+yesterday.</p>
 </section>
 <section id="what-if-you-could-just-talk-to-it" class="slide level1">
 <h1>What if you could just… talk to it?</h1>
-<p>And it remembered yesterday.</p>
-<p>And last week.</p>
-<p>And your goals.</p>
-<p>Without writing code.</p>
+<p>A flexible system that remembers yesterday.</p>
+<p>And last week. And your goals.</p>
+<p>No agents to build. No RAG to configure.</p>
+<p>Just conversations that accumulate context.</p>
 </section>
-<section id="claude.ai-projects" class="slide level1">
-<h1>Claude.ai Projects</h1>
+<section id="projects-the-mental-model" class="slide level1">
+<h1>Projects: The Mental Model</h1>
 <aside class="notes">
 <p>SWITCH TO: Empty Claude.ai project, then one with documents SHOW:
 Project sidebar with documents</p>
 </aside>
-<ul>
-<li><strong>All documents in context</strong>, every conversation</li>
-<li>Persistent across sessions</li>
-<li>Cross-device (phone + laptop)</li>
-<li>No code required</li>
-</ul>
+<figure>
+<img data-src="screenshots/project-docs.png" alt="Project documents" />
+<figcaption aria-hidden="true">Project documents</figcaption>
+</figure>
+<p>Every conversation sees <strong>all</strong> project documents.</p>
 </section>
-<section id="projects-the-mental-model" class="slide level1">
-<h1>Projects: The Mental Model</h1>
-<pre><code>┌─────────────────────────────────────┐
-│  Claude.ai Project                  │
-│                                     │
-│  ┌─────────────┐ ┌─────────────┐   │
-│  │ Summary-Mon │ │ Summary-Tue │   │
-│  └─────────────┘ └─────────────┘   │
-│  ┌─────────────┐ ┌─────────────┐   │
-│  │ Weekly-Retro│ │ Project-Goal│   │
-│  └─────────────┘ └─────────────┘   │
-│                                     │
-│  Every conversation sees ALL docs   │
-└─────────────────────────────────────┘</code></pre>
+<section id="project-primitives" class="slide level1">
+<h1>Project Primitives</h1>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>What it is</th>
+<th>How I use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Conversation</strong></td>
+<td>Ephemeral chat</td>
+<td>Daily check-ins</td>
+</tr>
+<tr>
+<td><strong>Artifact</strong></td>
+<td>Generated content</td>
+<td>Summaries, retros</td>
+</tr>
+<tr>
+<td><strong>File</strong></td>
+<td>Project document</td>
+<td>Persistent context</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>Cross-project recall</td>
+<td>(optional - skipped)</td>
+</tr>
+<tr>
+<td><strong>Instructions</strong></td>
+<td>System prompt</td>
+<td>(skipped to simplify)</td>
+</tr>
+</tbody>
+</table>
+<p>The workflow uses <strong>conversations → artifacts →
+files</strong>.</p>
+</section>
+<section id="the-system-daily-weekly-loop" class="slide level1">
+<h1>The System: Daily → Weekly Loop</h1>
+<pre><code>        ┌──────────────┐
+   ┌───►│ Morning &quot;gm&quot; │
+   │    └──────┬───────┘
+   │           ▼
+   │    ┌──────────────┐
+   │    │Daily Summary │──────┐
+   │    └──────────────┘      │ x7
+   │                          ▼
+   │    ┌──────────────┐    ┌──────────────┐
+   │    │ Weekly Plan  │◄───│ Weekly Retro │
+   │    └──────┬───────┘    └──────────────┘
+   │           │
+   └───────────┘</code></pre>
+</section>
+<section id="conversations-artifacts-documents"
+class="slide level1 smaller">
+<h1 class="smaller">Conversations → Artifacts → Documents</h1>
+<pre><code>┌─────────────────────────────────────────────────┐
+│ Conversation (ephemeral)                        │
+│ &quot;How was your run today?&quot;                       │
+│ &quot;Great! Did 2.5 miles, no walk breaks...&quot;       │
+│                    │                            │
+│                    ▼                            │
+│ ┌─────────────────────────────────────────────┐ │
+│ │ Artifact (generated)                        │ │
+│ │ Summary-2025-12-11-Wednesday.md             │ │
+│ └─────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────┘
+                     │
+                     ▼ &quot;Add to project&quot;
+┌─────────────────────────────────────────────────┐
+│ Project Document (persistent)                   │
+│ Available in ALL future conversations           │
+└─────────────────────────────────────────────────┘</code></pre>
+</section>
+<section id="fractal-compression" class="slide level1">
+<h1>Fractal Compression</h1>
+<pre><code>Week 1: 7 daily summaries  ─┐
+Week 2: 7 daily summaries  ─┼──► Monthly Retro (1 doc)
+Week 3: 7 daily summaries  ─┤
+Week 4: 7 daily summaries  ─┘
+
+Recent = granular detail
+Historical = curated summaries</code></pre>
+<p>Manual curation. What worked → keep. What didn’t → learn.</p>
 </section>
 <section id="whats-a-skill-basic" class="slide level1">
 <h1>What’s a Skill? (Basic)</h1>
@@ -166,19 +255,19 @@ Project sidebar with documents</p>
 <p>A <code>.zip</code> containing markdown instructions.</p>
 <pre><code>daily-summary-base/
 └── SKILL.md</code></pre>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> daily-summary-base</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Use when user says &quot;daily summary&quot;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">             or &quot;end of day&quot;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily Summary Generator</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Process</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">1. Verify current date (bash command)</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">2. Ask which date to summarize</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">3. Generate structured markdown...</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> daily-summary-base</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Use when user says &quot;daily summary&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">             or &quot;end of day&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily Summary Generator</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Process</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">1. Verify current date (bash command)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">2. Ask which date to summarize</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">3. Generate structured markdown...</span></span></code></pre></div>
 </section>
 <section id="whats-a-skill-with-tools" class="slide level1">
 <h1>What’s a Skill? (With Tools)</h1>
@@ -208,18 +297,30 @@ the state. The LLM <em>is</em> the runtime.</p>
 </section>
 <section id="the-.zip.skill-confusion" class="slide level1">
 <h1>The .zip/.skill Confusion</h1>
+<aside class="notes">
+<p>Links showing the inconsistency: -
+https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+-
+https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
+-
+https://support.claude.com/en/articles/12512198-how-to-create-custom-skills
+-
+https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+-
+https://github.com/anthropics/skills/blob/main/skills/skill-creator/scripts/package_skill.py#L64</p>
+</aside>
 <p>Anthropic’s docs say <code>.skill</code> extension</p>
 <p>Anthropic’s uploader only accepts <code>.zip</code></p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Their tooling outputs:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">daily-summary-base.skill</span>  <span class="co"># Won&#39;t upload</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What actually works:</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">daily-summary-base.zip</span>    <span class="co"># Uploads fine</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Their tooling outputs:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">daily-summary-base.skill</span>  <span class="co"># Won&#39;t upload</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What actually works:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">daily-summary-base.zip</span>    <span class="co"># Uploads fine</span></span></code></pre></div>
 <p>PR pending to fix their docs/tooling.</p>
 </section>
-<section id="projects-vs-claude-code" class="slide level1">
-<h1>Projects vs Claude Code</h1>
+<section id="projects-vs-claude-code" class="slide level1 smaller">
+<h1 class="smaller">Projects vs Claude Code</h1>
 <table>
 <thead>
 <tr>
@@ -252,39 +353,13 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="
 </table>
 <p><strong>Different tools, different jobs.</strong></p>
 </section>
-<section id="the-system-daily-weekly-loop" class="slide level1">
-<h1>The System: Daily → Weekly Loop</h1>
-<pre><code>        ┌──────────────┐
-   ┌───►│ Morning &quot;gm&quot; │
-   │    └──────┬───────┘
-   │           ▼
-   │    ┌──────────────┐
-   │    │Daily Summary │──────┐
-   │    └──────────────┘      │ x7
-   │                          ▼
-   │    ┌──────────────┐    ┌──────────────┐
-   │    │ Weekly Plan  │◄───│ Weekly Retro │
-   │    └──────┬───────┘    └──────────────┘
-   │           │
-   └───────────┘</code></pre>
-</section>
-<section id="fractal-compression" class="slide level1">
-<h1>Fractal Compression</h1>
-<pre><code>Week 1: 7 daily summaries  ─┐
-Week 2: 7 daily summaries  ─┼──► Monthly Retro (1 doc)
-Week 3: 7 daily summaries  ─┤
-Week 4: 7 daily summaries  ─┘
-
-Recent = granular detail
-Historical = compressed summaries</code></pre>
-<p>Context stays manageable. Nothing lost.</p>
-</section>
 <section id="demo-time-rob-the-runner" class="slide level1">
 <h1>Demo Time: Rob the Runner</h1>
-<p><strong>Persona:</strong> 39-year-old accountant</p>
-<p><strong>Goal:</strong> Couch-to-5K program</p>
-<p><strong>Week:</strong> 8 of training</p>
-<p>4 pre-run scenarios showing the system in action</p>
+<p><strong>Who:</strong> 39-year-old accountant, first-time runner</p>
+<p><strong>Where:</strong> Week 8 of Couch-to-5K (almost done!)</p>
+<p><strong>Today:</strong> Sunday morning. Planning his final push
+week.</p>
+<p>We’ll see the full loop: morning → summary → retro → plan</p>
 </section>
 <section id="demo-1-morning-routine" class="slide level1">
 <h1>Demo 1: Morning Routine</h1>
@@ -387,26 +462,21 @@ L2 (Stretch): L1 + one extra distance run
 
 L3 (Exceptional): Hit 5K distance milestone
                   &quot;Breakthrough week&quot;</code></pre>
-<p>Calibrated to YOUR goals, not generic metrics.</p>
+<p>This framework emerged over time. Works for me - YMMV.</p>
 </section>
 <section id="repo-structure" class="slide level1">
 <h1>Repo Structure</h1>
 <aside class="notes">
 <p>SWITCH TO: Terminal or VS Code showing repo</p>
 </aside>
-<pre><code>claude-as-coach/
-├── skills/
-│   ├── daily-summary-base/
-│   │   └── SKILL.md
-│   ├── daily-summary-base.zip
-│   ├── planning-base/
-│   └── retrospective-base/
-├── examples/
-│   └── rob-the-runner/
-│       └── documents/
-├── scripts/
-│   └── skill_workflow.py
-└── docs/</code></pre>
+<pre><code>claude-as-coach-combined/          # Parent workspace
+├── claude-as-coach/               # Public (shareable)
+│   ├── skills/                    # Base skill frameworks
+│   ├── examples/rob-the-runner/   # Demo persona
+│   └── scripts/
+└── claude-as-coach-personal/      # Private (your data)
+    ├── skills/                    # Your extensions
+    └── documents/                 # Your summaries</code></pre>
 </section>
 <section id="base-personal-skill-pattern" class="slide level1">
 <h1>Base + Personal Skill Pattern</h1>
@@ -423,7 +493,7 @@ L3 (Exceptional): Hit 5K distance milestone
 │ - Your metrics (pace, HR, sleep)   │
 │ - Your thresholds                  │
 └────────────────────────────────────┘</code></pre>
-<p>Import both. Claude merges them.</p>
+<p>Import both. Claude loads both at runtime.</p>
 </section>
 <section id="evolution-v1-v2-the-search" class="slide level1">
 <h1>Evolution v1-v2: The Search</h1>
@@ -498,16 +568,18 @@ works</li>
 </section>
 <section id="try-it-yourself" class="slide level1">
 <h1>Try It Yourself</h1>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ZachBeta/claude-as-coach</span></code></pre></div>
-<p>Import to Claude.ai project:</p>
-<ul>
-<li>daily-summary-base.zip</li>
-<li>daily-morning-routine-base.zip</li>
-<li>planning-base.zip</li>
-<li>retrospective-base.zip</li>
-</ul>
-<p>Say “gm” in a new conversation.</p>
+<p><strong>Easiest:</strong> Paste
+<code>bootstrap-skill-creator.md</code> into Claude</p>
+<p>(Auto-fetches skills + runs project setup)</p>
+<p><strong>Or manually:</strong> Download .zip files from repo</p>
+<pre><code>skills/
+├── project-coach-setup-base.zip  ← Start here
+├── daily-summary-base.zip
+├── daily-morning-routine-base.zip
+├── planning-base.zip
+└── retrospective-base.zip</code></pre>
+<p>See <code>docs/experiments/</code> for alternative onboarding
+approaches.</p>
 </section>
 <section id="the-pitch" class="slide level1">
 <h1>The Pitch</h1>
@@ -521,9 +593,41 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href=
 <p>Or you could just… use Claude Projects with some markdown files.</p>
 <p><strong>Sometimes the best agent is no agent.</strong></p>
 </section>
-<section id="questions" class="slide level1">
-<h1>Questions?</h1>
+<section id="summary-questions" class="slide level1">
+<h1>Summary + Questions</h1>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Key Point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Projects</strong></td>
+<td>Documents always in context</td>
+</tr>
+<tr>
+<td><strong>Skills</strong></td>
+<td>On-demand instructions (.zip)</td>
+</tr>
+<tr>
+<td><strong>Base + Personal</strong></td>
+<td>Shareable framework + private data</td>
+</tr>
+<tr>
+<td><strong>Fractal Compression</strong></td>
+<td>Daily → Weekly → Monthly</td>
+</tr>
+<tr>
+<td><strong>The Loop</strong></td>
+<td>Morning → Summary → Retro → Plan</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Repo:</strong> github.com/ZachBeta/claude-as-coach</p>
+<p><strong>Triggers:</strong> “gm” · “daily summary” · “weekly retro” ·
+“weekly planning”</p>
 </section>
 <section id="appendix-skill-triggers" class="slide level1">
 <h1>Appendix: Skill Triggers</h1>

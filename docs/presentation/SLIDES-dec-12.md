@@ -5,66 +5,148 @@ date: Dec 12, 2025
 theme: white
 transition: slide
 slideNumber: true
+header-includes: |
+  <style>
+    .reveal { font-size: 28px; }
+    .reveal h1 { font-size: 1.8em; }
+    .reveal h2 { font-size: 1.4em; }
+    .reveal pre { font-size: 0.7em; }
+    .reveal table { font-size: 0.8em; }
+    .smaller { font-size: 0.8em; }
+  </style>
 ---
 
 # Claude-as-Coach
 
-**Zero-build context management**
+**Context management without heavy infrastructure**
 
 Zach Morek | Dec 12, 2025
 
 ---
 
-# The Problem
+# My Journey
 
-- Context dies between Claude conversations
-- Building agents is overkill for personal tracking
-- You want **continuity**, not infrastructure
+Started with a Google Doc. Daily logs - work, exercise, sleep.
+
+Then conversations with Claude. Copy/paste summaries every day.
+
+Then Projects. Documents persist! But wasting tokens...
+
+Then Skills. Instructions loaded only when needed.
+
+Each step: less friction, more insight.
+
+---
+
+# The Goal
+
+I wanted to build better habits.
+
+Exercise more. Sleep better. Ship more code.
+
+Tried apps. Tried spreadsheets. Tried journaling.
+
+What I really wanted: someone to talk to about my day
+who remembered yesterday.
 
 ---
 
 # What if you could just... talk to it?
 
-And it remembered yesterday.
+A flexible system that remembers yesterday.
 
-And last week.
+And last week. And your goals.
 
-And your goals.
+No agents to build. No RAG to configure.
 
-Without writing code.
+Just conversations that accumulate context.
 
 ---
 
-# Claude.ai Projects
+# Projects: The Mental Model
 
 ::: notes
 SWITCH TO: Empty Claude.ai project, then one with documents
 SHOW: Project sidebar with documents
 :::
 
-- **All documents in context**, every conversation
-- Persistent across sessions
-- Cross-device (phone + laptop)
-- No code required
+![Project documents](screenshots/project-docs.png)
+
+Every conversation sees **all** project documents.
 
 ---
 
-# Projects: The Mental Model
+# Project Primitives
+
+| Primitive | What it is | How I use it |
+|-----------|------------|--------------|
+| **Conversation** | Ephemeral chat | Daily check-ins |
+| **Artifact** | Generated content | Summaries, retros |
+| **File** | Project document | Persistent context |
+| **Memory** | Cross-project recall | (optional - skipped) |
+| **Instructions** | System prompt | (skipped to simplify) |
+
+The workflow uses **conversations → artifacts → files**.
+
+---
+
+# The System: Daily → Weekly Loop
 
 ```
-┌─────────────────────────────────────┐
-│  Claude.ai Project                  │
-│                                     │
-│  ┌─────────────┐ ┌─────────────┐   │
-│  │ Summary-Mon │ │ Summary-Tue │   │
-│  └─────────────┘ └─────────────┘   │
-│  ┌─────────────┐ ┌─────────────┐   │
-│  │ Weekly-Retro│ │ Project-Goal│   │
-│  └─────────────┘ └─────────────┘   │
-│                                     │
-│  Every conversation sees ALL docs   │
-└─────────────────────────────────────┘
+        ┌──────────────┐
+   ┌───►│ Morning "gm" │
+   │    └──────┬───────┘
+   │           ▼
+   │    ┌──────────────┐
+   │    │Daily Summary │──────┐
+   │    └──────────────┘      │ x7
+   │                          ▼
+   │    ┌──────────────┐    ┌──────────────┐
+   │    │ Weekly Plan  │◄───│ Weekly Retro │
+   │    └──────┬───────┘    └──────────────┘
+   │           │
+   └───────────┘
 ```
+
+---
+
+# Conversations → Artifacts → Documents {.smaller}
+
+```
+┌─────────────────────────────────────────────────┐
+│ Conversation (ephemeral)                        │
+│ "How was your run today?"                       │
+│ "Great! Did 2.5 miles, no walk breaks..."       │
+│                    │                            │
+│                    ▼                            │
+│ ┌─────────────────────────────────────────────┐ │
+│ │ Artifact (generated)                        │ │
+│ │ Summary-2025-12-11-Wednesday.md             │ │
+│ └─────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────┘
+                     │
+                     ▼ "Add to project"
+┌─────────────────────────────────────────────────┐
+│ Project Document (persistent)                   │
+│ Available in ALL future conversations           │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+# Fractal Compression
+
+```
+Week 1: 7 daily summaries  ─┐
+Week 2: 7 daily summaries  ─┼──► Monthly Retro (1 doc)
+Week 3: 7 daily summaries  ─┤
+Week 4: 7 daily summaries  ─┘
+
+Recent = granular detail
+Historical = curated summaries
+```
+
+Manual curation. What worked → keep. What didn't → learn.
 
 ---
 
@@ -140,6 +222,15 @@ The LLM *is* the runtime.
 
 # The .zip/.skill Confusion
 
+::: notes
+Links showing the inconsistency:
+- https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+- https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
+- https://support.claude.com/en/articles/12512198-how-to-create-custom-skills
+- https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+- https://github.com/anthropics/skills/blob/main/skills/skill-creator/scripts/package_skill.py#L64
+:::
+
 Anthropic's docs say `.skill` extension
 
 Anthropic's uploader only accepts `.zip`
@@ -156,7 +247,7 @@ PR pending to fix their docs/tooling.
 
 ---
 
-# Projects vs Claude Code
+# Projects vs Claude Code {.smaller}
 
 | Claude.ai Projects | Claude Code |
 |--------------------|-------------|
@@ -170,51 +261,15 @@ PR pending to fix their docs/tooling.
 
 ---
 
-# The System: Daily → Weekly Loop
-
-```
-        ┌──────────────┐
-   ┌───►│ Morning "gm" │
-   │    └──────┬───────┘
-   │           ▼
-   │    ┌──────────────┐
-   │    │Daily Summary │──────┐
-   │    └──────────────┘      │ x7
-   │                          ▼
-   │    ┌──────────────┐    ┌──────────────┐
-   │    │ Weekly Plan  │◄───│ Weekly Retro │
-   │    └──────┬───────┘    └──────────────┘
-   │           │
-   └───────────┘
-```
-
----
-
-# Fractal Compression
-
-```
-Week 1: 7 daily summaries  ─┐
-Week 2: 7 daily summaries  ─┼──► Monthly Retro (1 doc)
-Week 3: 7 daily summaries  ─┤
-Week 4: 7 daily summaries  ─┘
-
-Recent = granular detail
-Historical = compressed summaries
-```
-
-Context stays manageable. Nothing lost.
-
----
-
 # Demo Time: Rob the Runner
 
-**Persona:** 39-year-old accountant
+**Who:** 39-year-old accountant, first-time runner
 
-**Goal:** Couch-to-5K program
+**Where:** Week 8 of Couch-to-5K (almost done!)
 
-**Week:** 8 of training
+**Today:** Sunday morning. Planning his final push week.
 
-4 pre-run scenarios showing the system in action
+We'll see the full loop: morning → summary → retro → plan
 
 ---
 
@@ -341,7 +396,7 @@ L3 (Exceptional): Hit 5K distance milestone
                   "Breakthrough week"
 ```
 
-Calibrated to YOUR goals, not generic metrics.
+This framework emerged over time. Works for me - YMMV.
 
 ---
 
@@ -352,19 +407,14 @@ SWITCH TO: Terminal or VS Code showing repo
 :::
 
 ```
-claude-as-coach/
-├── skills/
-│   ├── daily-summary-base/
-│   │   └── SKILL.md
-│   ├── daily-summary-base.zip
-│   ├── planning-base/
-│   └── retrospective-base/
-├── examples/
-│   └── rob-the-runner/
-│       └── documents/
-├── scripts/
-│   └── skill_workflow.py
-└── docs/
+claude-as-coach-combined/          # Parent workspace
+├── claude-as-coach/               # Public (shareable)
+│   ├── skills/                    # Base skill frameworks
+│   ├── examples/rob-the-runner/   # Demo persona
+│   └── scripts/
+└── claude-as-coach-personal/      # Private (your data)
+    ├── skills/                    # Your extensions
+    └── documents/                 # Your summaries
 ```
 
 ---
@@ -387,7 +437,7 @@ claude-as-coach/
 └────────────────────────────────────┘
 ```
 
-Import both. Claude merges them.
+Import both. Claude loads both at runtime.
 
 ---
 
@@ -480,18 +530,22 @@ Works despite these. Not because of them.
 
 # Try It Yourself
 
-```bash
-git clone https://github.com/ZachBeta/claude-as-coach
+**Easiest:** Paste `bootstrap-skill-creator.md` into Claude
+
+(Auto-fetches skills + runs project setup)
+
+**Or manually:** Download .zip files from repo
+
+```
+skills/
+├── project-coach-setup-base.zip  ← Start here
+├── daily-summary-base.zip
+├── daily-morning-routine-base.zip
+├── planning-base.zip
+└── retrospective-base.zip
 ```
 
-Import to Claude.ai project:
-
-- daily-summary-base.zip
-- daily-morning-routine-base.zip
-- planning-base.zip
-- retrospective-base.zip
-
-Say "gm" in a new conversation.
+See `docs/experiments/` for alternative onboarding approaches.
 
 ---
 
@@ -510,9 +564,19 @@ Or you could just... use Claude Projects with some markdown files.
 
 ---
 
-# Questions?
+# Summary + Questions
+
+| Concept | Key Point |
+|---------|-----------|
+| **Projects** | Documents always in context |
+| **Skills** | On-demand instructions (.zip) |
+| **Base + Personal** | Shareable framework + private data |
+| **Fractal Compression** | Daily → Weekly → Monthly |
+| **The Loop** | Morning → Summary → Retro → Plan |
 
 **Repo:** github.com/ZachBeta/claude-as-coach
+
+**Triggers:** "gm" · "daily summary" · "weekly retro" · "weekly planning"
 
 ---
 
