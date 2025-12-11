@@ -114,15 +114,12 @@
 
 <section id="title-slide">
   <h1 class="title">Claude-as-Coach</h1>
+  <p class="subtitle">Context management without heavy
+infrastructure</p>
   <p class="author">Zach Morek</p>
   <p class="date">Dec 12, 2025</p>
 </section>
 
-<section id="claude-as-coach" class="slide level1">
-<h1>Claude-as-Coach</h1>
-<p><strong>Context management without heavy infrastructure</strong></p>
-<p>Zach Morek | Dec 12, 2025</p>
-</section>
 <section id="my-journey" class="slide level1">
 <h1>My Journey</h1>
 <p>Started with a Google Doc. Daily logs - work, exercise, sleep.</p>
@@ -147,6 +144,46 @@ yesterday.</p>
 <p>Just conversations that accumulate context.</p>
 </section>
 <section id="section" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="evolution">Evolution</h2>
+<p>How the system developed</p>
+</section>
+<section id="evolution-v1-v2-the-search" class="slide level1">
+<h1>Evolution v1-v2: The Search</h1>
+<p><strong>v1: Giant Google Doc</strong> - Daily logging: work,
+exercise, sleep, diet - Gaining insights = manual effort or build
+systems - Too much cognitive load sifting through it all</p>
+<p><strong>v2: Journaling Agents</strong> - Various attempts at building
+agents - Create summary → copy/paste into new chat - Repeat daily.
+Forever.</p>
+</section>
+<section id="evolution-v3-the-aha-moment" class="slide level1">
+<h1>Evolution v3: The Aha Moment</h1>
+<p><strong>Projects + saving to documents</strong></p>
+<p>But I was wasting tokens:</p>
+<pre><code>┌─────────────────────────────────────┐
+│ Project Context (always loaded)     │
+│ ┌─────────┐ ┌─────────┐ ┌─────────┐│
+│ │Summary-1│ │Summary-2│ │Summary-3││
+│ └─────────┘ └─────────┘ └─────────┘│
+│ ┌─────────────────────────────────┐│
+│ │ instructions.md (5k tokens)     ││ ← Always here
+│ └─────────────────────────────────┘│
+└─────────────────────────────────────┘
+         +
+   &quot;Please read Summary-1&quot;  ← Wasted! Already in context</code></pre>
+</section>
+<section id="evolution-v4-v5-the-pattern" class="slide level1">
+<h1>Evolution v4-v5: The Pattern</h1>
+<p><strong>v4: Skills = on-demand instructions</strong> - Retro
+instructions only loaded during retro - Not burning tokens every
+conversation</p>
+<p><strong>v5: Skill inheritance</strong> - What’s structural?
+(shareable) - What’s personal? (private) - <code>claude-as-coach</code>
++ <code>claude-as-coach-personal</code></p>
+<p>No grand plan. Just iterated on friction.</p>
+</section>
+<section id="section-1" class="slide level1 center">
 <h1 class="center"></h1>
 <h2 id="the-platform">The Platform</h2>
 <p>Claude.ai Projects + Skills</p>
@@ -212,14 +249,14 @@ files</strong>.</p>
 <section id="the-system-daily-weekly-loop" class="slide level1">
 <h1>The System: Daily → Weekly Loop</h1>
 <pre><code>        ┌──────────────┐
-   ┌───►│ Morning &quot;gm&quot; │
+   ┌───►│ Morning &quot;gm&quot; │  ← conversation only
    │    └──────┬───────┘
    │           ▼
    │    ┌──────────────┐
    │    │Daily Summary │──────┐
    │    └──────────────┘      │ x7
-   │                          ▼
-   │    ┌──────────────┐    ┌──────────────┐
+   │                          ▼         artifacts →
+   │    ┌──────────────┐    ┌──────────────┐  project docs
    │    │ Weekly Plan  │◄───│ Weekly Retro │
    │    └──────┬───────┘    └──────────────┘
    │           │
@@ -247,16 +284,19 @@ files</strong>.</p>
 </section>
 <section id="fractal-compression" class="slide level1">
 <h1>Fractal Compression</h1>
-<pre><code>Week 1: 7 daily summaries  ─┐
-Week 2: 7 daily summaries  ─┼──► Monthly Retro (1 doc)
-Week 3: 7 daily summaries  ─┤
-Week 4: 7 daily summaries  ─┘
-
-Recent = granular detail
-Historical = curated summaries</code></pre>
-<p>Manual curation. What worked → keep. What didn’t → learn.</p>
+<pre><code>Sun Mon Tue Wed Thu Fri Sat
+ │   │   │   │   │   │   │
+ └───┴───┴───┼───┴───┴───┘
+             ▼
+      Weekly Retro (1 doc)</code></pre>
+<pre><code>Week 1 ─┐
+Week 2 ─┼──► Monthly Retro (1 doc)
+Week 3 ─┤
+Week 4 ─┘</code></pre>
+<p><strong>Manual workflow:</strong> Download retro → add to project →
+remove rolled-up docs</p>
 </section>
-<section id="section-1" class="slide level1 center">
+<section id="section-2" class="slide level1 center">
 <h1 class="center"></h1>
 <h2 id="skills">Skills</h2>
 <p>On-demand instructions for Claude</p>
@@ -269,19 +309,19 @@ Historical = curated summaries</code></pre>
 <p>A <code>.zip</code> containing markdown instructions.</p>
 <pre><code>daily-summary-base/
 └── SKILL.md</code></pre>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> daily-summary-base</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Use when user says &quot;daily summary&quot;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">             or &quot;end of day&quot;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily Summary Generator</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Process</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">1. Verify current date (bash command)</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">2. Ask which date to summarize</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">3. Generate structured markdown...</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> daily-summary-base</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Use when user says &quot;daily summary&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">             or &quot;end of day&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily Summary Generator</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Process</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">1. Verify current date (bash command)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">2. Ask which date to summarize</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">3. Generate structured markdown...</span></span></code></pre></div>
 </section>
 <section id="whats-a-skill-with-tools" class="slide level1">
 <h1>What’s a Skill? (With Tools)</h1>
@@ -323,15 +363,16 @@ https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
 -
 https://github.com/anthropics/skills/blob/main/skills/skill-creator/scripts/package_skill.py#L64</p>
 </aside>
-<p>Anthropic’s docs say <code>.skill</code> extension</p>
-<p>Anthropic’s uploader only accepts <code>.zip</code></p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Their tooling outputs:</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">daily-summary-base.skill</span>  <span class="co"># Won&#39;t upload</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What actually works:</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">daily-summary-base.zip</span>    <span class="co"># Uploads fine</span></span></code></pre></div>
-<p>PR pending to fix their docs/tooling.</p>
+<p>Most Anthropic docs say <code>.zip</code></p>
+<p>But <code>skill-creator</code> tool outputs <code>.skill</code></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skill-creator outputs:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> package_skill.py daily-summary-base/</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># → daily-summary-base.skill  # Won&#39;t upload!</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Workaround:</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> daily-summary-base.skill daily-summary-base.zip</span></code></pre></div>
+<p>PR pending to fix their tooling.</p>
 </section>
 <section id="projects-vs-claude-code" class="slide level1">
 <h1>Projects vs Claude Code</h1>
@@ -367,7 +408,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
 </table>
 <p><strong>Different tools, different jobs.</strong></p>
 </section>
-<section id="section-2" class="slide level1 center">
+<section id="section-3" class="slide level1 center">
 <h1 class="center"></h1>
 <h2 id="demo">Demo</h2>
 <p>Rob the Runner in action</p>
@@ -378,7 +419,23 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="
 <p><strong>Where:</strong> Week 8 of Couch-to-5K (almost done!)</p>
 <p><strong>Today:</strong> Sunday morning. Planning his final push
 week.</p>
-<p>We’ll see the full loop: morning → summary → retro → plan</p>
+<p>We’ll see the full loop: setup → morning → summary → retro → plan</p>
+</section>
+<section id="demo-0-project-setup" class="slide level1">
+<h1>Demo 0: Project Setup</h1>
+<aside class="notes">
+<p>SWITCH TO: Project “rob-setup” or fresh project SHOW: Running
+project-coach-setup skill POINT OUT: Goal definition, context
+gathering</p>
+</aside>
+<p><strong>Trigger:</strong> “let’s set up this project” or import setup
+skill</p>
+<ul>
+<li>Define your goal and time horizon</li>
+<li>Establish tracking metrics</li>
+<li>Set initial context (what’s your starting point?)</li>
+</ul>
+<p>This only happens once per project.</p>
 </section>
 <section id="demo-1-morning-routine" class="slide level1">
 <h1>Demo 1: Morning Routine</h1>
@@ -408,22 +465,22 @@ artifact POINT OUT: Key Numbers table, TL;DR section</p>
 </section>
 <section id="daily-summary-the-output" class="slide level1">
 <h1>Daily Summary: The Output</h1>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Wednesday, Dec 11, 2025 - Daily Summary</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>**GROUND TRUTH:**</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date: Wednesday, December 11, 2025</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>W8-D3 (Week 8, Day 3 of C25K)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## TL;DR</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Solid 2.5mi run, felt strong. First time</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>finishing without walk breaks.</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Numbers</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Metric <span class="pp">|</span> Value <span class="pp">|</span> Notes <span class="pp">|</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-------|-------|</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Distance <span class="pp">|</span> 2.5 mi <span class="pp">|</span> No walk breaks! <span class="pp">|</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pace <span class="pp">|</span> 11:30/mi <span class="pp">|</span> PR for continuous <span class="pp">|</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Wednesday, Dec 11, 2025 - Daily Summary</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>**GROUND TRUTH:**</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date: Wednesday, December 11, 2025</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>W8-D3 (Week 8, Day 3 of C25K)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## TL;DR</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>Solid 2.5mi run, felt strong. First time</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>finishing without walk breaks.</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Numbers</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Metric <span class="pp">|</span> Value <span class="pp">|</span> Notes <span class="pp">|</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-------|-------|</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Distance <span class="pp">|</span> 2.5 mi <span class="pp">|</span> No walk breaks! <span class="pp">|</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pace <span class="pp">|</span> 11:30/mi <span class="pp">|</span> PR for continuous <span class="pp">|</span></span></code></pre></div>
 </section>
 <section id="demo-3-weekly-retrospective" class="slide level1">
 <h1>Demo 3: Weekly Retrospective</h1>
@@ -483,7 +540,7 @@ L3 (Exceptional): Hit 5K distance milestone
                   &quot;Breakthrough week&quot;</code></pre>
 <p>This framework emerged over time. Works for me - YMMV.</p>
 </section>
-<section id="section-3" class="slide level1 center">
+<section id="section-4" class="slide level1 center">
 <h1 class="center"></h1>
 <h2 id="architecture">Architecture</h2>
 <p>How the pieces fit together</p>
@@ -518,46 +575,6 @@ L3 (Exceptional): Hit 5K distance milestone
 │ - Your thresholds                  │
 └────────────────────────────────────┘</code></pre>
 <p>Import both. Claude loads both at runtime.</p>
-</section>
-<section id="section-4" class="slide level1 center">
-<h1 class="center"></h1>
-<h2 id="evolution">Evolution</h2>
-<p>How the system developed</p>
-</section>
-<section id="evolution-v1-v2-the-search" class="slide level1">
-<h1>Evolution v1-v2: The Search</h1>
-<p><strong>v1: Giant Google Doc</strong> - Daily logging: work,
-exercise, sleep, diet - Gaining insights = manual effort or build
-systems - Too much cognitive load sifting through it all</p>
-<p><strong>v2: Journaling Agents</strong> - Various attempts at building
-agents - Create summary → copy/paste into new chat - Repeat daily.
-Forever.</p>
-</section>
-<section id="evolution-v3-the-aha-moment" class="slide level1">
-<h1>Evolution v3: The Aha Moment</h1>
-<p><strong>Projects + saving to documents</strong></p>
-<p>But I was wasting tokens:</p>
-<pre><code>┌─────────────────────────────────────┐
-│ Project Context (always loaded)     │
-│ ┌─────────┐ ┌─────────┐ ┌─────────┐│
-│ │Summary-1│ │Summary-2│ │Summary-3││
-│ └─────────┘ └─────────┘ └─────────┘│
-│ ┌─────────────────────────────────┐│
-│ │ instructions.md (5k tokens)     ││ ← Always here
-│ └─────────────────────────────────┘│
-└─────────────────────────────────────┘
-         +
-   &quot;Please read Summary-1&quot;  ← Wasted! Already in context</code></pre>
-</section>
-<section id="evolution-v4-v5-the-pattern" class="slide level1">
-<h1>Evolution v4-v5: The Pattern</h1>
-<p><strong>v4: Skills = on-demand instructions</strong> - Retro
-instructions only loaded during retro - Not burning tokens every
-conversation</p>
-<p><strong>v5: Skill inheritance</strong> - What’s structural?
-(shareable) - What’s personal? (private) - <code>claude-as-coach</code>
-+ <code>claude-as-coach-personal</code></p>
-<p>No grand plan. Just iterated on friction.</p>
 </section>
 <section id="section-5" class="slide level1 center">
 <h1 class="center"></h1>
@@ -623,8 +640,8 @@ approaches.</p>
 <section id="llms-are-bad-at-dates" class="slide level1">
 <h1>LLMs Are Bad at Dates</h1>
 <p>Every skill that deals with dates starts with this:</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">TZ</span><span class="op">=</span><span class="st">&#39;America/New_York&#39;</span> <span class="fu">date</span> <span class="st">&#39;+%A, %B %d, %Y&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="va">TZ</span><span class="op">=</span><span class="st">&#39;America/New_York&#39;</span> <span class="fu">date</span> <span class="st">&#39;+%A, %B %d, %Y&#39;</span></span></code></pre></div>
 <p>LLMs make up dates. Tool calls give ground truth.</p>
 <p>No assumptions. Verify first.</p>
 </section>

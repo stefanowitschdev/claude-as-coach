@@ -1,5 +1,6 @@
 ---
 title: Claude-as-Coach
+subtitle: Context management without heavy infrastructure
 author: Zach Morek
 date: Dec 12, 2025
 theme: white
@@ -14,14 +15,6 @@ header-includes: |
     .reveal table { font-size: 0.8em; }
     .smaller { font-size: 0.8em; }
   </style>
----
-
-# Claude-as-Coach
-
-**Context management without heavy infrastructure**
-
-Zach Morek | Dec 12, 2025
-
 ---
 
 # My Journey
@@ -65,6 +58,65 @@ Just conversations that accumulate context.
 
 # {.center}
 
+## Evolution
+
+How the system developed
+
+---
+
+# Evolution v1-v2: The Search
+
+**v1: Giant Google Doc**
+- Daily logging: work, exercise, sleep, diet
+- Gaining insights = manual effort or build systems
+- Too much cognitive load sifting through it all
+
+**v2: Journaling Agents**
+- Various attempts at building agents
+- Create summary → copy/paste into new chat
+- Repeat daily. Forever.
+
+---
+
+# Evolution v3: The Aha Moment
+
+**Projects + saving to documents**
+
+But I was wasting tokens:
+
+```
+┌─────────────────────────────────────┐
+│ Project Context (always loaded)     │
+│ ┌─────────┐ ┌─────────┐ ┌─────────┐│
+│ │Summary-1│ │Summary-2│ │Summary-3││
+│ └─────────┘ └─────────┘ └─────────┘│
+│ ┌─────────────────────────────────┐│
+│ │ instructions.md (5k tokens)     ││ ← Always here
+│ └─────────────────────────────────┘│
+└─────────────────────────────────────┘
+         +
+   "Please read Summary-1"  ← Wasted! Already in context
+```
+
+---
+
+# Evolution v4-v5: The Pattern
+
+**v4: Skills = on-demand instructions**
+- Retro instructions only loaded during retro
+- Not burning tokens every conversation
+
+**v5: Skill inheritance**
+- What's structural? (shareable)
+- What's personal? (private)
+- `claude-as-coach` + `claude-as-coach-personal`
+
+No grand plan. Just iterated on friction.
+
+---
+
+# {.center}
+
 ## The Platform
 
 Claude.ai Projects + Skills
@@ -102,14 +154,14 @@ The workflow uses **conversations → artifacts → files**.
 
 ```
         ┌──────────────┐
-   ┌───►│ Morning "gm" │
+   ┌───►│ Morning "gm" │  ← conversation only
    │    └──────┬───────┘
    │           ▼
    │    ┌──────────────┐
    │    │Daily Summary │──────┐
    │    └──────────────┘      │ x7
-   │                          ▼
-   │    ┌──────────────┐    ┌──────────────┐
+   │                          ▼         artifacts →
+   │    ┌──────────────┐    ┌──────────────┐  project docs
    │    │ Weekly Plan  │◄───│ Weekly Retro │
    │    └──────┬───────┘    └──────────────┘
    │           │
@@ -145,16 +197,21 @@ The workflow uses **conversations → artifacts → files**.
 # Fractal Compression
 
 ```
-Week 1: 7 daily summaries  ─┐
-Week 2: 7 daily summaries  ─┼──► Monthly Retro (1 doc)
-Week 3: 7 daily summaries  ─┤
-Week 4: 7 daily summaries  ─┘
-
-Recent = granular detail
-Historical = curated summaries
+Sun Mon Tue Wed Thu Fri Sat
+ │   │   │   │   │   │   │
+ └───┴───┴───┼───┴───┴───┘
+             ▼
+      Weekly Retro (1 doc)
 ```
 
-Manual curation. What worked → keep. What didn't → learn.
+```
+Week 1 ─┐
+Week 2 ─┼──► Monthly Retro (1 doc)
+Week 3 ─┤
+Week 4 ─┘
+```
+
+**Manual workflow:** Download retro → add to project → remove rolled-up docs
 
 ---
 
@@ -247,19 +304,20 @@ Links showing the inconsistency:
 - https://github.com/anthropics/skills/blob/main/skills/skill-creator/scripts/package_skill.py#L64
 :::
 
-Anthropic's docs say `.skill` extension
+Most Anthropic docs say `.zip`
 
-Anthropic's uploader only accepts `.zip`
+But `skill-creator` tool outputs `.skill`
 
 ```bash
-# Their tooling outputs:
-daily-summary-base.skill  # Won't upload
+# skill-creator outputs:
+python package_skill.py daily-summary-base/
+# → daily-summary-base.skill  # Won't upload!
 
-# What actually works:
-daily-summary-base.zip    # Uploads fine
+# Workaround:
+mv daily-summary-base.skill daily-summary-base.zip
 ```
 
-PR pending to fix their docs/tooling.
+PR pending to fix their tooling.
 
 ---
 
@@ -293,7 +351,25 @@ Rob the Runner in action
 
 **Today:** Sunday morning. Planning his final push week.
 
-We'll see the full loop: morning → summary → retro → plan
+We'll see the full loop: setup → morning → summary → retro → plan
+
+---
+
+# Demo 0: Project Setup
+
+::: notes
+SWITCH TO: Project "rob-setup" or fresh project
+SHOW: Running project-coach-setup skill
+POINT OUT: Goal definition, context gathering
+:::
+
+**Trigger:** "let's set up this project" or import setup skill
+
+- Define your goal and time horizon
+- Establish tracking metrics
+- Set initial context (what's your starting point?)
+
+This only happens once per project.
 
 ---
 
@@ -470,65 +546,6 @@ claude-as-coach-combined/          # Parent workspace
 ```
 
 Import both. Claude loads both at runtime.
-
----
-
-# {.center}
-
-## Evolution
-
-How the system developed
-
----
-
-# Evolution v1-v2: The Search
-
-**v1: Giant Google Doc**
-- Daily logging: work, exercise, sleep, diet
-- Gaining insights = manual effort or build systems
-- Too much cognitive load sifting through it all
-
-**v2: Journaling Agents**
-- Various attempts at building agents
-- Create summary → copy/paste into new chat
-- Repeat daily. Forever.
-
----
-
-# Evolution v3: The Aha Moment
-
-**Projects + saving to documents**
-
-But I was wasting tokens:
-
-```
-┌─────────────────────────────────────┐
-│ Project Context (always loaded)     │
-│ ┌─────────┐ ┌─────────┐ ┌─────────┐│
-│ │Summary-1│ │Summary-2│ │Summary-3││
-│ └─────────┘ └─────────┘ └─────────┘│
-│ ┌─────────────────────────────────┐│
-│ │ instructions.md (5k tokens)     ││ ← Always here
-│ └─────────────────────────────────┘│
-└─────────────────────────────────────┘
-         +
-   "Please read Summary-1"  ← Wasted! Already in context
-```
-
----
-
-# Evolution v4-v5: The Pattern
-
-**v4: Skills = on-demand instructions**
-- Retro instructions only loaded during retro
-- Not burning tokens every conversation
-
-**v5: Skill inheritance**
-- What's structural? (shareable)
-- What's personal? (private)
-- `claude-as-coach` + `claude-as-coach-personal`
-
-No grand plan. Just iterated on friction.
 
 ---
 

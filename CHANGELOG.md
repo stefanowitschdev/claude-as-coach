@@ -12,6 +12,43 @@ All notable user-facing changes to the Claude-as-Coach system.
 
 ---
 
+## 2025-12-11
+
+### Completed Features (Cleanup)
+
+**F31: Git History Squash & Personal Data Audit** - ✅ Complete (2025-12-03)
+- Squashed 78 commits → 1 clean commit (`04b269a`)
+- Removed all personal data from git history
+- Repository now safe to share publicly
+- Backup preserved in local branch `backup-before-squash`
+
+**F33: Sister Directories Pattern** - ✅ Phase 1 Passed (2025-12-03)
+- Validated CLAUDE.md auto-loads from parent workspace
+- Sister directories pattern confirmed working
+- No longer blocking git history squash
+- Remaining phases (documentation cleanup) optional
+
+**F28: Rob the Runner Demo Persona** - ✅ Complete (2025-12-02)
+- Created 10 sample documents demonstrating fractal compression
+- Week 8: 3 daily summaries (granular detail)
+- Weeks 5-7: 3 weekly retros (medium compression)
+- Weeks 1-4: 1 monthly rollup (highest compression)
+- Week 9: Ongoing practice (post-program exploration)
+- Key: Rob uses **base skills only** (no custom personal skills needed)
+
+**F36: Save-to-Project UX Instructions** - ✅ Complete (2025-12-04)
+- Added platform-specific save instructions to project-coach-setup-base skill
+- Web/Desktop: Click artifact → dropdown → "Save to Project"
+- Mobile: Download artifact → upload to project sidebar
+
+**F15: Workflow Cleanup** - ✅ Complete (2025-11-29)
+- Cleaned up skill_workflow.py imports and validation
+- Removed unused validate_skill import and dead flags
+- Added VSCode/IDE integration documentation
+- Git workflow features deferred (manual workflow acceptable)
+
+---
+
 ## 2025-12-01
 
 ### Added

@@ -4,112 +4,7 @@
 
 ## Active
 
-### 🔴 High Priority: Enable Sharing with Acquaintances
-
-#### F33: Sister Directories Pattern Validation
-**Status:** ✅ Phase 1 PASSED (2025-12-03) - Remaining phases optional
-**Effort:** Quick win (30-45 min for testing + decision)
-**Priority:** High - Was BLOCKING F31 (now unblocked)
-**Detail:** [docs/features/FEATURE-sister-directories-pattern.md](features/FEATURE-sister-directories-pattern.md)
-
-**Goal:** Finalize personal repo architecture (submodule vs sister directories) and stabilize documentation before git history squash
-
-**Critical unknowns (resolved):**
-1. ✅ Does CLAUDE.md auto-load from child directory when running from parent workspace? **YES - CONFIRMED 2025-12-03**
-2. Path complexity (longer paths) - acceptable, working in practice
-3. Where should users actually work day-to-day? - Parent workspace works well
-
-**Testing phases:**
-1. ✅ Phase 1: Critical test (CLAUDE.md loading) - **PASSED** (15 min)
-2. Phase 2: Path complexity evaluation - validated in use (10 min)
-3. Phase 3: Final decision using decision matrix - GO for sister directories (5 min)
-4. Phase 4: Documentation cleanup - can proceed post-squash (15-30 min)
-
-**Current state:** Sister directories working. CLAUDE.md loads correctly from parent workspace.
-
-**No longer blocking:** F31 can proceed
-
-**Next:** Proceed with F31 (git squash), documentation cleanup can follow
-
----
-
-#### F31: Git History Squash & Personal Data Audit
-**Status:** ✅ COMPLETE (2025-12-03)
-**Effort:** Path B (45-60 min - completed)
-**Priority:** High - Was BLOCKING for sharing repo with acquaintances
-**Detail:** [docs/features/FEATURE-git-history-squash.md](features/FEATURE-git-history-squash.md)
-
-**Goal:** Clean git history and audit all files to remove personal data, enabling safe sharing before Dec 12th presentation
-
-**Phases:**
-1. ✅ Audit current files for personal data - DONE (2025-12-01, repo clean)
-2. ✅ Plan git history strategy - single squash decided
-3. ✅ Fix identified issues - Connecticut reference removed
-4. ✅ Add MIT license - already present
-5. ✅ Execute git squash with backup - DONE (2025-12-03)
-6. ✅ Verification & fresh clone testing - DONE (2025-12-03)
-
-**Result:** 78 commits → 1 commit (`04b269a Initial public release: Claude-as-Coach framework`)
-
-**Backup available:** Local branch `backup-before-squash` preserves full history if needed
-
-**No longer blocking:** Repo is now safe to share publicly
-
----
-
 ### 🔴 High Priority: Dec 12th Demo Content
-
-#### F28: Rob the Runner Demo Persona
-**Status:** Active - Demo content creation
-**Effort:** 3-4 hours (estimated)
-**Priority:** High (Dec 12th presentation)
-**Detail:** [docs/features/FEATURE-rob-runner-demo.md](features/FEATURE-rob-runner-demo.md)
-
-**Goal:** Create couch-to-5K demo persona (8 weeks) showing daily→weekly fractal compression
-
-**Deliverables:**
-- Sample data: 3 daily summaries (Week 8), 3 weekly retros (Weeks 5-7)
-- Personal skills: daily-summary-rob-personal, morning-routine-rob-personal, etc.
-- Project-Goals.md for Rob's coaching project
-- Protocol documents (warmup, fueling, recovery)
-
-**Key metrics:** Distance, pace, heart rate, sleep, energy, recovery
-
-**Fractal demonstration:**
-- Recent (Week 8): Granular daily summaries
-- Mid-range (Weeks 5-7): Weekly retros compress 21 days → 3 documents
-- Historical (Weeks 1-4): Referenced narratively, no individual files
-
-**Timeline:** THIS WEEKEND (Dec 7-8) for initial content creation
-
----
-
-### F29: Sally the Software Engineer Demo Persona
-**Status:** Active - Demo content creation
-**Effort:** 2-3 hours (estimated)
-**Priority:** High (Dec 12th presentation)
-**Detail:** [docs/features/FEATURE-sally-software-engineer-demo.md](features/FEATURE-sally-software-engineer-demo.md)
-
-**Goal:** Create interview prep demo persona (4 weeks) showing daily→weekly fractal compression in different domain
-
-**Deliverables:**
-- Sample data: 3 daily summaries (Week 4), 2 weekly retros (Weeks 2-3)
-- Personal skills: daily-summary-sally-personal, morning-routine-sally-personal, etc.
-- Project-Goals.md for Sally's coaching project
-- Study protocol documents (daily routine, mock interview prep, topic checklists)
-
-**Key metrics:** Study hours, problems solved, topics covered, mock interviews, confidence ratings
-
-**Fractal demonstration:**
-- Recent (Week 4): Granular daily summaries (final push)
-- Mid-range (Weeks 2-3): Weekly retros compress 14 days → 2 documents
-- Historical (Week 1): Referenced narratively (ramp-up week)
-
-**Domain contrast:** Knowledge work vs physical activity (shows system versatility)
-
-**Timeline:** THIS WEEKEND (Dec 7-8) for initial content creation
-
----
 
 #### F35: Demo Script & Date Regeneration
 **Status:** Active - Demo infrastructure
@@ -147,23 +42,6 @@
 - Updated Rob documents with regenerated dates
 
 **Next:** Move demo script, design regeneration approach
-
----
-
-#### F36: Save-to-Project UX Instructions
-**Status:** ✅ Complete (2025-12-04)
-**Effort:** Quick win (15-20 min)
-**Priority:** High (Dec 12th - user onboarding friction)
-
-**Problem:** Users confused by artifact save flow after project setup generates Project-Goals.md
-
-**Solution:** Added platform-specific save instructions to project-coach-setup-base skill:
-- **Web/Desktop:** Click artifact → dropdown menu → "Save to Project"
-- **Mobile:** Download artifact → upload to project sidebar
-
-**PR:** https://github.com/ZachBeta/claude-as-coach/pull/1
-
-**Related:** Decision paralysis examples already added (commit 23371f7)
 
 ---
 
@@ -563,55 +441,22 @@ git commit -m "Update daily-summary-base skill"
 ---
 
 ### F17: Dec 12th Presentation Prep (Tracking)
-**Status:** Most tasks complete, tracking remaining items
-**Effort:** Remaining: Git history squash (post-Dec 12th)
-**Priority:** Medium (post-presentation cleanup)
+**Status:** ✅ Core tasks complete, optional items remaining
+**Priority:** Low (post-presentation cleanup)
 **Detail:** [docs/features/FEATURE-presentation-prep.md](features/FEATURE-presentation-prep.md)
-**Deadline:** Dec 12th presentation, git squash before open sourcing
 
 **Completed tasks:**
 - ✅ Task 1: Test skill composability - **Confirmed working 2025-12-01**
-  - Test Case B validated in production (morning routine base + personal)
-  - `extends:` directive recognized by Claude.ai
-  - Skills merge without conflicts, content flows naturally
-  - System requirements documented (Pro minimum, Max x5 recommended)
 - ✅ Task 2: Create base skill versions (all 4 core skills separated)
-- ✅ Task 4: PROJECT-SETUP.md exists (may need minor updates)
+- ✅ Task 3: Rob demo content complete (F28), Sally deprioritized
+- ✅ Task 4: PROJECT-SETUP.md exists
+- ✅ Task 6: Git history squash complete (F31)
 
-**In progress:**
-- Task 3: Create Rob/Sally demo content → See F28, F29 (active)
-
-**Remaining:**
-- Task 1: Optional additional test cases (C, D, E) for deeper understanding
-- Task 5: Demo project setup (day-of Dec 12th)
-- Task 6: Squash git history to remove personal data (BLOCKING before public release)
-
-**Naming convention (production/development):**
-- `production-*-personal.skill` - User's production skills
-- `development-*-base.skill` - Shareable base frameworks
-- `development-*-rob-personal.skill` - Rob demo (couch-to-5K)
-- `development-*-sally-personal.skill` - Sally demo (interview prep)
+**Remaining (optional):**
+- Task 1: Additional test cases (C, D, E) for deeper understanding of extends: directive
+- Task 5: Demo project setup refinements
 
 **Target audience:** New year's resolutioners wanting sustainable goal infrastructure
-
----
-
-### F15: Workflow Cleanup
-**Status:** Complete (git workflow deferred)
-**Effort:** Completed 2025-11-29
-**Priority:** Low
-**Detail:** [docs/features/FEATURE-workflow-cleanup.md](features/FEATURE-workflow-cleanup.md)
-
-**Goal:** Fix `skill_workflow.py` vendor script integration and improve git workflow for base+personal skill pairs
-
-**Completed:**
-- ✅ Import cleanup and validation (removed unused imports, dead flags)
-- ✅ VSCode/IDE integration documented
-- ✅ Legacy code path removal complete
-- ✅ Pack/unpack workflow stable
-
-**Deferred:**
-- Git workflow for paired base+personal commits (manual/agentic workflow acceptable for now)
 
 ---
 
@@ -672,6 +517,16 @@ python scripts/skill_workflow.py promote daily-summary-personal
 - Alice demo can use manual workflow (acceptable for examples)
 - Real user friction will emerge when friends adopt (n~10)
 - Better to build based on actual pain points, not assumptions
+
+---
+
+### F29: Sally the Software Engineer Demo (Deprioritized)
+**Status:** Deprioritized - Rob serves as primary demo
+**Priority:** Low (post-Dec 12th, if needed)
+
+**Goal:** Interview prep demo persona (4 weeks) showing daily→weekly fractal compression in knowledge work domain
+
+**Why deprioritized:** Rob demo complete and demonstrates all key patterns. Sally adds domain diversity but not essential for Dec 12th presentation. Consider post-launch if users request non-fitness examples.
 
 ---
 
@@ -1035,11 +890,21 @@ Track which skills get used most in daily practice
 ### F8: Presentation materials generator
 **Effort:** Phase 1+ (2-4 hours)
 
-Automated generation of presentation slides/materials for December 5th presentation
+Automated generation of presentation slides/materials for Dec 12th presentation
 
 ---
 
-## Completed (2025-11)
+## Completed
+
+### December 2025
+
+- ✅ **F31: Git History Squash** (Dec 3) - Squashed 78 commits → 1 clean commit, removed personal data, repo safe to share
+- ✅ **F33: Sister Directories Pattern** (Dec 3) - Validated CLAUDE.md auto-loads from parent workspace, pattern confirmed working
+- ✅ **F28: Rob the Runner Demo** (Dec 2) - Created 10 sample documents demonstrating fractal compression (daily→weekly→monthly), Rob uses base skills only
+- ✅ **F36: Save-to-Project UX Instructions** (Dec 4) - Added platform-specific save instructions to project-coach-setup-base
+- ✅ **F15: Workflow Cleanup** (Nov 29) - Cleaned skill_workflow.py imports, removed dead flags, IDE integration documented
+
+### November 2025
 
 - ✅ **F1: Test Python skill workflow** (Nov 25) - Verified end-to-end workflow
 - ✅ **F2: Migrate personal files to submodule** (Nov 25) - 14 summaries, 1 retro, 6 reference docs
