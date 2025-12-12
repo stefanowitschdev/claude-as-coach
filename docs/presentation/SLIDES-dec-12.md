@@ -340,6 +340,55 @@ PR pending to fix their tooling.
 
 # {.center}
 
+## Architecture
+
+How the pieces fit together
+
+---
+
+# Repo Structure
+
+::: notes
+SWITCH TO: Terminal or VS Code showing repo
+:::
+
+```
+claude-as-coach-combined/          # Parent workspace
+├── claude-as-coach/               # Public (shareable)
+│   ├── skills/                    # Base skill frameworks
+│   ├── examples/rob-the-runner/   # Demo persona
+│   └── scripts/
+└── claude-as-coach-personal/      # Private (your data)
+    ├── skills/                    # Your extensions
+    └── documents/                 # Your summaries
+```
+
+---
+
+# Base + Personal Skill Pattern
+
+```
+┌────────────────────────────────────┐
+│ daily-summary-base.zip             │
+│ (Generic framework - shareable)    │
+│ - Date verification                │
+│ - Section structure                │
+└────────────────────────────────────┘
+              +
+┌────────────────────────────────────┐
+│ daily-summary-personal.zip         │
+│ (Your customizations - private)    │
+│ - Your metrics (pace, HR, sleep)   │
+│ - Your thresholds                  │
+└────────────────────────────────────┘
+```
+
+Import both. Claude loads both at runtime.
+
+---
+
+# {.center}
+
 ## Synthetic Data
 
 Why Rob isn't real
@@ -427,84 +476,88 @@ Week 9: Post-program (ongoing practice)
 
 ## Demo
 
-Rob the Runner in action
+Two scenarios
 
 ---
 
-# Demo Time: Rob the Runner
+# Demo Overview
 
-**Who:** 39-year-old accountant, first-time runner
+**Demo 1: Bootstrap (0 → 1)**
 
-**Where:** Week 8 of Couch-to-5K (almost done!)
+Fresh project. Goal definition through first summary.
 
-**Today:** Sunday morning. Planning his final push week.
+**Demo 2: Mature Project (Day Seam + Compression)**
 
-We'll see the full loop: setup → morning → summary → retro → plan
+Ongoing project. Morning routine → summary → retro/plan → cleanup.
 
 ---
 
-# Demo 0: Project Setup
+# Demo 1: Project Bootstrap
 
 ::: notes
-SWITCH TO: Project "rob-setup" or fresh project
-SHOW: Running project-coach-setup skill
-POINT OUT: Goal definition, context gathering
+SWITCH TO: Fresh project "demo-bootstrap"
+SHOW: project-coach-setup skill flow
 :::
 
-**Trigger:** "let's set up this project" or import setup skill
+**Scenario:** New user, Week 1 Day 1
 
-- Define your goal and time horizon
-- Establish tracking metrics
-- Set initial context (what's your starting point?)
+**Flow:**
 
-This only happens once per project.
+1. Import skills → "let's set up this project"
+2. Goal definition conversation
+3. Generate first daily summary
+4. Add to project → ready for tomorrow
+
+**Key moments:**
+
+- Skill guides goal articulation
+- Summary structure appears
+- "Add to project" creates persistent context
 
 ---
 
-# Demo 1: Morning Routine
+# Demo 2: Mature Project
 
 ::: notes
-SWITCH TO: Project "rob-morning"
-SHOW: The "gm" command and response
-POINT OUT: How it found yesterday's summary
+SWITCH TO: Project "rob-week-9" with existing documents
+SHOW: Morning → Summary → Retro → Manual cleanup
 :::
 
-**Trigger:** "gm" or "good morning"
+**Scenario:** Rob at Week 9, Sunday morning
 
-- Verifies today's date
+**What's in the project:**
+
+- 3 daily summaries (recent week)
+- Weekly retros (Weeks 5-8)
+- Monthly rollup (October)
+
+---
+
+# Demo 2a: Day Seam ("gm")
+
+::: notes
+SHOW: "gm" response finding yesterday's summary
+:::
+
+**Trigger:** "gm"
+
 - Finds yesterday's summary
 - Generates scannable morning brief
+- Low cognitive load during wakeup
 
 ---
 
-# Demo 2: Daily Summary
+# Demo 2b: Daily Summary
 
 ::: notes
-SWITCH TO: Project "rob-daily-summary"
-SHOW: Completed summary artifact
-POINT OUT: Key Numbers table, TL;DR section
+SHOW: Completed summary artifact, then "Add to project"
 :::
 
 **Trigger:** "daily summary"
 
-- Guided conversation about the day
-- Structured output with sections
-- Saves to project for tomorrow
-
----
-
-# Daily Summary: The Output
-
 ```markdown
-# Wednesday, Dec 11, 2025 - Daily Summary
-
-**GROUND TRUTH:**
-- Date: Wednesday, December 11, 2025
-- W8-D3 (Week 8, Day 3 of C25K)
-
 ## TL;DR
-Solid 2.5mi run, felt strong. First time
-finishing without walk breaks.
+Solid 2.5mi run, felt strong.
 
 ## Key Numbers
 | Metric | Value | Notes |
@@ -513,25 +566,17 @@ finishing without walk breaks.
 | Pace | 11:30/mi | PR for continuous |
 ```
 
+→ "Add to project" makes it persistent
+
 ---
 
-# Demo 3: Weekly Retrospective
+# Demo 2c: Weekly Retro (Compression)
 
 ::: notes
-SWITCH TO: Project "rob-weekly-retro"
 SHOW: Retro pulling from daily summaries
-POINT OUT: "What Worked / What Didn't Work" structure
 :::
 
 **Trigger:** "weekly retro"
-
-- Reviews 7 daily summaries
-- Extracts patterns
-- Identifies experiments to run
-
----
-
-# Weekly Retro: Compression in Action
 
 ```
 Input: 7 daily summaries (~3500 words)
@@ -542,98 +587,27 @@ What Worked:
 - Morning runs before work
 - 10-min warmup routine
 
-What Didn't Work:
-- Evening runs (too tired)
-- Skipping rest days
-
 Experiments for Next Week:
 - Try 5-min post-run stretching
 ```
 
 ---
 
-# Demo 4: Weekly Planning
+# Demo 2d: Manual Pruning
 
 ::: notes
-SWITCH TO: Project "rob-weekly-plan"
-SHOW: Plan with success levels
-POINT OUT: L0-L3 framework
+SHOW: Project files sidebar, removing old dailies
 :::
 
-**Trigger:** "weekly planning"
+**After saving retro:**
 
-- Reviews previous retro
-- Sets priorities with constraints
-- Defines success levels
+1. Weekly retro added to project
+2. Daily summaries (now compressed) → remove from project
+3. Keep locally for archive
 
----
+**Platform limitation:** No API for project file management.
 
-# The L0-L3 Success Framework
-
-```
-L0 (Minimum): Complete 3 scheduled runs
-              "The week isn't a failure"
-
-L1 (Target):  3 runs + all rest day stretching
-              "A good week"
-
-L2 (Stretch): L1 + one extra distance run
-              "Exceeded expectations"
-
-L3 (Exceptional): Hit 5K distance milestone
-                  "Breakthrough week"
-```
-
-This framework emerged over time. Works for me - YMMV.
-
----
-
-# {.center}
-
-## Architecture
-
-How the pieces fit together
-
----
-
-# Repo Structure
-
-::: notes
-SWITCH TO: Terminal or VS Code showing repo
-:::
-
-```
-claude-as-coach-combined/          # Parent workspace
-├── claude-as-coach/               # Public (shareable)
-│   ├── skills/                    # Base skill frameworks
-│   ├── examples/rob-the-runner/   # Demo persona
-│   └── scripts/
-└── claude-as-coach-personal/      # Private (your data)
-    ├── skills/                    # Your extensions
-    └── documents/                 # Your summaries
-```
-
----
-
-# Base + Personal Skill Pattern
-
-```
-┌────────────────────────────────────┐
-│ daily-summary-base.zip             │
-│ (Generic framework - shareable)    │
-│ - Date verification                │
-│ - Section structure                │
-└────────────────────────────────────┘
-              +
-┌────────────────────────────────────┐
-│ daily-summary-personal.zip         │
-│ (Your customizations - private)    │
-│ - Your metrics (pace, HR, sleep)   │
-│ - Your thresholds                  │
-└────────────────────────────────────┘
-```
-
-Import both. Claude loads both at runtime.
+Manual but rare (weekly at most).
 
 ---
 
@@ -651,63 +625,6 @@ What actually matters
 2. **Context management is the game** - not agent architecture
 3. **Low-build wins** - I'm still using this daily
 4. **Personal data stays personal** - base/personal split works
-
----
-
-# Platform Limitations (Real Talk)
-
-- Skills are **global** (not project-scoped)
-- Can't programmatically manage skills
-- Mobile upload is clunky
-- Context limits exist (Pro vs Max)
-- **Pruning is manual:** save artifact locally → add to project → remove rolled-up docs
-
-Works despite these. Not because of them.
-
----
-
-# {.center}
-
-## What's Next
-
-Open source and beyond
-
----
-
-# Where This Is Going
-
-**Open Source (now)**
-
-- MIT license
-- Base skills shareable
-- Rob example included
-
-**Microagent (future)**
-
-- Same pattern, any model
-- Tool-calling models (gpt-oss, kimi-k2, glm-4.6)
-- Not locked to Claude
-
----
-
-# Try It Yourself
-
-**Easiest:** Paste `QUICKSTART.md` into Claude
-
-(Auto-fetches skills + runs project setup)
-
-**Or manually:** See `QUICKSTART-MANUAL.md` for download links
-
-```
-skills/
-├── project-coach-setup-base.zip  ← Start here
-├── daily-summary-base.zip
-├── daily-morning-routine-base.zip
-├── planning-base.zip
-└── retrospective-base.zip
-```
-
-See `docs/experiments/` for alternative onboarding approaches.
 
 ---
 
@@ -739,6 +656,18 @@ Platform limitation: Skills not project-scoped
 
 - Naming: `production-*` vs `development-*`
 - Manual toggling in Settings > Capabilities
+
+---
+
+# Platform Limitations (Real Talk)
+
+- Skills are **global** (not project-scoped)
+- Can't programmatically manage skills
+- Mobile upload is clunky
+- Context limits exist (Pro vs Max)
+- **Pruning is manual:** save artifact locally → add to project → remove rolled-up docs
+
+Works despite these. Not because of them.
 
 ---
 
@@ -788,6 +717,51 @@ Claude has limitations. Critical decisions need professionals.
 
 ---
 
+# FEATURES.md: Dev with Claude Code
+
+Tracking 50+ features in a markdown file. Sounds simple. Works well.
+
+```
+docs/FEATURES.md           # Summary backlog (this file)
+docs/NEXT-SESSION.md       # "What do I do next?"
+docs/features/FEATURE-*.md # Detailed planning (temporary)
+```
+
+**The pattern:**
+
+1. New idea → quick entry in FEATURES.md
+2. Getting complex? → spin out FEATURE-xyz.md
+3. Done? → delete the detail file (git history preserves)
+
+Claude Code reads the whole thing. Maintains context across sessions.
+
+---
+
+# Slides as Code
+
+This presentation is markdown + pandoc + reveal.js.
+
+```bash
+# Edit content
+vim SLIDES-dec-12.md
+
+# Render
+pandoc -t revealjs -s SLIDES-dec-12.md -o slides.html
+
+# View
+open slides.html
+```
+
+**Trade-off:**
+
+- Less customizable than Keynote/Slides
+- But: Claude Code can iterate on it directly
+- "Add a slide about X" → done in seconds
+
+Keep artifacts close to your tools.
+
+---
+
 # The Bitter Lesson
 
 Why over-engineer when context windows keep growing?
@@ -802,9 +776,35 @@ Context stays in documents. Claude reads them all.
 
 Like memory that decays naturally over time.
 
+"Summaries are all you need"
+
 ---
 
-# The Pitch
+# {.center}
+
+## What's Next
+
+Open source and beyond
+
+---
+
+# Where This Is Going
+
+**Open Source (now)**
+
+- MIT license
+- Base skills shareable
+- Rob example included
+
+**Microagent (future)**
+
+- Same pattern, any model
+- Tool-calling models (gpt-oss, kimi-k2, glm-4.6)
+- Not locked to Claude
+
+---
+
+# Under-engineering
 
 We're AI engineers. We could build this with:
 
@@ -816,6 +816,27 @@ We're AI engineers. We could build this with:
 Or we could just... use Claude Projects with some markdown files.
 
 **Sometimes the best agent is no agent.**
+
+---
+
+# Try It Yourself
+
+**Easiest:** Paste `QUICKSTART.md` into Claude
+
+(Auto-fetches skills + runs project setup)
+
+**Or manually:** See `QUICKSTART-MANUAL.md` for download links
+
+```
+skills/
+├── project-coach-setup-base.zip  ← Start here
+├── daily-summary-base.zip
+├── daily-morning-routine-base.zip
+├── planning-base.zip
+└── retrospective-base.zip
+```
+
+See `docs/experiments/` for alternative onboarding approaches.
 
 ---
 

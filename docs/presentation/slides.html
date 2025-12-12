@@ -430,6 +430,42 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href=
 </section>
 <section id="section-3" class="slide level1 center">
 <h1 class="center"></h1>
+<h2 id="architecture">Architecture</h2>
+<p>How the pieces fit together</p>
+</section>
+<section id="repo-structure" class="slide level1">
+<h1>Repo Structure</h1>
+<aside class="notes">
+<p>SWITCH TO: Terminal or VS Code showing repo</p>
+</aside>
+<pre><code>claude-as-coach-combined/          # Parent workspace
+├── claude-as-coach/               # Public (shareable)
+│   ├── skills/                    # Base skill frameworks
+│   ├── examples/rob-the-runner/   # Demo persona
+│   └── scripts/
+└── claude-as-coach-personal/      # Private (your data)
+    ├── skills/                    # Your extensions
+    └── documents/                 # Your summaries</code></pre>
+</section>
+<section id="base-personal-skill-pattern" class="slide level1">
+<h1>Base + Personal Skill Pattern</h1>
+<pre><code>┌────────────────────────────────────┐
+│ daily-summary-base.zip             │
+│ (Generic framework - shareable)    │
+│ - Date verification                │
+│ - Section structure                │
+└────────────────────────────────────┘
+              +
+┌────────────────────────────────────┐
+│ daily-summary-personal.zip         │
+│ (Your customizations - private)    │
+│ - Your metrics (pace, HR, sleep)   │
+│ - Your thresholds                  │
+└────────────────────────────────────┘</code></pre>
+<p>Import both. Claude loads both at runtime.</p>
+</section>
+<section id="section-4" class="slide level1 center">
+<h1 class="center"></h1>
 <h2 id="synthetic-data">Synthetic Data</h2>
 <p>Why Rob isn’t real</p>
 </section>
@@ -517,95 +553,89 @@ Week 9: Post-program (ongoing practice)
 <p><strong>Demonstrates fractal compression with believable
 timeline.</strong></p>
 </section>
-<section id="section-4" class="slide level1 center">
+<section id="section-5" class="slide level1 center">
 <h1 class="center"></h1>
 <h2 id="demo">Demo</h2>
-<p>Rob the Runner in action</p>
+<p>Two scenarios</p>
 </section>
-<section id="demo-time-rob-the-runner" class="slide level1">
-<h1>Demo Time: Rob the Runner</h1>
-<p><strong>Who:</strong> 39-year-old accountant, first-time runner</p>
-<p><strong>Where:</strong> Week 8 of Couch-to-5K (almost done!)</p>
-<p><strong>Today:</strong> Sunday morning. Planning his final push
-week.</p>
-<p>We’ll see the full loop: setup → morning → summary → retro → plan</p>
+<section id="demo-overview" class="slide level1">
+<h1>Demo Overview</h1>
+<p><strong>Demo 1: Bootstrap (0 → 1)</strong></p>
+<p>Fresh project. Goal definition through first summary.</p>
+<p><strong>Demo 2: Mature Project (Day Seam + Compression)</strong></p>
+<p>Ongoing project. Morning routine → summary → retro/plan →
+cleanup.</p>
 </section>
-<section id="demo-0-project-setup" class="slide level1">
-<h1>Demo 0: Project Setup</h1>
+<section id="demo-1-project-bootstrap" class="slide level1">
+<h1>Demo 1: Project Bootstrap</h1>
 <aside class="notes">
-<p>SWITCH TO: Project “rob-setup” or fresh project SHOW: Running
-project-coach-setup skill POINT OUT: Goal definition, context
-gathering</p>
+<p>SWITCH TO: Fresh project “demo-bootstrap” SHOW: project-coach-setup
+skill flow</p>
 </aside>
-<p><strong>Trigger:</strong> “let’s set up this project” or import setup
-skill</p>
+<p><strong>Scenario:</strong> New user, Week 1 Day 1</p>
+<p><strong>Flow:</strong></p>
+<ol type="1">
+<li>Import skills → “let’s set up this project”</li>
+<li>Goal definition conversation</li>
+<li>Generate first daily summary</li>
+<li>Add to project → ready for tomorrow</li>
+</ol>
+<p><strong>Key moments:</strong></p>
 <ul>
-<li>Define your goal and time horizon</li>
-<li>Establish tracking metrics</li>
-<li>Set initial context (what’s your starting point?)</li>
+<li>Skill guides goal articulation</li>
+<li>Summary structure appears</li>
+<li>“Add to project” creates persistent context</li>
 </ul>
-<p>This only happens once per project.</p>
 </section>
-<section id="demo-1-morning-routine" class="slide level1">
-<h1>Demo 1: Morning Routine</h1>
+<section id="demo-2-mature-project" class="slide level1">
+<h1>Demo 2: Mature Project</h1>
 <aside class="notes">
-<p>SWITCH TO: Project “rob-morning” SHOW: The “gm” command and response
-POINT OUT: How it found yesterday’s summary</p>
+<p>SWITCH TO: Project “rob-week-9” with existing documents SHOW: Morning
+→ Summary → Retro → Manual cleanup</p>
 </aside>
-<p><strong>Trigger:</strong> “gm” or “good morning”</p>
+<p><strong>Scenario:</strong> Rob at Week 9, Sunday morning</p>
+<p><strong>What’s in the project:</strong></p>
 <ul>
-<li>Verifies today’s date</li>
+<li>3 daily summaries (recent week)</li>
+<li>Weekly retros (Weeks 5-8)</li>
+<li>Monthly rollup (October)</li>
+</ul>
+</section>
+<section id="demo-2a-day-seam-gm" class="slide level1">
+<h1>Demo 2a: Day Seam (“gm”)</h1>
+<aside class="notes">
+<p>SHOW: “gm” response finding yesterday’s summary</p>
+</aside>
+<p><strong>Trigger:</strong> “gm”</p>
+<ul>
 <li>Finds yesterday’s summary</li>
 <li>Generates scannable morning brief</li>
+<li>Low cognitive load during wakeup</li>
 </ul>
 </section>
-<section id="demo-2-daily-summary" class="slide level1">
-<h1>Demo 2: Daily Summary</h1>
+<section id="demo-2b-daily-summary" class="slide level1">
+<h1>Demo 2b: Daily Summary</h1>
 <aside class="notes">
-<p>SWITCH TO: Project “rob-daily-summary” SHOW: Completed summary
-artifact POINT OUT: Key Numbers table, TL;DR section</p>
+<p>SHOW: Completed summary artifact, then “Add to project”</p>
 </aside>
 <p><strong>Trigger:</strong> “daily summary”</p>
-<ul>
-<li>Guided conversation about the day</li>
-<li>Structured output with sections</li>
-<li>Saves to project for tomorrow</li>
-</ul>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## TL;DR</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Solid 2.5mi run, felt strong.</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Numbers</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Metric <span class="pp">|</span> Value <span class="pp">|</span> Notes <span class="pp">|</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-------|-------|</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Distance <span class="pp">|</span> 2.5 mi <span class="pp">|</span> No walk breaks! <span class="pp">|</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pace <span class="pp">|</span> 11:30/mi <span class="pp">|</span> PR for continuous <span class="pp">|</span></span></code></pre></div>
+<p>→ “Add to project” makes it persistent</p>
 </section>
-<section id="daily-summary-the-output" class="slide level1">
-<h1>Daily Summary: The Output</h1>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Wednesday, Dec 11, 2025 - Daily Summary</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>**GROUND TRUTH:**</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date: Wednesday, December 11, 2025</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>W8-D3 (Week 8, Day 3 of C25K)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## TL;DR</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Solid 2.5mi run, felt strong. First time</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>finishing without walk breaks.</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Numbers</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Metric <span class="pp">|</span> Value <span class="pp">|</span> Notes <span class="pp">|</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-------|-------|</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Distance <span class="pp">|</span> 2.5 mi <span class="pp">|</span> No walk breaks! <span class="pp">|</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pace <span class="pp">|</span> 11:30/mi <span class="pp">|</span> PR for continuous <span class="pp">|</span></span></code></pre></div>
-</section>
-<section id="demo-3-weekly-retrospective" class="slide level1">
-<h1>Demo 3: Weekly Retrospective</h1>
+<section id="demo-2c-weekly-retro-compression" class="slide level1">
+<h1>Demo 2c: Weekly Retro (Compression)</h1>
 <aside class="notes">
-<p>SWITCH TO: Project “rob-weekly-retro” SHOW: Retro pulling from daily
-summaries POINT OUT: “What Worked / What Didn’t Work” structure</p>
+<p>SHOW: Retro pulling from daily summaries</p>
 </aside>
 <p><strong>Trigger:</strong> “weekly retro”</p>
-<ul>
-<li>Reviews 7 daily summaries</li>
-<li>Extracts patterns</li>
-<li>Identifies experiments to run</li>
-</ul>
-</section>
-<section id="weekly-retro-compression-in-action" class="slide level1">
-<h1>Weekly Retro: Compression in Action</h1>
 <pre><code>Input: 7 daily summaries (~3500 words)
        ↓
 Output: 1 weekly retro (~800 words)
@@ -614,76 +644,23 @@ What Worked:
 - Morning runs before work
 - 10-min warmup routine
 
-What Didn&#39;t Work:
-- Evening runs (too tired)
-- Skipping rest days
-
 Experiments for Next Week:
 - Try 5-min post-run stretching</code></pre>
 </section>
-<section id="demo-4-weekly-planning" class="slide level1">
-<h1>Demo 4: Weekly Planning</h1>
+<section id="demo-2d-manual-pruning" class="slide level1">
+<h1>Demo 2d: Manual Pruning</h1>
 <aside class="notes">
-<p>SWITCH TO: Project “rob-weekly-plan” SHOW: Plan with success levels
-POINT OUT: L0-L3 framework</p>
+<p>SHOW: Project files sidebar, removing old dailies</p>
 </aside>
-<p><strong>Trigger:</strong> “weekly planning”</p>
-<ul>
-<li>Reviews previous retro</li>
-<li>Sets priorities with constraints</li>
-<li>Defines success levels</li>
-</ul>
-</section>
-<section id="the-l0-l3-success-framework" class="slide level1">
-<h1>The L0-L3 Success Framework</h1>
-<pre><code>L0 (Minimum): Complete 3 scheduled runs
-              &quot;The week isn&#39;t a failure&quot;
-
-L1 (Target):  3 runs + all rest day stretching
-              &quot;A good week&quot;
-
-L2 (Stretch): L1 + one extra distance run
-              &quot;Exceeded expectations&quot;
-
-L3 (Exceptional): Hit 5K distance milestone
-                  &quot;Breakthrough week&quot;</code></pre>
-<p>This framework emerged over time. Works for me - YMMV.</p>
-</section>
-<section id="section-5" class="slide level1 center">
-<h1 class="center"></h1>
-<h2 id="architecture">Architecture</h2>
-<p>How the pieces fit together</p>
-</section>
-<section id="repo-structure" class="slide level1">
-<h1>Repo Structure</h1>
-<aside class="notes">
-<p>SWITCH TO: Terminal or VS Code showing repo</p>
-</aside>
-<pre><code>claude-as-coach-combined/          # Parent workspace
-├── claude-as-coach/               # Public (shareable)
-│   ├── skills/                    # Base skill frameworks
-│   ├── examples/rob-the-runner/   # Demo persona
-│   └── scripts/
-└── claude-as-coach-personal/      # Private (your data)
-    ├── skills/                    # Your extensions
-    └── documents/                 # Your summaries</code></pre>
-</section>
-<section id="base-personal-skill-pattern" class="slide level1">
-<h1>Base + Personal Skill Pattern</h1>
-<pre><code>┌────────────────────────────────────┐
-│ daily-summary-base.zip             │
-│ (Generic framework - shareable)    │
-│ - Date verification                │
-│ - Section structure                │
-└────────────────────────────────────┘
-              +
-┌────────────────────────────────────┐
-│ daily-summary-personal.zip         │
-│ (Your customizations - private)    │
-│ - Your metrics (pace, HR, sleep)   │
-│ - Your thresholds                  │
-└────────────────────────────────────┘</code></pre>
-<p>Import both. Claude loads both at runtime.</p>
+<p><strong>After saving retro:</strong></p>
+<ol type="1">
+<li>Weekly retro added to project</li>
+<li>Daily summaries (now compressed) → remove from project</li>
+<li>Keep locally for archive</li>
+</ol>
+<p><strong>Platform limitation:</strong> No API for project file
+management.</p>
+<p>Manual but rare (weekly at most).</p>
 </section>
 <section id="section-6" class="slide level1 center">
 <h1 class="center"></h1>
@@ -701,59 +678,11 @@ architecture</li>
 works</li>
 </ol>
 </section>
-<section id="platform-limitations-real-talk" class="slide level1">
-<h1>Platform Limitations (Real Talk)</h1>
-<ul>
-<li>Skills are <strong>global</strong> (not project-scoped)</li>
-<li>Can’t programmatically manage skills</li>
-<li>Mobile upload is clunky</li>
-<li>Context limits exist (Pro vs Max)</li>
-<li><strong>Pruning is manual:</strong> save artifact locally → add to
-project → remove rolled-up docs</li>
-</ul>
-<p>Works despite these. Not because of them.</p>
-</section>
-<section id="section-7" class="slide level1 center">
-<h1 class="center"></h1>
-<h2 id="whats-next">What’s Next</h2>
-<p>Open source and beyond</p>
-</section>
-<section id="where-this-is-going" class="slide level1">
-<h1>Where This Is Going</h1>
-<p><strong>Open Source (now)</strong></p>
-<ul>
-<li>MIT license</li>
-<li>Base skills shareable</li>
-<li>Rob example included</li>
-</ul>
-<p><strong>Microagent (future)</strong></p>
-<ul>
-<li>Same pattern, any model</li>
-<li>Tool-calling models (Llama, Qwen, etc.)</li>
-<li>Not locked to Claude</li>
-</ul>
-</section>
-<section id="try-it-yourself" class="slide level1">
-<h1>Try It Yourself</h1>
-<p><strong>Easiest:</strong> Paste <code>QUICKSTART.md</code> into
-Claude</p>
-<p>(Auto-fetches skills + runs project setup)</p>
-<p><strong>Or manually:</strong> See <code>QUICKSTART-MANUAL.md</code>
-for download links</p>
-<pre><code>skills/
-├── project-coach-setup-base.zip  ← Start here
-├── daily-summary-base.zip
-├── daily-morning-routine-base.zip
-├── planning-base.zip
-└── retrospective-base.zip</code></pre>
-<p>See <code>docs/experiments/</code> for alternative onboarding
-approaches.</p>
-</section>
 <section id="llms-are-bad-at-dates" class="slide level1">
 <h1>LLMs Are Bad at Dates</h1>
 <p>Every skill that deals with dates starts with this:</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="va">TZ</span><span class="op">=</span><span class="st">&#39;America/New_York&#39;</span> <span class="fu">date</span> <span class="st">&#39;+%A, %B %d, %Y&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">TZ</span><span class="op">=</span><span class="st">&#39;America/New_York&#39;</span> <span class="fu">date</span> <span class="st">&#39;+%A, %B %d, %Y&#39;</span></span></code></pre></div>
 <p>LLMs make up dates. Tool calls give ground truth.</p>
 <p>No assumptions. Verify first.</p>
 </section>
@@ -771,6 +700,18 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href=
 <li>Naming: <code>production-*</code> vs <code>development-*</code></li>
 <li>Manual toggling in Settings &gt; Capabilities</li>
 </ul>
+</section>
+<section id="platform-limitations-real-talk" class="slide level1">
+<h1>Platform Limitations (Real Talk)</h1>
+<ul>
+<li>Skills are <strong>global</strong> (not project-scoped)</li>
+<li>Can’t programmatically manage skills</li>
+<li>Mobile upload is clunky</li>
+<li>Context limits exist (Pro vs Max)</li>
+<li><strong>Pruning is manual:</strong> save artifact locally → add to
+project → remove rolled-up docs</li>
+</ul>
+<p>Works despite these. Not because of them.</p>
 </section>
 <section id="onboarding-experiments" class="slide level1">
 <h1>Onboarding Experiments</h1>
@@ -807,6 +748,42 @@ for:</p>
 <p><strong>Insight:</strong> Project docs &gt; base instructions for git
 tracking</p>
 </section>
+<section id="features.md-dev-with-claude-code" class="slide level1">
+<h1>FEATURES.md: Dev with Claude Code</h1>
+<p>Tracking 50+ features in a markdown file. Sounds simple. Works
+well.</p>
+<pre><code>docs/FEATURES.md           # Summary backlog (this file)
+docs/NEXT-SESSION.md       # &quot;What do I do next?&quot;
+docs/features/FEATURE-*.md # Detailed planning (temporary)</code></pre>
+<p><strong>The pattern:</strong></p>
+<ol type="1">
+<li>New idea → quick entry in FEATURES.md</li>
+<li>Getting complex? → spin out FEATURE-xyz.md</li>
+<li>Done? → delete the detail file (git history preserves)</li>
+</ol>
+<p>Claude Code reads the whole thing. Maintains context across
+sessions.</p>
+</section>
+<section id="slides-as-code" class="slide level1">
+<h1>Slides as Code</h1>
+<p>This presentation is markdown + pandoc + reveal.js.</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Edit content</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> SLIDES-dec-12.md</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-t</span> revealjs <span class="at">-s</span> SLIDES-dec-12.md <span class="at">-o</span> slides.html</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># View</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="ex">open</span> slides.html</span></code></pre></div>
+<p><strong>Trade-off:</strong></p>
+<ul>
+<li>Less customizable than Keynote/Slides</li>
+<li>But: Claude Code can iterate on it directly</li>
+<li>“Add a slide about X” → done in seconds</li>
+</ul>
+<p>Keep artifacts close to your tools.</p>
+</section>
 <section id="the-bitter-lesson" class="slide level1">
 <h1>The Bitter Lesson</h1>
 <p>Why over-engineer when context windows keep growing?</p>
@@ -834,9 +811,30 @@ tracking</p>
 </table>
 <p>Context stays in documents. Claude reads them all.</p>
 <p>Like memory that decays naturally over time.</p>
+<p>“Summaries are all you need”</p>
 </section>
-<section id="the-pitch" class="slide level1">
-<h1>The Pitch</h1>
+<section id="section-7" class="slide level1 center">
+<h1 class="center"></h1>
+<h2 id="whats-next">What’s Next</h2>
+<p>Open source and beyond</p>
+</section>
+<section id="where-this-is-going" class="slide level1">
+<h1>Where This Is Going</h1>
+<p><strong>Open Source (now)</strong></p>
+<ul>
+<li>MIT license</li>
+<li>Base skills shareable</li>
+<li>Rob example included</li>
+</ul>
+<p><strong>Microagent (future)</strong></p>
+<ul>
+<li>Same pattern, any model</li>
+<li>Tool-calling models (gpt-oss, kimi-k2, glm-4.6)</li>
+<li>Not locked to Claude</li>
+</ul>
+</section>
+<section id="under-engineering" class="slide level1">
+<h1>Under-engineering</h1>
 <p>We’re AI engineers. We could build this with:</p>
 <ul>
 <li>LangChain</li>
@@ -846,6 +844,22 @@ tracking</p>
 </ul>
 <p>Or we could just… use Claude Projects with some markdown files.</p>
 <p><strong>Sometimes the best agent is no agent.</strong></p>
+</section>
+<section id="try-it-yourself" class="slide level1">
+<h1>Try It Yourself</h1>
+<p><strong>Easiest:</strong> Paste <code>QUICKSTART.md</code> into
+Claude</p>
+<p>(Auto-fetches skills + runs project setup)</p>
+<p><strong>Or manually:</strong> See <code>QUICKSTART-MANUAL.md</code>
+for download links</p>
+<pre><code>skills/
+├── project-coach-setup-base.zip  ← Start here
+├── daily-summary-base.zip
+├── daily-morning-routine-base.zip
+├── planning-base.zip
+└── retrospective-base.zip</code></pre>
+<p>See <code>docs/experiments/</code> for alternative onboarding
+approaches.</p>
 </section>
 <section id="summary-questions" class="slide level1">
 <h1>Summary + Questions</h1>
