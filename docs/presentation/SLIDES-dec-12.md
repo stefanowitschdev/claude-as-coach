@@ -39,7 +39,7 @@ What I really wanted: a conversational interface that could adapt
 
 ---
 
-# Hammer in search of a nail 
+# Hammer in search of a nail
 ## let's make an agent?
 
 A flexible system that remembers yesterday.
@@ -582,7 +582,7 @@ SWITCH TO: Project "rob-week-9" with existing documents
 SHOW: Morning → Summary → Retro → Manual cleanup
 :::
 
-**Scenario:** Rob at Week 9, Sunday morning
+**Scenario:** Rob at Week 9, end of week (retro day)
 
 **What's in the project:**
 
@@ -816,9 +816,9 @@ Platform limitation: Skills not project-scoped
 
 - Skills are **global** (not project-scoped)
 - Skill upload/download is clunky, hard to version them
-- Mobile summary->gm flow is clunky - missing "add to project"
+- Mobile summary → gm flow is clunky - missing "add to project"
 - Context limits exist (Pro vs Max)
-- **Pruning is manual:** generate artifact -> save artifact locally to back up → add to project → remove rolled-up docs after retro
+- **Pruning is manual:** generate artifact → save artifact locally to back up → add to project → remove rolled-up docs after retro
 
 Works despite these. Not because of them.
 
