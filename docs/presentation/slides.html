@@ -106,6 +106,8 @@
     .reveal pre { font-size: 0.7em; }
     .reveal table { font-size: 0.8em; }
     .smaller { font-size: 0.8em; }
+    .reveal ul, .reveal ol { text-align: left; }
+    .reveal li { text-align: left; }
   </style>
 </head>
 <body>
@@ -148,39 +150,52 @@ yesterday.</p>
 <h2 id="evolution">Evolution</h2>
 <p>How the system developed</p>
 </section>
-<section id="evolution-v1-v2-the-search" class="slide level1">
-<h1>Evolution v1-v2: The Search</h1>
-<p><strong>v1: Giant Google Doc</strong> - Daily logging: work,
-exercise, sleep, diet - Gaining insights = manual effort or build
-systems - Too much cognitive load sifting through it all</p>
-<p><strong>v2: Journaling Agents</strong> - Various attempts at building
-agents - Create summary → copy/paste into new chat - Repeat daily.
-Forever.</p>
+<section id="evolution-v1-giant-google-doc" class="slide level1">
+<h1>Evolution v1: Giant Google Doc</h1>
+<ul>
+<li>Daily logging: work, exercise, sleep, diet</li>
+<li>Gaining insights = manual effort or build systems</li>
+<li>Too much cognitive load sifting through it all</li>
+</ul>
 </section>
-<section id="evolution-v3-the-aha-moment" class="slide level1">
-<h1>Evolution v3: The Aha Moment</h1>
-<p><strong>Projects + saving to documents</strong></p>
-<p>But I was wasting tokens:</p>
+<section id="evolution-v2-journaling-agents" class="slide level1">
+<h1>Evolution v2: Journaling Agents</h1>
+<ul>
+<li>Various attempts at building agents</li>
+<li>Create summary → copy/paste into new chat</li>
+<li>Repeat daily. Forever.</li>
+</ul>
+</section>
+<section id="evolution-v3-projects-the-aha-moment" class="slide level1">
+<h1>Evolution v3: Projects (The Aha Moment)</h1>
+<ul>
+<li>Projects + saving to documents</li>
+<li>Documents persist across conversations!</li>
+<li>But… wasting tokens on instructions</li>
+</ul>
 <pre><code>┌─────────────────────────────────────┐
 │ Project Context (always loaded)     │
-│ ┌─────────┐ ┌─────────┐ ┌─────────┐│
-│ │Summary-1│ │Summary-2│ │Summary-3││
-│ └─────────┘ └─────────┘ └─────────┘│
-│ ┌─────────────────────────────────┐│
-│ │ instructions.md (5k tokens)     ││ ← Always here
-│ └─────────────────────────────────┘│
-└─────────────────────────────────────┘
-         +
-   &quot;Please read Summary-1&quot;  ← Wasted! Already in context</code></pre>
+│ ┌─────────────────────────────────┐ │
+│ │ instructions.md (5k tokens)     │ │ ← Always here
+│ └─────────────────────────────────┘ │
+└─────────────────────────────────────┘</code></pre>
 </section>
-<section id="evolution-v4-v5-the-pattern" class="slide level1">
-<h1>Evolution v4-v5: The Pattern</h1>
-<p><strong>v4: Skills = on-demand instructions</strong> - Retro
-instructions only loaded during retro - Not burning tokens every
-conversation</p>
-<p><strong>v5: Skill inheritance</strong> - What’s structural?
-(shareable) - What’s personal? (private) - <code>claude-as-coach</code>
-+ <code>claude-as-coach-personal</code></p>
+<section id="evolution-v4-skills" class="slide level1">
+<h1>Evolution v4: Skills</h1>
+<ul>
+<li>On-demand instructions (only loaded when needed)</li>
+<li>Retro instructions only loaded during retro</li>
+<li>Not burning tokens every conversation</li>
+</ul>
+</section>
+<section id="evolution-v5-skill-inheritance" class="slide level1">
+<h1>Evolution v5: Skill Inheritance</h1>
+<ul>
+<li>What’s structural? (shareable)</li>
+<li>What’s personal? (private)</li>
+<li><code>claude-as-coach</code> +
+<code>claude-as-coach-personal</code></li>
+</ul>
 <p>No grand plan. Just iterated on friction.</p>
 </section>
 <section id="section-1" class="slide level1 center">
@@ -232,9 +247,14 @@ Project sidebar with documents</p>
 <td>Persistent context</td>
 </tr>
 <tr>
+<td><strong>Skill</strong></td>
+<td>On-demand instructions (.zip)</td>
+<td>Structured workflows</td>
+</tr>
+<tr>
 <td><strong>Memory</strong></td>
-<td>Cross-project recall</td>
-<td>(optional - skipped)</td>
+<td>30 slots (200 chars each), agent/UI editable</td>
+<td>(skipped - didn’t fit flow)</td>
 </tr>
 <tr>
 <td><strong>Instructions</strong></td>
@@ -416,12 +436,18 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href=
 <section id="the-demo-data-problem" class="slide level1">
 <h1>The Demo Data Problem</h1>
 <p>Building demos for personal productivity tools is hard:</p>
-<p><strong>Option A: Use real data</strong> - Privacy concerns (mine AND
-others’) - Can’t share in public repo - Awkward to present personal
-health info</p>
-<p><strong>Option B: Make stuff up on the fly</strong> - Inconsistent
-across demos - No version control - “Let me just quickly fabricate a
-believable 8-week journey…”</p>
+<p><strong>Option A: Use real data</strong></p>
+<ul>
+<li>Privacy concerns (mine AND others’)</li>
+<li>Can’t share in public repo</li>
+<li>Awkward to present personal health info</li>
+</ul>
+<p><strong>Option B: Make stuff up on the fly</strong></p>
+<ul>
+<li>Inconsistent across demos</li>
+<li>No version control</li>
+<li>“Let me just quickly fabricate a believable 8-week journey…”</li>
+</ul>
 </section>
 <section id="the-solution-synthetic-personas" class="slide level1">
 <h1>The Solution: Synthetic Personas</h1>
@@ -451,15 +477,25 @@ believable 8-week journey…”</p>
 <p>All data is synthetic. All commits are tracked. All demos are
 reproducible.</p>
 </section>
-<section id="why-ai-engineers-should-care" class="slide level1">
-<h1>Why AI Engineers Should Care</h1>
-<p><strong>Reproducibility</strong> - Same demo, any day:
-<code>regenerate_demo_dates.py --demo-day 2025-12-12</code> - Git tracks
-the “ground truth” - can diff persona evolution</p>
-<p><strong>Testing without exposure</strong> - Iterate on skills without
-personal data leakage - Share examples in public repo safely</p>
-<p><strong>Template for adoption</strong> - Users can fork Rob’s
-structure - Customize for their domain without starting from scratch</p>
+<section id="synthetic-data-work-in-progress" class="slide level1">
+<h1>Synthetic Data: Work in Progress</h1>
+<p><strong>Reproducibility</strong> (goal)</p>
+<ul>
+<li>Same demo, any day:
+<code>regenerate_demo_dates.py --demo-day 2025-12-12</code></li>
+<li>Git tracks the “ground truth” - can diff persona evolution</li>
+</ul>
+<p><strong>Testing without exposure</strong></p>
+<ul>
+<li>Iterate on skills without personal data leakage</li>
+<li>Share examples in public repo safely</li>
+</ul>
+<p><strong>Template for adoption</strong></p>
+<ul>
+<li>Users can fork Rob’s structure</li>
+<li>Customize for their domain without starting from scratch</li>
+</ul>
+<p><em>Still iterating on date alignment and gap handling.</em></p>
 </section>
 <section id="persona-design-robs-journey" class="slide level1">
 <h1>Persona Design: Rob’s Journey</h1>
@@ -672,6 +708,8 @@ works</li>
 <li>Can’t programmatically manage skills</li>
 <li>Mobile upload is clunky</li>
 <li>Context limits exist (Pro vs Max)</li>
+<li><strong>Pruning is manual:</strong> save artifact locally → add to
+project → remove rolled-up docs</li>
 </ul>
 <p>Works despite these. Not because of them.</p>
 </section>
@@ -722,12 +760,17 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href=
 <section id="skills-are-global-pain-point" class="slide level1">
 <h1>Skills Are Global (Pain Point)</h1>
 <p>Platform limitation: Skills not project-scoped</p>
-<p><strong>The problem:</strong> - My account is both prod AND dev -
-Manual toggle to test changes - No “dev skill” vs “prod skill” per
-project</p>
-<p><strong>Workaround:</strong> - Naming: <code>production-*</code> vs
-<code>development-*</code> - Manual toggling in Settings &gt;
-Capabilities</p>
+<p><strong>The problem:</strong></p>
+<ul>
+<li>My account is both prod AND dev</li>
+<li>Manual toggle to test changes</li>
+<li>No “dev skill” vs “prod skill” per project</li>
+</ul>
+<p><strong>Workaround:</strong></p>
+<ul>
+<li>Naming: <code>production-*</code> vs <code>development-*</code></li>
+<li>Manual toggling in Settings &gt; Capabilities</li>
+</ul>
 </section>
 <section id="onboarding-experiments" class="slide level1">
 <h1>Onboarding Experiments</h1>
@@ -753,9 +796,14 @@ for:</p>
 <section id="the-dev-process" class="slide level1">
 <h1>The Dev Process</h1>
 <p>“Zero build” doesn’t mean zero iteration.</p>
-<p><strong>Primitives explored:</strong> - Conversation (ephemeral) -
-Artifact (generated) - Project document (persistent) - Memory (skipped -
-adds complexity) - Instructions (skipped - harder to git track)</p>
+<p><strong>Primitives explored:</strong></p>
+<ul>
+<li>Conversation (ephemeral)</li>
+<li>Artifact (generated)</li>
+<li>Project document (persistent)</li>
+<li>Memory (skipped - adds complexity)</li>
+<li>Instructions (skipped - harder to git track)</li>
+</ul>
 <p><strong>Insight:</strong> Project docs &gt; base instructions for git
 tracking</p>
 </section>
@@ -789,14 +837,14 @@ tracking</p>
 </section>
 <section id="the-pitch" class="slide level1">
 <h1>The Pitch</h1>
-<p>You’re AI engineers. You could build this with:</p>
+<p>We’re AI engineers. We could build this with:</p>
 <ul>
 <li>LangChain</li>
 <li>Custom agents</li>
 <li>RAG pipelines</li>
 <li>Vector databases</li>
 </ul>
-<p>Or you could just… use Claude Projects with some markdown files.</p>
+<p>Or we could just… use Claude Projects with some markdown files.</p>
 <p><strong>Sometimes the best agent is no agent.</strong></p>
 </section>
 <section id="summary-questions" class="slide level1">

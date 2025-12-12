@@ -14,6 +14,8 @@ header-includes: |
     .reveal pre { font-size: 0.7em; }
     .reveal table { font-size: 0.8em; }
     .smaller { font-size: 0.8em; }
+    .reveal ul, .reveal ol { text-align: left; }
+    .reveal li { text-align: left; }
   </style>
 ---
 
@@ -64,49 +66,49 @@ How the system developed
 
 ---
 
-# Evolution v1-v2: The Search
+# Evolution v1: Giant Google Doc
 
-**v1: Giant Google Doc**
 - Daily logging: work, exercise, sleep, diet
 - Gaining insights = manual effort or build systems
 - Too much cognitive load sifting through it all
 
-**v2: Journaling Agents**
+---
+
+# Evolution v2: Journaling Agents
+
 - Various attempts at building agents
 - Create summary → copy/paste into new chat
 - Repeat daily. Forever.
 
 ---
 
-# Evolution v3: The Aha Moment
+# Evolution v3: Projects (The Aha Moment)
 
-**Projects + saving to documents**
-
-But I was wasting tokens:
+- Projects + saving to documents
+- Documents persist across conversations!
+- But... wasting tokens on instructions
 
 ```
 ┌─────────────────────────────────────┐
 │ Project Context (always loaded)     │
-│ ┌─────────┐ ┌─────────┐ ┌─────────┐│
-│ │Summary-1│ │Summary-2│ │Summary-3││
-│ └─────────┘ └─────────┘ └─────────┘│
-│ ┌─────────────────────────────────┐│
-│ │ instructions.md (5k tokens)     ││ ← Always here
-│ └─────────────────────────────────┘│
+│ ┌─────────────────────────────────┐ │
+│ │ instructions.md (5k tokens)     │ │ ← Always here
+│ └─────────────────────────────────┘ │
 └─────────────────────────────────────┘
-         +
-   "Please read Summary-1"  ← Wasted! Already in context
 ```
 
 ---
 
-# Evolution v4-v5: The Pattern
+# Evolution v4: Skills
 
-**v4: Skills = on-demand instructions**
+- On-demand instructions (only loaded when needed)
 - Retro instructions only loaded during retro
 - Not burning tokens every conversation
 
-**v5: Skill inheritance**
+---
+
+# Evolution v5: Skill Inheritance
+
 - What's structural? (shareable)
 - What's personal? (private)
 - `claude-as-coach` + `claude-as-coach-personal`
@@ -143,7 +145,8 @@ Every conversation sees **all** project documents.
 | **Conversation** | Permanent chat, context not retained | Daily check-ins |
 | **Artifact** | Generated content | Summaries, retros |
 | **File** | Project document | Persistent context |
-| **Memory** | Cross-project recall | (optional - skipped) |
+| **Skill** | On-demand instructions (.zip) | Structured workflows |
+| **Memory** | 30 slots (200 chars each), agent/UI editable | (skipped - didn't fit flow) |
 | **Instructions** | System prompt | (skipped to simplify) |
 
 The workflow uses **conversations → artifacts → files**.
@@ -348,11 +351,13 @@ Why Rob isn't real
 Building demos for personal productivity tools is hard:
 
 **Option A: Use real data**
+
 - Privacy concerns (mine AND others')
 - Can't share in public repo
 - Awkward to present personal health info
 
 **Option B: Make stuff up on the fly**
+
 - Inconsistent across demos
 - No version control
 - "Let me just quickly fabricate a believable 8-week journey..."
@@ -373,19 +378,24 @@ All data is synthetic. All commits are tracked. All demos are reproducible.
 
 ---
 
-# Why AI Engineers Should Care
+# Synthetic Data: Work in Progress
 
-**Reproducibility**
+**Reproducibility** (goal)
+
 - Same demo, any day: `regenerate_demo_dates.py --demo-day 2025-12-12`
 - Git tracks the "ground truth" - can diff persona evolution
 
 **Testing without exposure**
+
 - Iterate on skills without personal data leakage
 - Share examples in public repo safely
 
 **Template for adoption**
+
 - Users can fork Rob's structure
 - Customize for their domain without starting from scratch
+
+*Still iterating on date alignment and gap handling.*
 
 ---
 
@@ -650,6 +660,7 @@ What actually matters
 - Can't programmatically manage skills
 - Mobile upload is clunky
 - Context limits exist (Pro vs Max)
+- **Pruning is manual:** save artifact locally → add to project → remove rolled-up docs
 
 Works despite these. Not because of them.
 
@@ -674,7 +685,7 @@ Open source and beyond
 **Microagent (future)**
 
 - Same pattern, any model
-- Tool-calling models (Llama, Qwen, etc.)
+- Tool-calling models (gpt-oss, kimi-k2, glm-4.6)
 - Not locked to Claude
 
 ---
@@ -719,11 +730,13 @@ No assumptions. Verify first.
 Platform limitation: Skills not project-scoped
 
 **The problem:**
+
 - My account is both prod AND dev
 - Manual toggle to test changes
 - No "dev skill" vs "prod skill" per project
 
 **Workaround:**
+
 - Naming: `production-*` vs `development-*`
 - Manual toggling in Settings > Capabilities
 
@@ -764,6 +777,7 @@ Claude has limitations. Critical decisions need professionals.
 "Zero build" doesn't mean zero iteration.
 
 **Primitives explored:**
+
 - Conversation (ephemeral)
 - Artifact (generated)
 - Project document (persistent)
@@ -792,14 +806,14 @@ Like memory that decays naturally over time.
 
 # The Pitch
 
-You're AI engineers. You could build this with:
+We're AI engineers. We could build this with:
 
 - LangChain
 - Custom agents
 - RAG pipelines
 - Vector databases
 
-Or you could just... use Claude Projects with some markdown files.
+Or we could just... use Claude Projects with some markdown files.
 
 **Sometimes the best agent is no agent.**
 

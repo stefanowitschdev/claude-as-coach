@@ -93,6 +93,31 @@
 
 ---
 
+### 🟡 Medium Priority: Demo Infrastructure
+
+#### F49: Synthetic Demo Data System
+**Status:** Planning
+**Effort:** Medium (4-6 hours)
+**Priority:** Medium (supports demo reliability)
+**Detail:** [docs/features/FEATURE-synthetic-demo-data.md](features/FEATURE-synthetic-demo-data.md)
+**Source:** Dec 11 presentation prep - discovered date alignment issues
+
+**Problem:** Synthetic demo data only covers "run days" (Mon/Wed/Fri), causing gaps when demo day doesn't align. Skills assume "yesterday" exists, but rest days have no summaries.
+
+**Two tracks:**
+1. **Skill resilience:** Update skills to gracefully handle missing data ("No summary for yesterday. Last was Wed.")
+2. **Data completeness:** Generate rest-day summaries, ensure "yesterday" always exists for any demo day
+
+**Tasks:**
+- [ ] Phase 1: Update morning routine + retro skills for missing data handling
+- [ ] Phase 2: Create rest-day summary templates for Rob
+- [ ] Phase 3: Add `--ensure-yesterday` flag to regenerate script
+- [ ] Phase 4: Document demo day requirements per scenario
+
+**Why now:** Real personal workflow doesn't hit these gaps (daily logging). Synthetic data for demos needs more coverage OR skills need more resilience (ideally both).
+
+---
+
 ### 🟡 Medium Priority: Safety & User Experience
 
 #### F47: Onboarding UX Audit
