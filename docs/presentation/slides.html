@@ -348,6 +348,35 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">2. Ask which date to summarize</span></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">3. Generate structured markdown...</span></span></code></pre></div>
 </section>
+<section id="whats-a-skill-with-tools" class="slide level1">
+<h1>What’s a Skill? (With Tools)</h1>
+<p>Skills can bundle Python scripts.</p>
+<pre><code>skill-creator/
+├── SKILL.md              # LLM instructions
+└── scripts/
+    ├── init_skill.py
+    ├── package_skill.py
+    └── quick_validate.py</code></pre>
+<p><strong>The blend:</strong></p>
+<ul>
+<li>Instructions tell Claude <em>what</em> to do and <em>when</em></li>
+<li>Scripts give Claude <em>deterministic tools</em> to call</li>
+<li>LLM handles ambiguity, scripts handle precision</li>
+</ul>
+</section>
+<section id="code-is-data-is-code" class="slide level1">
+<h1>Code is Data is Code</h1>
+<p>A skill is a function that runs on an LLM.</p>
+<pre><code>Input:  User says &quot;daily summary&quot;
+        + Project documents (context)
+
+Compute: LLM executes skill instructions
+         Calls tools as needed
+
+Output: Summary-2025-12-11-Wednesday.md</code></pre>
+<p>The instructions <em>are</em> the program. The context <em>is</em>
+the state. The LLM <em>is</em> the runtime.</p>
+</section>
 <section id="skill-triggers" class="slide level1">
 <h1>Skill Triggers</h1>
 <p>Triggers are function calls in human language.</p>
@@ -384,35 +413,6 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="
 <li>Skill instructions load into context</li>
 <li>Claude executes the process</li>
 </ul>
-</section>
-<section id="whats-a-skill-with-tools" class="slide level1">
-<h1>What’s a Skill? (With Tools)</h1>
-<p>Skills can bundle Python scripts.</p>
-<pre><code>skill-creator/
-├── SKILL.md              # LLM instructions
-└── scripts/
-    ├── init_skill.py
-    ├── package_skill.py
-    └── quick_validate.py</code></pre>
-<p><strong>The blend:</strong></p>
-<ul>
-<li>Instructions tell Claude <em>what</em> to do and <em>when</em></li>
-<li>Scripts give Claude <em>deterministic tools</em> to call</li>
-<li>LLM handles ambiguity, scripts handle precision</li>
-</ul>
-</section>
-<section id="code-is-data-is-code" class="slide level1">
-<h1>Code is Data is Code</h1>
-<p>A skill is a function that runs on an LLM.</p>
-<pre><code>Input:  User says &quot;daily summary&quot;
-        + Project documents (context)
-
-Compute: LLM executes skill instructions
-         Calls tools as needed
-
-Output: Summary-2025-12-11-Wednesday.md</code></pre>
-<p>The instructions <em>are</em> the program. The context <em>is</em>
-the state. The LLM <em>is</em> the runtime.</p>
 </section>
 <section id="the-.zip.skill-confusion" class="slide level1">
 <h1>The .zip/.skill Confusion</h1>
@@ -697,7 +697,7 @@ height="500" alt="Add to project" />
 <p>SWITCH TO: Project “rob-week-9” with existing documents SHOW: Morning
 → Summary → Retro → Manual cleanup</p>
 </aside>
-<p><strong>Scenario:</strong> Rob at Week 9, Sunday morning</p>
+<p><strong>Scenario:</strong> Rob at Week 9, end of week (retro day)</p>
 <p><strong>What’s in the project:</strong></p>
 <ul>
 <li>3 daily summaries (recent week)</li>
@@ -923,9 +923,9 @@ Starting focused work block now.</code></pre>
 <ul>
 <li>Skills are <strong>global</strong> (not project-scoped)</li>
 <li>Skill upload/download is clunky, hard to version them</li>
-<li>Mobile summary-&gt;gm flow is clunky - missing “add to project”</li>
+<li>Mobile summary → gm flow is clunky - missing “add to project”</li>
 <li>Context limits exist (Pro vs Max)</li>
-<li><strong>Pruning is manual:</strong> generate artifact -&gt; save
+<li><strong>Pruning is manual:</strong> generate artifact → save
 artifact locally to back up → add to project → remove rolled-up docs
 after retro</li>
 </ul>
