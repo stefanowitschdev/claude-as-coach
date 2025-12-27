@@ -388,7 +388,7 @@ python ../claude-as-coach/scripts/skill_workflow.py pack skills/daily-summary-pe
 - Confirm timezone in skills matches your location
 - Try toggling skills off/on in Claude.ai settings
 
-**Repo:** [github.com/ZachBeta/claude-as-coach](https://github.com/ZachBeta/claude-as-coach)
+**Repo:** [github.com/stefanowitschdev/claude-as-coach](https://github.com/stefanowitschdev/claude-as-coach)
 **License:** MIT
 **Questions:** Open an issue on GitHub
 

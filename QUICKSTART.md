@@ -21,10 +21,10 @@
 When a user pastes this document, help them set up the coaching system:
 
 1. **Fetch each SKILL.md** from these URLs:
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base/SKILL.md
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base/SKILL.md
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base/SKILL.md
-   - https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base/SKILL.md
+   - https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base/SKILL.md
+   - https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base/SKILL.md
+   - https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/planning-base/SKILL.md
+   - https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/retrospective-base/SKILL.md
 
 2. **For each SKILL.md fetched:**
    - Use the `skill-creator` skill to package it into a .zip artifact

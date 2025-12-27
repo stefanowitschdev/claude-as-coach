@@ -35,7 +35,7 @@ That's it. Everything else is structure to support these questions.
 
 ```bash
 # Verify current date
-TZ='America/New_York' date '+%A, %B %d, %Y - %I:%M %p %Z'
+TZ='Europe/Vienna' date '+%A, %B %d, %Y - %H:%M %Z'
 ```
 
 **Confirm the period being reviewed:**

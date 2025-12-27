@@ -12,7 +12,7 @@ description: Framework for starting new daily chat with gentle context loading f
 **CRITICAL FIRST STEP**
 
 ```bash
-TZ='America/New_York' date '+%A, %B %d, %Y - %I:%M %p %Z'
+TZ='Europe/Vienna' date '+%A, %B %d, %Y - %H:%M %Z'
 ```
 
 State clearly: "Today is [Day], [Full Date]."

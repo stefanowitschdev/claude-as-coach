@@ -23,11 +23,11 @@
 
 **Download these 5 skill files** (click to download directly):
 
-- [project-coach-setup-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/project-coach-setup-base.zip)
-- [daily-morning-routine-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip)
-- [daily-summary-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip)
-- [retrospective-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/retrospective-base.zip)
-- [planning-base.zip](https://github.com/ZachBeta/claude-as-coach/raw/refs/heads/main/skills/planning-base.zip)
+- [project-coach-setup-base.zip](https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/project-coach-setup-base.zip)
+- [daily-morning-routine-base.zip](https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/daily-morning-routine-base.zip)
+- [daily-summary-base.zip](https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/daily-summary-base.zip)
+- [retrospective-base.zip](https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/retrospective-base.zip)
+- [planning-base.zip](https://github.com/stefanowitschdev/claude-as-coach/raw/refs/heads/main/skills/planning-base.zip)
 
 **Upload them to claude.ai:**
 

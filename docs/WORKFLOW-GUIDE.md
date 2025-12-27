@@ -378,7 +378,7 @@ mkdir claude-as-coach-combined
 cd claude-as-coach-combined
 
 # Clone public repo with vendor submodule
-git clone --recurse-submodules https://github.com/ZachBeta/claude-as-coach
+git clone --recurse-submodules https://github.com/stefanowitschdev/claude-as-coach
 
 # Create your own private repo for personal data (optional)
 git clone https://github.com/YOUR-USERNAME/claude-as-coach-personal

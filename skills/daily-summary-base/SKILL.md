@@ -16,7 +16,7 @@ description: Framework for creating end-of-day summary documents. Use when user 
 **CRITICAL FIRST STEP** - Prevents date confusion
 
 ```bash
-TZ='America/New_York' date '+%A, %B %d, %Y - %I:%M %p %Z'
+TZ='Europe/Vienna' date '+%A, %B %d, %Y - %H:%M %Z'
 ```
 
 Confirm actual date in user's timezone.
